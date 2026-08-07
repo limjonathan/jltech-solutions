@@ -82,6 +82,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Modal focus trap
+    specModals.forEach(modal => {
+        modal.addEventListener('keydown', (e) => {
+            if (e.key !== 'Tab' || !modal.classList.contains('active')) return;
+            const focusable = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+            if (!focusable.length) return;
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+            else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        });
+    });
+
 
     // 3. NOC LOG JOURNAL
     const logConsole = document.getElementById('console-logs-container');
