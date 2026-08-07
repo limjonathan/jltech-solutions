@@ -207,7 +207,7 @@ img { max-width: 100%; height: auto; }
 .header-container {
     max-width: var(--max-width);
     margin: 0 auto;
-    padding: 10px 24px;
+    padding: 16px 24px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -227,7 +227,7 @@ img { max-width: 100%; height: auto; }
 }
 
 .brand-name {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     font-weight: 800;
     color: var(--color-text);
     letter-spacing: -0.5px;
@@ -236,7 +236,7 @@ img { max-width: 100%; height: auto; }
 .nav-list {
     display: flex;
     align-items: center;
-    gap: 24px;
+    gap: 32px;
 }
 
 .nav-link {
