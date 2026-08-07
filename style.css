@@ -967,8 +967,8 @@ img { max-width: 100%; height: auto; }
 }
 
 .inner-frame-glowing {
-    width: 300px;
-    height: 300px;
+    width: 200px;
+    height: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
