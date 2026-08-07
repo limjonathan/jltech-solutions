@@ -1,0 +1,15 @@
+{
+  "name": "jltech-solutions",
+  "version": "1.0.0",
+  "description": "JL Tech Solutions — Full-spectrum IT engineering corporate website",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "author": "JL Tech Solutions",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
