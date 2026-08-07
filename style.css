@@ -228,7 +228,12 @@ img { max-width: 100%; height: auto; }
 }
 
 .nav-logo {
-    margin: -41px 0;
+    margin: -44px 0;
+}
+
+.footer-logo {
+    height: 140px;
+    filter: brightness(2.5) drop-shadow(0 0 6px rgba(255,255,255,0.3));
 }
 
 .brand-name {
@@ -980,7 +985,7 @@ img { max-width: 100%; height: auto; }
 }
 
 .about-logo-badge {
-    max-width: 360px;
+    max-width: 432px;
     height: auto;
     filter: drop-shadow(0 2px 8px rgba(37,99,235,0.15));
     transition: var(--transition);
