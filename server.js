@@ -47,64 +47,106 @@ function applyRateLimit(req, res) {
     const ip = req.socket.remoteAddress || 'unknown';
     const now = Date.now();
     const entry = rateLimitMap.get(ip);
+
     if (entry && entry.blockUntil > now) {
         sendError(res, 429, 'Too Many Requests', { 'Retry-After': '60' });
         return false;
     }
+
     if (!entry || now - entry.windowStart > RATE_LIMIT_WINDOW) {
         rateLimitMap.set(ip, { count: 1, windowStart: now });
         return true;
     }
+
     entry.count++;
     if (entry.count > RATE_LIMIT_MAX) {
         entry.blockUntil = now + RATE_LIMIT_BLOCK;
         sendError(res, 429, 'Too Many Requests', { 'Retry-After': '60' });
         return false;
     }
+
     return true;
 }
 
 setInterval(() => {
     const now = Date.now();
     for (const [ip, entry] of rateLimitMap) {
-        if (entry.blockUntil && entry.blockUntil <= now) rateLimitMap.delete(ip);
-        else if (!entry.blockUntil && now - entry.windowStart > RATE_LIMIT_WINDOW * 2) rateLimitMap.delete(ip);
+        if (entry.blockUntil && entry.blockUntil <= now) {
+            rateLimitMap.delete(ip);
+        } else if (!entry.blockUntil && now - entry.windowStart > RATE_LIMIT_WINDOW * 2) {
+            rateLimitMap.delete(ip);
+        }
     }
 }, 60000);
 
 const server = http.createServer((req, res) => {
     console.log(`[JL_TECH_SITE] ${req.method} ${req.url}`);
+
     if (!applyRateLimit(req, res)) return;
+
     const urlPath = decodeURIComponent(req.url);
-    const normalized = path.normalize(urlPath).replace(/^(\.\.[\/\\])+/, '');
-    let filePath = normalized === '/' || normalized === '' ? path.join(__dirname, 'index.html') : path.join(__dirname, normalized);
+    const normalized = path.normalize(urlPath).replace(/^(\.\.[/\\])+/, '');
+    let filePath = normalized === '/' || normalized === ''
+        ? path.join(__dirname, 'index.html')
+        : path.join(__dirname, normalized);
+
     let realPath;
-    try { realPath = fs.realpathSync(filePath); }
-    catch { sendError(res, 404, 'Not Found'); return; }
-    if (!realPath.startsWith(__dirname)) { sendError(res, 403, 'Forbidden'); return; }
+    try {
+        realPath = fs.realpathSync(filePath);
+    } catch {
+        sendError(res, 404, 'Not Found');
+        return;
+    }
+
+    if (!realPath.startsWith(__dirname)) {
+        sendError(res, 403, 'Forbidden');
+        return;
+    }
+
     const extname = path.extname(realPath).toLowerCase();
     const contentType = MIME_TYPES[extname] || 'application/octet-stream';
     const isText = TEXT_EXTS.has(extname);
+
     fs.readFile(realPath, (err, content) => {
         if (err) {
-            if (err.code === 'ENOENT') sendError(res, 404, 'Not Found');
-            else { console.error(`[ERROR] Failed to read ${realPath}: ${err.code}`); sendError(res, 500, 'Internal Server Error'); }
+            if (err.code === 'ENOENT') {
+                sendError(res, 404, 'Not Found');
+            } else {
+                console.error(`[ERROR] Failed to read ${realPath}: ${err.code}`);
+                sendError(res, 500, 'Internal Server Error');
+            }
         } else {
             setSecurityHeaders(res);
-            res.setHeader('Cache-Control', 'public, max-age=2592000');
+            const thirtyDays = 30 * 24 * 60 * 60;
+            res.setHeader('Cache-Control', `public, max-age=${thirtyDays}`);
             res.writeHead(200, { 'Content-Type': contentType });
-            if (isText) res.end(content, 'utf-8');
-            else res.end(content);
+            if (isText) {
+                res.end(content, 'utf-8');
+            } else {
+                res.end(content);
+            }
         }
     });
 });
 
 server.on('error', (err) => {
-    if (err.code === 'EADDRINUSE') { console.error(`Port ${PORT} is already in use.`); process.exit(1); }
+    if (err.code === 'EADDRINUSE') {
+        console.error(`Port ${PORT} is already in use. Try a different port.`);
+        process.exit(1);
+    }
     throw err;
 });
-process.on('SIGTERM', () => { console.log('[JL_TECH_SITE] Shutting down...'); server.close(() => process.exit(0)); });
-process.on('SIGINT', () => { console.log('[JL_TECH_SITE] Shutting down...'); server.close(() => process.exit(0)); });
+
+process.on('SIGTERM', () => {
+    console.log('[JL_TECH_SITE] Shutting down...');
+    server.close(() => process.exit(0));
+});
+
+process.on('SIGINT', () => {
+    console.log('[JL_TECH_SITE] Shutting down...');
+    server.close(() => process.exit(0));
+});
+
 server.listen(PORT, () => {
     console.log('==========================================');
     console.log('JL Tech Solutions Corporate Server');

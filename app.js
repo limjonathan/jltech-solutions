@@ -1,5 +1,5 @@
 /* ==========================================================================
-   JL TECH SOLUTIONS - Application Logic
+   JL TECH SOLUTIONS — Application Logic
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    // 4. TELEMETRY - System + AI Ops metrics
+    // 4. TELEMETRY — System + AI Ops metrics
     const cpuVal = document.querySelector('#stat-cpu .stat-value');
     const cpuBar = document.querySelector('#stat-cpu .graph-bar');
     const ramVal = document.querySelector('#stat-ram .stat-value');
@@ -175,13 +175,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateTelemetryValues() {
         if (logsPaused) return;
-        if (cpuVal && cpuBar) { const cpu = (8 + Math.random() * 10).toFixed(1); cpuVal.textContent = `${cpu}%`; cpuBar.style.width = `${cpu * 2.5}%`; }
-        if (ramVal && ramBar) { const ram = (40 + Math.random() * 4).toFixed(1); ramVal.textContent = `${ram}%`; ramBar.style.width = `${ram}%`; }
-        if (latVal && latBar) { const latency = Math.floor(6 + Math.random() * 8); latVal.textContent = `${latency}ms`; latBar.style.width = `${latency * 5}%`; }
-        if (aiTasksVal && aiTasksBar) { const tasks = Math.floor(820 + Math.random() * 60); aiTasksVal.textContent = tasks.toLocaleString(); aiTasksBar.style.width = `${Math.min((tasks / 1200) * 100, 100)}%`; }
-        if (aiDocsVal && aiDocsBar) { const docs = Math.floor(12300 + Math.random() * 200); aiDocsVal.textContent = docs.toLocaleString(); aiDocsBar.style.width = `${Math.min((docs / 20000) * 100, 100)}%`; }
-        if (aiTimeVal && aiTimeBar) { const t = (1.5 + Math.random() * 1.5).toFixed(1); aiTimeVal.textContent = `${t}s`; aiTimeBar.style.width = `${t * 15}%`; }
-        if (aiAccVal && aiAccBar) { const acc = (96.8 + Math.random() * 1.5).toFixed(1); aiAccVal.textContent = `${acc}%`; aiAccBar.style.width = `${acc}%`; }
+
+        if (cpuVal && cpuBar) {
+            const cpu = (8 + Math.random() * 10).toFixed(1);
+            cpuVal.textContent = `${cpu}%`;
+            cpuBar.style.width = `${cpu * 2.5}%`;
+        }
+        if (ramVal && ramBar) {
+            const ram = (40 + Math.random() * 4).toFixed(1);
+            ramVal.textContent = `${ram}%`;
+            ramBar.style.width = `${ram}%`;
+        }
+        if (latVal && latBar) {
+            const latency = Math.floor(6 + Math.random() * 8);
+            latVal.textContent = `${latency}ms`;
+            latBar.style.width = `${latency * 5}%`;
+        }
+        if (aiTasksVal && aiTasksBar) {
+            const tasks = Math.floor(820 + Math.random() * 60);
+            aiTasksVal.textContent = tasks.toLocaleString();
+            aiTasksBar.style.width = `${Math.min((tasks / 1200) * 100, 100)}%`;
+        }
+        if (aiDocsVal && aiDocsBar) {
+            const docs = Math.floor(12300 + Math.random() * 200);
+            aiDocsVal.textContent = docs.toLocaleString();
+            aiDocsBar.style.width = `${Math.min((docs / 20000) * 100, 100)}%`;
+        }
+        if (aiTimeVal && aiTimeBar) {
+            const t = (1.5 + Math.random() * 1.5).toFixed(1);
+            aiTimeVal.textContent = `${t}s`;
+            aiTimeBar.style.width = `${t * 15}%`;
+        }
+        if (aiAccVal && aiAccBar) {
+            const acc = (96.8 + Math.random() * 1.5).toFixed(1);
+            aiAccVal.textContent = `${acc}%`;
+            aiAccBar.style.width = `${acc}%`;
+        }
     }
 
     telemetryTimer = setInterval(updateTelemetryValues, 2500);
@@ -204,9 +233,15 @@ document.addEventListener('DOMContentLoaded', () => {
     function validateField(inputEl) {
         if (!inputEl) return true;
         let isValid = true;
-        if (inputEl.tagName === 'SELECT') isValid = inputEl.value !== '';
-        else if (inputEl.type === 'email') isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(inputEl.value.trim());
-        else isValid = inputEl.value.trim() !== '';
+
+        if (inputEl.tagName === 'SELECT') {
+            isValid = inputEl.value !== '';
+        } else if (inputEl.type === 'email') {
+            isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(inputEl.value.trim());
+        } else {
+            isValid = inputEl.value.trim() !== '';
+        }
+
         const formGroup = inputEl.closest('.form-group');
         if (formGroup) {
             if (!isValid) formGroup.classList.add('has-error');
@@ -220,7 +255,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const eventType = input.tagName === 'SELECT' ? 'change' : 'input';
             input.addEventListener(eventType, () => {
                 const formGroup = input.closest('.form-group');
-                if (formGroup && formGroup.classList.contains('has-error')) validateField(input);
+                if (formGroup && formGroup.classList.contains('has-error')) {
+                    validateField(input);
+                }
             });
         }
     });
@@ -228,27 +265,43 @@ document.addEventListener('DOMContentLoaded', () => {
     if (ticketForm) {
         ticketForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            if (!(validateField(nameInput) && validateField(orgInput) && validateField(emailInput) && validateField(catSelect) && validateField(descTextarea))) {
+
+            const isNameValid = validateField(nameInput);
+            const isOrgValid = validateField(orgInput);
+            const isEmailValid = validateField(emailInput);
+            const isCatValid = validateField(catSelect);
+            const isDescValid = validateField(descTextarea);
+
+            if (!(isNameValid && isOrgValid && isEmailValid && isCatValid && isDescValid)) {
                 const firstError = ticketForm.querySelector('.has-error');
                 if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 return;
             }
+
             ticketForm.style.display = 'none';
             transScreen.style.display = 'flex';
             uplinkConsole.innerHTML = '';
+
             const clientName = nameInput.value.trim();
             const clientOrg = orgInput.value.trim();
             const checkedRadio = ticketForm.querySelector('input[name="severity_level"]:checked');
             const severity = checkedRadio ? checkedRadio.value.toUpperCase() : 'STANDARD';
+
             const categoryMap = {
-                'managed_it': 'Managed IT Services', 'presales': 'Presales & Procurement',
-                'cloud': 'Cloud & Infrastructure', 'identity': 'Identity & Access',
-                'security': 'Security Operations', 'web': 'Websites & Software',
-                'pos': 'POS & Business Systems', 'ai': 'AI-Augmented Services',
+                'managed_it': 'Managed IT Services',
+                'presales': 'Presales & Procurement',
+                'cloud': 'Cloud & Infrastructure',
+                'identity': 'Identity & Access',
+                'security': 'Security Operations',
+                'web': 'Websites & Software',
+                'pos': 'POS & Business Systems',
+                'ai': 'AI-Augmented Services',
                 'compliance': 'Compliance & Auditing'
             };
             const categoryText = categoryMap[catSelect.value] || 'General Inquiry';
+
             const severityLabel = severity === 'HIGH' ? 'Urgent' : severity === 'MEDIUM' ? 'Standard' : 'Flexible';
+
             const simSteps = [
                 { text: 'Initializing secure inquiry processing...', delay: 0 },
                 { text: 'Connecting to JL Tech dispatch system...', delay: 500 },
@@ -261,6 +314,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 { text: 'Inquiry successfully registered in JL Tech project queue!', delay: 3900, class: 'success' },
                 { text: 'Confirmation email will be sent within moments.', delay: 4400 }
             ];
+
             simSteps.forEach(step => {
                 setTimeout(() => {
                     const row = document.createElement('div');
@@ -271,25 +325,35 @@ document.addEventListener('DOMContentLoaded', () => {
                     uplinkConsole.scrollTop = uplinkConsole.scrollHeight;
                 }, step.delay);
             });
+
             setTimeout(() => {
                 transScreen.style.display = 'none';
                 receiptScreen.style.display = 'flex';
+
                 const ticketId = `INQ-2026-${Math.floor(1000 + Math.random() * 9000)}`;
                 document.getElementById('receipt-ticket-id').textContent = ticketId;
                 document.getElementById('receipt-client-name').textContent = clientName;
                 document.getElementById('receipt-client-org').textContent = clientOrg;
                 document.getElementById('receipt-category').textContent = categoryText;
+
                 const sevEl = document.getElementById('receipt-severity');
                 sevEl.textContent = severityLabel;
                 sevEl.className = 't-val';
-                if (severity === 'HIGH') sevEl.style.color = 'var(--color-alert)';
-                else if (severity === 'MEDIUM') sevEl.style.color = 'var(--color-warning)';
-                else sevEl.style.color = 'var(--color-accent)';
+                if (severity === 'HIGH') {
+                    sevEl.style.color = 'var(--color-alert)';
+                } else if (severity === 'MEDIUM') {
+                    sevEl.style.color = 'var(--color-warning)';
+                } else {
+                    sevEl.style.color = 'var(--color-accent)';
+                }
+
                 const d = new Date();
                 const pad = (n) => String(n).padStart(2, '0');
                 const tsStr = `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
                 document.getElementById('receipt-timestamp').textContent = tsStr;
-                addLogEntry('success', 'SYS_INQ', `Project inquiry logged: [${ticketId}] ${categoryText} - ${clientOrg}.`);
+
+                addLogEntry('success', 'SYS_INQ', `Project inquiry logged: [${ticketId}] ${categoryText} — ${clientOrg}.`);
+
             }, 5200);
         });
     }
@@ -305,6 +369,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+
     // 6. FIREFOX :has() FALLBACK
     document.querySelectorAll('.severity-option input[type="radio"]').forEach(radio => {
         radio.addEventListener('change', () => {
@@ -317,6 +382,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (parent) parent.classList.add('is-checked');
         }
     });
+
 
     // 7. CLEANUP
     window.addEventListener('beforeunload', () => {
