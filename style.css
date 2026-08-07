@@ -208,7 +208,7 @@ img { max-width: 100%; height: auto; }
 .header-container {
     max-width: var(--max-width);
     margin: 0 auto;
-    padding: 6px 16px;
+    padding: 10px 16px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -228,7 +228,7 @@ img { max-width: 100%; height: auto; }
 }
 
 .nav-logo {
-    margin: -44px 0;
+    margin: -42px 0;
 }
 
 .footer-logo {
@@ -299,6 +299,70 @@ img { max-width: 100%; height: auto; }
         radial-gradient(circle at 80% 20%, rgba(14,165,233,0.05) 0%, transparent 50%);
     pointer-events: none;
 }
+
+.hero-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.06;
+    pointer-events: none;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+.hero-blob-1 {
+    width: 500px; height: 500px;
+    background: var(--color-primary);
+    top: 10%; left: 5%;
+    animation: blobDrift1 20s;
+}
+
+.hero-blob-2 {
+    width: 400px; height: 400px;
+    background: var(--color-secondary);
+    bottom: 15%; right: 5%;
+    animation: blobDrift2 25s;
+}
+
+.hero-blob-3 {
+    width: 350px; height: 350px;
+    background: var(--color-accent);
+    top: 50%; right: 30%;
+    animation: blobDrift3 22s;
+}
+
+@keyframes blobDrift1 {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(80px, 60px) scale(1.15); }
+}
+
+@keyframes blobDrift2 {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(-60px, -40px) scale(1.1); }
+}
+
+@keyframes blobDrift3 {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(40px, -70px) scale(1.2); }
+}
+
+.section-wave {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    pointer-events: none;
+}
+
+.section-wave svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.section-wave.light-to-alt { background: var(--color-bg); }
+.section-wave.alt-to-light { background: var(--color-bg-alt); }
 
 .hero-container {
     max-width: 800px;
@@ -1498,8 +1562,19 @@ img { max-width: 100%; height: auto; }
     to { transform: rotate(360deg); }
 }
 @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(10px); }
+    from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* 16. RESPONSIVE */

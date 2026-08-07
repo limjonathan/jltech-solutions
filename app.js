@@ -384,7 +384,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    // 7. CLEANUP
+    // 7. SCROLL REVEAL
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.section-container').forEach(el => {
+        el.classList.add('reveal');
+        revealObserver.observe(el);
+    });
+
+    // 8. CLEANUP
     window.addEventListener('beforeunload', () => {
         if (logTimer) clearInterval(logTimer);
         if (telemetryTimer) clearInterval(telemetryTimer);
