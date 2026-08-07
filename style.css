@@ -208,7 +208,7 @@ img { max-width: 100%; height: auto; }
 .header-container {
     max-width: var(--max-width);
     margin: 0 auto;
-    padding: 10px 16px;
+    padding: 12px 16px;
     display: flex;
     align-items: center;
     justify-content: space-between;
