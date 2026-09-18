@@ -765,7 +765,10 @@ img { max-width: 100%; height: auto; }
 
 .ai-trust-bar {
     margin-top: 48px;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
     padding: 24px;
     background: var(--color-primary-light);
     border-radius: var(--radius-md);
@@ -773,6 +776,7 @@ img { max-width: 100%; height: auto; }
     color: var(--color-primary-dark);
     font-weight: 600;
 }
+.trust-icon { width: 18px; height: 18px; flex-shrink: 0; }
 
 /* 10. HOW WE WORK */
 .engagement-section {
