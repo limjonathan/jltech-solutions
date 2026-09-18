@@ -86,6 +86,7 @@
 
 <main id="main-content" tabindex="-1">
 <section class="hero-section" id="hero">
+    <canvas class="hero-field" id="hero-field" aria-hidden="true"></canvas>
     <div class="hero-aurora" aria-hidden="true"></div>
     <div class="hero-grid" aria-hidden="true"></div>
 
@@ -109,17 +110,6 @@
                 </a>
             </div>
         </div>
-
-        <div class="hero-visual" data-parallax="0.06">
-            <div class="topo-frame">
-                <div class="topo-head">
-                    <span class="topo-title">network.topology</span>
-                    <span class="topo-state"><span class="online-dot" aria-hidden="true"></span>live</span>
-                </div>
-                <canvas class="topo-canvas" id="topology-canvas" aria-hidden="true"></canvas>
-                <p class="topo-caption">Managed gateway mesh observed across client sites</p>
-            </div>
-        </div>
     </div>
 </section>
 
@@ -130,41 +120,47 @@
                 <h2 class="section-title">IT Solutions for Every Industry</h2>
                 <p class="section-description">From HIPAA-compliant medical networks to restaurant POS, government procurement, and small business managed IT. Every solution is tailored to your industry.</p>
             </div>
-            <div class="rail-head">
-                <p class="rail-counter" aria-hidden="true"><span data-rail-current>01</span> / <span data-rail-total>05</span></p>
-                <div class="rail-nav">
-                    <button type="button" class="rail-btn" data-rail-prev aria-label="Previous industries"><svg aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
-                    <button type="button" class="rail-btn" data-rail-next aria-label="Next industries"><svg aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
-                </div>
-            </div>
-            <div class="rail-viewport" data-rail-viewport tabindex="0" role="group" aria-label="Industries we serve">
-                <ul class="rail-track">
-                    <li class="vertical-card">
-                    <div class="vertical-icon health"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M3 5a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1zm4 15h10m-8-4v4m6-4v4"/><path d="M7 10h2l2 3l2-6l1 3h3"/></g></svg></div>
-                    <h3>Healthcare &amp; Medical</h3>
-                    <p>HIPAA-compliant networks, EMR/EHR integration, clinic workstations, patient Wi-Fi, secure backups, and medical device segmentation.</p>
-                </li>
-                    <li class="vertical-card">
-                    <div class="vertical-icon restaurant"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 3v12h-5c-.023-3.681.184-7.406 5-12m0 12v6h-1v-3M8 4v17M5 4v3a3 3 0 1 0 6 0V4"/></svg></div>
-                    <h3>Restaurants &amp; Hospitality</h3>
-                    <p>POS systems, online ordering, guest Wi-Fi, digital menu boards, surveillance, payment processing, and loyalty programs.</p>
-                </li>
-                    <li class="vertical-card">
-                    <div class="vertical-icon government"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21h18M3 10h18M5 6l7-3l7 3M4 10v11m16-11v11M8 14v3m4-3v3m4-3v3"/></svg></div>
-                    <h3>Government &amp; Defense</h3>
-                    <p>BoM generation, RFP/RFQ response, NIST/CMMC compliance, secure procurement, and infrastructure specification.</p>
-                </li>
-                    <li class="vertical-card">
-                    <div class="vertical-icon smb"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21h18M9 8h1m-1 4h1m-1 4h1m4-8h1m-1 4h1m-1 4h1M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"/></svg></div>
-                    <h3>Small &amp; Medium Business</h3>
-                    <p>Managed IT, helpdesk support, cloud email, file sharing, network setup, security, and vendor management. We are your IT department.</p>
-                </li>
-                    <li class="vertical-card">
-                    <div class="vertical-icon enterprise"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M3 21h18M5 21V9l5 4V9l5 4h4"/><path d="M19 21v-8l-1.436-9.574A.5.5 0 0 0 17.069 3h-1.145a.5.5 0 0 0-.494.418L14 12m-5 5h1m4 0h1"/></g></svg></div>
-                    <h3>Enterprise</h3>
-                    <p>Active Directory architecture, hybrid cloud migrations, security operations, identity management, and compliance auditing.</p>
-                </li>
-                </ul>
+            <div class="verticals-stack">
+                <article class="vertical-row" style="--row-i:0">
+                    <div class="vertical-head">
+                        <span class="vertical-num" aria-hidden="true">01</span>
+                        <div class="vertical-icon health"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M3 5a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1zm4 15h10m-8-4v4m6-4v4"/><path d="M7 10h2l2 3l2-6l1 3h3"/></g></svg></div>
+                        <h3>Healthcare &amp; Medical</h3>
+                    </div>
+                    <p class="vertical-body">HIPAA-compliant networks, EMR/EHR integration, clinic workstations, patient Wi-Fi, secure backups, and medical device segmentation.</p>
+                </article>
+                <article class="vertical-row" style="--row-i:1">
+                    <div class="vertical-head">
+                        <span class="vertical-num" aria-hidden="true">02</span>
+                        <div class="vertical-icon restaurant"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 3v12h-5c-.023-3.681.184-7.406 5-12m0 12v6h-1v-3M8 4v17M5 4v3a3 3 0 1 0 6 0V4"/></svg></div>
+                        <h3>Restaurants &amp; Hospitality</h3>
+                    </div>
+                    <p class="vertical-body">POS systems, online ordering, guest Wi-Fi, digital menu boards, surveillance, payment processing, and loyalty programs.</p>
+                </article>
+                <article class="vertical-row" style="--row-i:2">
+                    <div class="vertical-head">
+                        <span class="vertical-num" aria-hidden="true">03</span>
+                        <div class="vertical-icon government"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21h18M3 10h18M5 6l7-3l7 3M4 10v11m16-11v11M8 14v3m4-3v3m4-3v3"/></svg></div>
+                        <h3>Government &amp; Defense</h3>
+                    </div>
+                    <p class="vertical-body">BoM generation, RFP/RFQ response, NIST/CMMC compliance, secure procurement, and infrastructure specification.</p>
+                </article>
+                <article class="vertical-row" style="--row-i:3">
+                    <div class="vertical-head">
+                        <span class="vertical-num" aria-hidden="true">04</span>
+                        <div class="vertical-icon smb"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21h18M9 8h1m-1 4h1m-1 4h1m4-8h1m-1 4h1m-1 4h1M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"/></svg></div>
+                        <h3>Small &amp; Medium Business</h3>
+                    </div>
+                    <p class="vertical-body">Managed IT, helpdesk support, cloud email, file sharing, network setup, security, and vendor management. We are your IT department.</p>
+                </article>
+                <article class="vertical-row" style="--row-i:4">
+                    <div class="vertical-head">
+                        <span class="vertical-num" aria-hidden="true">05</span>
+                        <div class="vertical-icon enterprise"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M3 21h18M5 21V9l5 4V9l5 4h4"/><path d="M19 21v-8l-1.436-9.574A.5.5 0 0 0 17.069 3h-1.145a.5.5 0 0 0-.494.418L14 12m-5 5h1m4 0h1"/></g></svg></div>
+                        <h3>Enterprise</h3>
+                    </div>
+                    <p class="vertical-body">Active Directory architecture, hybrid cloud migrations, security operations, identity management, and compliance auditing.</p>
+                </article>
             </div>
         </div>
     </section>
@@ -417,8 +413,8 @@
 
     <!-- MEDIA BAND: network scale -->
     <section class="media-band media-band--short" aria-labelledby="band-net-title">
-        <img class="media-band-img" src="assets/tech-network.webp"
-             alt="Abstract visualisation of a network of connected nodes"
+        <img class="media-band-img" src="assets/tech-fibre.webp"
+             alt="Blue light travelling through a bundle of fibre-optic strands"
              width="2000" height="1000" loading="lazy" decoding="async">
         <div class="media-band-scrim" aria-hidden="true"></div>
         <div class="media-band-inner">
@@ -514,8 +510,8 @@
 
     <!-- MEDIA BAND: infrastructure proof -->
     <section class="media-band" aria-labelledby="band-infra-title">
-        <img class="media-band-img" src="assets/tech-datacenter.webp"
-             alt="Rows of illuminated server racks lining a data centre aisle"
+        <img class="media-band-img" src="assets/tech-chip.webp"
+             alt="Macro view of a processor chip mounted on a circuit board"
              width="2000" height="1000" loading="lazy" decoding="async">
         <div class="media-band-scrim" aria-hidden="true"></div>
         <div class="media-band-inner">

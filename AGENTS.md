@@ -27,15 +27,16 @@ browser (see "Verification" below).
 ## Layout
 
 ```
-index.html      Single page: hero (asymmetric split + topology canvas), industries,
-                9 services (+9 modals), AI section, engagement models, ops dashboard,
-                about, inquiry form, footer
+index.html      Single page: hero (single column + animated flow field), industries
+                stack, 9 services (+9 modals), AI section, engagement models, ops
+                dashboard, about, inquiry form, footer
 style.css       Token layer + design system + responsive breakpoints
 app.js          Interactivity: nav, modals, ops log, telemetry, inquiry form
 motion.js       ALL GSAP timelines. One gsap.matchMedia() block owns every tween.
-background.js   Topology canvas behind the hero (rAF loop that pauses off-screen)
-                Section shapes: industries rail, 9-row sticky service stack,
-                drawn AI pipeline, asymmetric engagement rows, two media bands
+background.js   Flow-field particle canvas behind the hero (rAF loop that pauses
+                off-screen). Not a decorative extra: the hero's whole visual weight.
+                Section shapes: 9-row sticky service stack, tall sticky industries
+                stack, drawn AI pipeline, asymmetric engagement rows, media bands
 server.js       Dev-only static server (rate limiting, security headers, caching)
 sitemap.xml     Single-URL sitemap
 robots.txt      Crawl rules -> sitemap
@@ -45,8 +46,8 @@ assets/
   logo-light.svg    Light variant (#4D4D4D -> #E2E8F0) for dark backgrounds
   og-cover.jpg      1200x630 social card (photographic, so JPEG not PNG)
   grain.png         128x128 noise tile, tiled by body::after
-  tech-datacenter.webp  Media band image (ComfyUI / DreamShaperXL Lightning)
-  tech-network.webp     Media band image (same pipeline)
+  tech-chip.webp        Media band image, macro processor (ComfyUI / DSXL Lightning)
+  tech-fibre.webp       Media band image, macro fibre optics (same pipeline)
   logo.png          3125x3125 RGBA source raster (padding NOT trimmed; source only)
   logo.jpg          Unused, gitignored
 ```
@@ -89,16 +90,19 @@ feedback is `transform: scale(0.975)` at `--dur-press`.
 **5. Never fade a container that holds a CTA.** Dimming text dims the button inside it and
 drops it below 4.5:1 mid-scroll. The hero scrub translates but deliberately does not fade.
 
-**6. The topology canvas stays contained.** It is absolutely positioned inside the hero and
-paused by IntersectionObserver when off-screen and on `visibilitychange`. A permanently
-running full-viewport canvas is a battery and INP tax for no benefit.
+**6. The hero flow field stays contained and must actually stop.** It is absolutely
+positioned inside the hero, and the rAF loop is stopped by IntersectionObserver when
+off-screen and on `visibilitychange`. A permanently running full-bleed canvas is a battery
+and INP tax for no benefit. Its trails fade with `globalCompositeOperation =
+'destination-out'`; painting a translucent colour instead would accumulate alpha toward
+opaque on a transparent layer and flood the hero, which is exactly what it did first time.
 
-**7. The industries rail may listen to its own scroll, never the page's.** The one
-`scroll` listener in the codebase is attached to `[data-rail-viewport]`, a contained
-horizontal scroller, and is rAF-throttled. That is not the banned page-scroll pattern. If
-you ever attach one to `window`, you have reintroduced the thing invariant 1 forbids.
+**7. There are currently ZERO `scroll` listeners in the codebase.** An earlier revision had
+exactly one, element-scoped on the industries rail, which was permitted because it was a
+contained horizontal scroller rather than the page. The rail is gone and the count is back
+to zero. Keep it there.
 
-**8. The service stack is CSS-only.** `position: sticky` with a per-row `top` offset
+**8. Both sticky stacks are CSS-only.** `position: sticky` with a per-row `top` offset
 (`--row-i`) does the stacking, so it still reads as an ordered list with JS or motion off.
 GSAP only adds a scale on the outgoing row. Do not move the stacking into JS.
 
@@ -171,10 +175,11 @@ Then in a browser:
   renders exactly one static frame.
 - JS disabled: the hero and every section must still render fully visible. Hidden start
   states are applied by JS, so a blocked GSAP must not blank the page.
-- Rail: the next/prev buttons advance one card, the `NN / 05` counter tracks it, prev is
-  disabled at the start, and drag-to-pan does not fire a click on release.
-- Service stack: rows are `position: sticky`, each "Learn more" opens its modal, and Escape
-  returns focus to that button (not the row).
+- Sticky stacks: both the industries and services rows are `position: sticky` and pin as
+  you scroll. Each service "Learn more" opens its modal, and Escape returns focus to that
+  button (not the row).
+- Flow field: it paints on load, and the canvas stops updating once the hero is scrolled
+  out of view (sample two frames off-screen and assert they are identical).
 - Media bands: both images load, and white band text clears 4.5:1 against the scrim at
   desktop and in the stacked mobile layout.
 - Nothing is left hidden: after a slow full-page scroll, no element outside `.spec-modal`

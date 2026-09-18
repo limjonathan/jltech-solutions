@@ -1,20 +1,23 @@
 /* ==========================================================================
-   JL TECH SOLUTIONS - Background field
+   JL TECH SOLUTIONS - Hero background field
    --------------------------------------------------------------------------
-   The topology canvas behind the hero. One rAF loop, and it stops the moment
-   it is off-screen or the tab is hidden: a permanently animating canvas is a
-   battery and INP tax for no benefit once the hero has scrolled away.
+   A particle flow field drifting behind the hero. Replaces the static gradient
+   and the old topology canvas.
 
-   Under prefers-reduced-motion it renders a single static frame and never
-   starts a loop.
-
-   Degrades silently: if the element or 2D context is unavailable nothing runs
-   and the hero is unaffected.
+   Lifecycle rules it must keep (these are what make a full-bleed canvas
+   acceptable at all):
+     - rAF stops the moment the hero leaves the viewport or the tab is hidden.
+       A permanently animating full-viewport canvas is a battery and INP tax for
+       no benefit once the hero is scrolled past.
+     - Under prefers-reduced-motion it draws ONE static frame and never loops.
+     - DPR capped at 2, particle count derived from area and hard-capped.
+     - Degrades silently: no element or no 2D context means nothing runs and the
+       hero is unaffected.
    ========================================================================== */
 (function () {
     'use strict';
 
-    var canvas = document.getElementById('topology-canvas');
+    var canvas = document.getElementById('hero-field');
     if (!canvas) return;
 
     var ctx = canvas.getContext('2d');
@@ -22,154 +25,168 @@
 
     var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-    // Tuning
-    var NODE_DENSITY = 1 / 16000;   // nodes per px^2
-    var NODE_MIN = 22;
-    var NODE_MAX = 58;
-    var LINK_DIST = 132;
-    var POINTER_RADIUS = 150;
-    var NODE_SPEED = 0.16;
-    var MAX_DPR = 2;                // never render above 2x
+    /* ------------------------------------------------------------- tuning */
+    var AREA_PER_PARTICLE = 9000;   // px^2 of canvas per particle
+    var MIN_PARTICLES = 140;
+    var MAX_PARTICLES = 460;
+    var MAX_DPR = 2;
 
-    var COL_NODE = 'rgba(37, 99, 235, 0.55)';
-    var COL_NODE_NEAR = 'rgba(37, 99, 235, 0.95)';
-    var COL_LINK = 'rgba(37, 99, 235,';
-    var COL_LINK_NEAR = 'rgba(29, 78, 216,';
+    var SPEED = 1.15;               // px per frame along the field
+    var FIELD_SCALE = 0.0016;       // spatial frequency of the flow field
+    var FIELD_DRIFT = 0.00016;      // how fast the field itself evolves
+    var TRAIL_FADE = 0.042;         // per-frame alpha decay, via destination-out
 
-    var nodes = [];
+    var POINTER_RADIUS = 190;
+    var POINTER_PUSH = 2.4;
+
+    var STROKE = 'rgba(37, 99, 235, 0.5)';    // particle trail
+    var DOT = 'rgba(29, 78, 216, 0.7)';       // particle head
+
+    /* ------------------------------------------------------------ state */
+    var particles = [];
     var w = 0;
     var h = 0;
-    var dpr = 1;
     var rafId = null;
     var running = false;
     var inView = true;
+    var time = 0;
     var pointer = { x: -9999, y: -9999, active: false };
-    var linkDist = LINK_DIST;
 
-    function rand(min, max) {
-        return min + Math.random() * (max - min);
+    function rand(min, max) { return min + Math.random() * (max - min); }
+
+    function particleCount() {
+        var byArea = Math.round((w * h) / AREA_PER_PARTICLE);
+        return Math.max(MIN_PARTICLES, Math.min(MAX_PARTICLES, byArea));
     }
 
-    function nodeCount() {
-        var byArea = Math.round(w * h * NODE_DENSITY);
-        return Math.max(NODE_MIN, Math.min(NODE_MAX, byArea));
-    }
-
-    function makeNode() {
+    function spawn() {
         return {
             x: rand(0, w),
             y: rand(0, h),
-            vx: rand(-NODE_SPEED, NODE_SPEED),
-            vy: rand(-NODE_SPEED, NODE_SPEED),
-            r: rand(1.1, 2.2)
+            age: Math.floor(rand(0, 260)),
+            // Per-particle speed variance. Without it the field reads as one
+            // rigid drift and looks mechanical.
+            speed: rand(0.55, 1.5)
         };
     }
 
     function seed() {
-        var n = nodeCount();
-        nodes = [];
-        for (var i = 0; i < n; i++) nodes.push(makeNode());
+        var n = particleCount();
+        particles = new Array(n);
+        for (var i = 0; i < n; i++) particles[i] = spawn();
+    }
+
+    /* Cheap, dependency-free flow field. Two crossed trig terms give a field
+       that curls and drifts without a noise library. */
+    function fieldAngle(x, y, t) {
+        var a = Math.sin(x * FIELD_SCALE + t) * 1.7;
+        var b = Math.cos(y * FIELD_SCALE * 1.3 - t * 0.8) * 1.7;
+        return a + b;
     }
 
     function resize() {
         var rect = canvas.getBoundingClientRect();
         if (!rect.width || !rect.height) return;
 
-        dpr = Math.min(window.devicePixelRatio || 1, MAX_DPR);
+        var dpr = Math.min(window.devicePixelRatio || 1, MAX_DPR);
         w = rect.width;
         h = rect.height;
         canvas.width = Math.round(w * dpr);
         canvas.height = Math.round(h * dpr);
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-        // Tighter links on narrow canvases so it does not become a hairball.
-        linkDist = Math.max(78, Math.min(LINK_DIST, w * 0.26));
-
+        // repaint the base so resizing cannot leave stale trails behind
+        ctx.clearRect(0, 0, w, h);
         seed();
-        draw();
+        draw(true);
     }
 
     function step() {
-        for (var i = 0; i < nodes.length; i++) {
-            var p = nodes[i];
+        time += FIELD_DRIFT * 1000;
 
-            p.x += p.vx;
-            p.y += p.vy;
+        for (var i = 0; i < particles.length; i++) {
+            var p = particles[i];
+            var angle = fieldAngle(p.x, p.y, time);
 
-            // soft wrap with a small overshoot so edges do not look clipped
-            if (p.x < -8) p.x = w + 8;
-            else if (p.x > w + 8) p.x = -8;
-            if (p.y < -8) p.y = h + 8;
-            else if (p.y > h + 8) p.y = -8;
+            var vx = Math.cos(angle) * SPEED * p.speed;
+            var vy = Math.sin(angle) * SPEED * p.speed;
 
-            // pointer repulsion, eased so nothing snaps
+            // pointer deflection, eased so nothing snaps
             if (pointer.active) {
                 var dx = p.x - pointer.x;
                 var dy = p.y - pointer.y;
                 var d2 = dx * dx + dy * dy;
                 if (d2 < POINTER_RADIUS * POINTER_RADIUS && d2 > 0.01) {
                     var d = Math.sqrt(d2);
-                    var push = (1 - d / POINTER_RADIUS) * 0.55;
-                    p.x += (dx / d) * push;
-                    p.y += (dy / d) * push;
+                    var push = (1 - d / POINTER_RADIUS) * POINTER_PUSH;
+                    vx += (dx / d) * push;
+                    vy += (dy / d) * push;
                 }
             }
-        }
-    }
 
-    function draw() {
-        ctx.clearRect(0, 0, w, h);
+            p.prevX = p.x;
+            p.prevY = p.y;
+            p.x += vx;
+            p.y += vy;
+            p.age += 1;
 
-        // links first, so nodes sit on top
-        for (var i = 0; i < nodes.length; i++) {
-            var a = nodes[i];
-            for (var j = i + 1; j < nodes.length; j++) {
-                var b = nodes[j];
-                var dx = a.x - b.x;
-                var dy = a.y - b.y;
-                var dist = Math.sqrt(dx * dx + dy * dy);
-                if (dist > linkDist) continue;
-
-                var t = 1 - dist / linkDist;
-                var near = pointer.active &&
-                    distanceToPointer(a) < POINTER_RADIUS &&
-                    distanceToPointer(b) < POINTER_RADIUS;
-
-                ctx.strokeStyle = (near ? COL_LINK_NEAR : COL_LINK) + (t * (near ? 0.42 : 0.2)).toFixed(3) + ')';
-                ctx.lineWidth = near ? 1.05 : 0.8;
-                ctx.beginPath();
-                ctx.moveTo(a.x, a.y);
-                ctx.lineTo(b.x, b.y);
-                ctx.stroke();
+            // Recycle rather than kill: keeps the count stable with no allocation
+            // churn, and the fade below hides the seam at the edges.
+            if (p.x < -16 || p.x > w + 16 || p.y < -16 || p.y > h + 16 || p.age > 420) {
+                particles[i] = spawn();
             }
         }
-
-        for (var k = 0; k < nodes.length; k++) {
-            var n = nodes[k];
-            var isNear = pointer.active && distanceToPointer(n) < POINTER_RADIUS;
-            ctx.fillStyle = isNear ? COL_NODE_NEAR : COL_NODE;
-            ctx.beginPath();
-            ctx.arc(n.x, n.y, n.r + (isNear ? 0.5 : 0), 0, Math.PI * 2);
-            ctx.fill();
-        }
     }
 
-    function distanceToPointer(n) {
-        var dx = n.x - pointer.x;
-        var dy = n.y - pointer.y;
-        return Math.sqrt(dx * dx + dy * dy);
+    function fadeTrails() {
+        // Decay existing alpha rather than painting a wash over it. Painting a
+        // translucent colour would accumulate towards opaque on a transparent
+        // canvas; subtracting alpha cannot.
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.fillStyle = 'rgba(0, 0, 0, ' + TRAIL_FADE + ')';
+        ctx.fillRect(0, 0, w, h);
+        ctx.globalCompositeOperation = 'source-over';
+    }
+
+    function draw(isStatic) {
+        if (isStatic) {
+            ctx.clearRect(0, 0, w, h);
+        } else {
+            fadeTrails();
+        }
+
+        ctx.lineCap = 'round';
+        ctx.strokeStyle = STROKE;
+        ctx.lineWidth = 0.95;
+        ctx.fillStyle = DOT;
+
+        for (var i = 0; i < particles.length; i++) {
+            var p = particles[i];
+
+            if (isStatic || p.prevX === undefined) {
+                ctx.fillRect(p.x, p.y, 1.4, 1.4);
+                continue;
+            }
+
+            ctx.beginPath();
+            ctx.moveTo(p.prevX, p.prevY);
+            ctx.lineTo(p.x, p.y);
+            ctx.stroke();
+            ctx.fillRect(p.x, p.y, 1.4, 1.4);
+        }
     }
 
     function frame() {
         if (!running) return;
         step();
-        draw();
+        draw(false);
         rafId = window.requestAnimationFrame(frame);
     }
 
     function start() {
         if (running || reduceMotion.matches) return;
         if (!inView || document.hidden) return;
+        if (!w || !h) return;
         running = true;
         rafId = window.requestAnimationFrame(frame);
     }
@@ -187,7 +204,7 @@
         else stop();
     }
 
-    // --- events -------------------------------------------------------------
+    /* ------------------------------------------------------------- events */
     canvas.addEventListener('pointermove', function (e) {
         var rect = canvas.getBoundingClientRect();
         pointer.x = e.clientX - rect.left;
@@ -213,26 +230,20 @@
         new IntersectionObserver(function (entries) {
             inView = entries[0].isIntersecting;
             sync();
-        }, { rootMargin: '120px' }).observe(canvas);
+        }, { rootMargin: '80px' }).observe(canvas);
     }
 
     if (reduceMotion.addEventListener) {
         reduceMotion.addEventListener('change', function () {
-            if (reduceMotion.matches) {
-                stop();
-                draw();
-            } else {
-                sync();
-            }
+            if (reduceMotion.matches) { stop(); draw(true); }
+            else sync();
         });
     }
 
-    canvas.addEventListener('pointerdown', function () { start(); });
-
-    // --- go -----------------------------------------------------------------
+    /* ---------------------------------------------------------------- go */
     resize();
     if (reduceMotion.matches) {
-        draw();          // one static frame, no loop
+        draw(true);
     } else {
         sync();
     }

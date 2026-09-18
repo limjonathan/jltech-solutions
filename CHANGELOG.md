@@ -2,6 +2,77 @@
 
 All notable changes to the JL Tech Solutions site are documented here.
 
+## 2026-09-18 - Hero rebuilt around an animated field, industries restacked, imagery replaced
+
+Four revision requests: drop the network topology, replace the static gradient hero with
+real animation, make industries stack instead of scroll sideways, and replace both
+server/network photographs.
+
+### Hero
+
+- **Removed the `network.topology` panel** and the whole `.topo-*` styling. The hero is now a
+  single column; the copy stays left-aligned with asymmetric whitespace rather than centred,
+  which is the default the design bar bans above variance 4.
+- **The static blue gradient hero is gone.** `background.js` was rewritten from the topology
+  renderer into a **particle flow field**: particles drift along a trig-based vector field
+  (no noise dependency), leaving comet trails, and deflect gently around the pointer. It
+  inherits everything already verified in that file: DPR capped at 2, particle count derived
+  from area and hard-capped, rAF stopped when the hero leaves the viewport or the tab is
+  hidden, and one static frame under `prefers-reduced-motion`.
+- The field is masked to concentrate motion on the right of the frame, so the single-column
+  hero keeps asymmetric weight and streaks never sit behind the headline. Reduced to 50%
+  opacity below 768px.
+- Removed `data-parallax` and `initParallax` entirely: the flow field is now the reactive
+  layer and two pointer systems would only compete for frames.
+
+### Industries
+
+- The horizontal rail is gone (drag-to-pan, scroll-snap, `NN / 05` counter, prev/next).
+  Industries are now **tall stacking cards** using the same `position: sticky` mechanism as
+  services, but deliberately different in scale and composition so two adjacent stacks do not
+  read as one template applied twice: 160px two-column cards (number, icon and title on the
+  left, description on the right) against the services stack's compact rows.
+- Industry hues stay confined to the icon tile. Tinting the card surfaces with five
+  decorative hues would have broken the documented COLOR LOCK, so it was not done.
+- **Removing the rail also removed the last `scroll` listener in the codebase.** The count is
+  back to zero.
+
+### Imagery
+
+- Replaced the data-centre aisle and the node mesh. Four macro-hardware candidates were
+  generated on local ComfyUI (DreamShaperXL Lightning) and graded to the cool-blue palette;
+  two were rejected for containing garbled lettering and warm accent colours.
+- Used a **macro processor die** and **macro fibre optics**. Both were prompted and cropped
+  for the band layout: interest on the right of frame, dark negative space on the left where
+  the copy sits over the scrim.
+- Social card rebuilt on the fibre image (117KB).
+
+### Fixed
+
+- **The flow field flooded the hero opaque blue on first attempt.** The trail technique
+  painted a translucent colour every frame, which accumulates alpha toward opaque on a
+  transparent layer and destroyed the headline contrast. It now decays alpha with
+  `globalCompositeOperation = 'destination-out'`, which settles at a low equilibrium and
+  keeps the layer transparent (measured mean alpha 0.7 against a saturated 255 before).
+- The industries card's first pass stacked number, icon and title vertically, which made a
+  ~140px head column against a two-line description and left the card looking half empty.
+  Rebuilt as a two-row head grid (number, then icon beside title), taking the card from 223px
+  to 160px.
+- Removed a stale `.hero-visual` reference left in `motion.js` after the panel was deleted.
+
+### Verified
+
+- axe: **zero violations** at desktop, laptop and mobile, at rest, mid-scroll and after a
+  full reveal pass.
+- LCP 456ms with `hero-title` as the LCP element (budget 2500ms), CLS 0.0006.
+- Flow field confirmed **paused** once the hero is scrolled away (two off-screen frames
+  compared byte-for-byte).
+- Reduced motion: nothing below opacity 1, zero live animations, field frozen on one frame.
+- JS disabled: all 28 primary content elements visible.
+- No horizontal overflow and correct column collapses from 320px to 1920px.
+- Both sticky stacks pin; service modals open and restore focus; the form still emits a real
+  `mailto:`. Zero scroll listeners of any kind.
+
 ## 2026-09-18 - Visual rebuild, Phases C-F (section recomposition, dashboard, imagery)
 
 Second half of the rebuild. Every content section was recomposed so no two share a layout

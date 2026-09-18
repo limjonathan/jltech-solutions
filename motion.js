@@ -85,44 +85,6 @@
         sections.forEach(function (s) { observer.observe(s); });
     }
 
-    // Pointer parallax on declared layers. Fine pointers only: on touch there is
-    // no cursor to track and the listener would be dead weight.
-    function initParallax() {
-        var layers = gsap.utils.toArray('[data-parallax]');
-        if (!layers.length) return;
-        if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-
-        var cx = window.innerWidth / 2;
-        var cy = window.innerHeight / 2;
-
-        var onMove = function (e) {
-            layers.forEach(function (layer) {
-                var strength = parseFloat(layer.getAttribute('data-parallax')) || 0.04;
-                gsap.to(layer, {
-                    x: (e.clientX - cx) * strength,
-                    y: (e.clientY - cy) * strength * 0.8,
-                    duration: 0.9,
-                    ease: 'power2.out',
-                    overwrite: 'auto'
-                });
-            });
-        };
-
-        var onResize = function () {
-            cx = window.innerWidth / 2;
-            cy = window.innerHeight / 2;
-        };
-
-        window.addEventListener('pointermove', onMove, { passive: true });
-        window.addEventListener('resize', onResize, { passive: true });
-
-        return function cleanupParallax() {
-            window.removeEventListener('pointermove', onMove);
-            window.removeEventListener('resize', onResize);
-            gsap.set(layers, { clearProps: 'transform' });
-        };
-    }
-
     // Section reveals. Elements already on screen at load are left alone; only
     // what the user scrolls to gets an entrance, so the hero is never delayed.
     //
@@ -133,7 +95,6 @@
         if (!ScrollTrigger) return;
 
         var fades = [
-            '.rail-track > *',
             '.ai-flow > *',
             '.ai-trust-bar',
             '.dashboard-grid > *',
@@ -141,6 +102,7 @@
         ];
         var rises = [
             '.service-row',
+            '.vertical-row',
             '.engage-row',
             '.portal-card'
         ];
@@ -247,12 +209,11 @@
         });
     }
 
-    // Sticky service rows: the outgoing row eases back as the next covers it.
+    // Both sticky stacks (industries, then services): the outgoing row eases back
+    // as the next covers it.
     // Scale only, never opacity, so nothing inside loses contrast.
-    function initServiceStack() {
-        if (!ScrollTrigger) return;
-
-        gsap.utils.toArray('.service-row').forEach(function (row, i, all) {
+    function stackPolish(selector) {
+        gsap.utils.toArray(selector).forEach(function (row, i, all) {
             if (i === all.length - 1) return;
             gsap.to(row, {
                 scale: 0.975,
@@ -267,6 +228,12 @@
         });
     }
 
+    function initStickyStacks() {
+        if (!ScrollTrigger) return;
+        stackPolish('.vertical-row');
+        stackPolish('.service-row');
+    }
+
     // The hero. The headline is the LCP candidate, so it is never fully hidden:
     // a masked line rise keeps it painted while still reading as a reveal.
     function initHero() {
@@ -274,7 +241,6 @@
         var eyebrow = document.querySelector('.hero-eyebrow');
         var subtitle = document.querySelector('.hero-subtitle');
         var actions = document.querySelector('.hero-actions');
-        var visual = document.querySelector('.hero-visual');
 
         var supported = SplitText && typeof SplitText.create === 'function';
 
@@ -296,7 +262,7 @@
         // Secondary elements: set hidden, then tween to visible. Using to()
         // after set() (not from()) is deliberate: from() with an identical
         // start state animates nothing and leaves them invisible.
-        var secondary = [eyebrow, subtitle, actions, visual].filter(Boolean);
+        var secondary = [eyebrow, subtitle, actions].filter(Boolean);
         if (secondary.length) {
             gsap.set(secondary, { opacity: 0, y: 18 });
             gsap.to(secondary, {
@@ -360,14 +326,7 @@
         initHero();
         initReveals();
         initPipeline();
-        initServiceStack();
+        initStickyStacks();
         initTelemetry();
-        var cleanupParallax = initParallax();
-
-        // Only the triggers created in this branch are reverted; the scroll
-        // chrome created above must survive a reduced-motion toggle.
-        return function cleanup() {
-            if (typeof cleanupParallax === 'function') cleanupParallax();
-        };
     });
 })();
