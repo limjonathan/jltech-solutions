@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JL Tech Solutions | Full-Spectrum IT Engineering, Amplified by AI</title>
-    <meta name="description" content="JL Tech Solutions delivers complete IT services — managed IT, cloud, security, websites, POS, AI automation — for healthcare, restaurants, government, and SMBs.">
+    <title>JL Tech Solutions | Full Spectrum IT Engineering, Amplified by AI</title>
+    <meta name="description" content="JL Tech Solutions delivers complete IT services: managed IT, cloud, security, websites, POS, and AI automation for healthcare, restaurants, government, and SMBs.">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#ffffff">
 
-    <meta property="og:title" content="JL Tech Solutions | Full-Spectrum IT Engineering, Amplified by AI">
-    <meta property="og:description" content="Complete IT services — managed IT, cloud, security, websites, POS, AI automation — for every industry.">
+    <meta property="og:title" content="JL Tech Solutions | Full Spectrum IT Engineering, Amplified by AI">
+    <meta property="og:description" content="Complete IT services: managed IT, cloud, security, websites, POS, and AI automation for every industry.">
     <meta property="og:image" content="https://limjonathan.github.io/jltech-solutions/assets/og-cover.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -18,7 +18,7 @@
     <meta property="og:site_name" content="JL Tech Solutions">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="JL Tech Solutions | Full-Spectrum IT Engineering">
-    <meta name="twitter:description" content="Complete IT services — managed IT, cloud, security, websites, POS, AI automation.">
+    <meta name="twitter:description" content="Complete IT services: managed IT, cloud, security, websites, POS, AI automation.">
     <meta name="twitter:image" content="https://limjonathan.github.io/jltech-solutions/assets/og-cover.png">
 
     <link rel="canonical" href="https://limjonathan.github.io/jltech-solutions/">
@@ -28,7 +28,7 @@
       "@context": "https://schema.org",
       "@type": "ProfessionalService",
       "name": "JL Tech Solutions",
-      "description": "Full-spectrum IT engineering — managed IT, cloud, security, websites, POS, and AI-augmented services for healthcare, restaurants, government, and SMBs.",
+      "description": "Full-spectrum IT engineering: managed IT, cloud, security, websites, POS, and AI-augmented services for healthcare, restaurants, government, and SMBs.",
       "url": "https://limjonathan.github.io/jltech-solutions/",
       "logo": "https://limjonathan.github.io/jltech-solutions/assets/logo.svg",
       "founder": { "@type": "Person", "name": "Jonathan Lim" }
@@ -37,18 +37,30 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+
+    <script defer src="vendor/gsap/gsap.min.js"></script>
+    <script defer src="vendor/gsap/ScrollTrigger.min.js"></script>
+    <script defer src="vendor/gsap/SplitText.min.js"></script>
+    <script defer src="vendor/gsap/DrawSVGPlugin.min.js"></script>
+    <script defer src="background.js"></script>
+    <script defer src="motion.js"></script>
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
+    <div class="bg-fx" aria-hidden="true">
+        <div class="fx-aurora"></div>
+        <div class="fx-grid"></div>
+    </div>
+
     <header class="main-header">
         <div class="header-container">
-            <a href="#" class="brand-logo">
-                    <img src="assets/logo.svg" alt="JL Tech Solutions Logo" class="nav-logo" onerror="this.style.display='none'">
+            <a href="#hero" class="brand-logo">
+                    <img src="assets/logo.svg" alt="JL Tech Solutions Logo" class="nav-logo">
                 </a>
 
             <button class="mobile-menu-toggle" id="menu-toggle-btn" aria-label="Toggle navigation menu" aria-expanded="false">
@@ -64,74 +76,82 @@
                     <li><a href="#how-we-work" class="nav-link">How We Work</a></li>
                     <li><a href="#dashboard" class="nav-link">Ops Center</a></li>
                     <li><a href="#about" class="nav-link">About</a></li>
-                    <li><a href="#portal" class="nav-link btn-secondary">Get Started</a></li>
+                    <li><a href="#portal" class="nav-link btn-secondary" data-cta="contact">Start a project</a></li>
                 </ul>
             </nav>
         </div>
+        <div class="scroll-progress" aria-hidden="true"><span class="scroll-progress-bar"></span></div>
     </header>
 
 <main id="main-content" tabindex="-1">
 <section class="hero-section" id="hero">
-    <div class="hero-bg-pattern"></div>
-    <div class="hero-blob hero-blob-1"></div>
-    <div class="hero-blob hero-blob-2"></div>
-    <div class="hero-blob hero-blob-3"></div>
-        <div class="hero-container">
-            <div class="hero-badge">
+    <div class="hero-aurora" aria-hidden="true"></div>
+    <div class="hero-grid" aria-hidden="true"></div>
+
+    <div class="hero-inner">
+        <div class="hero-copy">
+            <p class="hero-eyebrow">
                 <span class="pulse-indicator"></span>
-                OPERATIONS CENTER: ONLINE
-            </div>
-            <h1 class="hero-title">
-                Full-Spectrum <span class="gradient-text">IT Engineering</span><br>
-                Powered by AI Co-Workers
+                Operations center online
+            </p>
+            <h1 class="hero-title" data-split="lines">
+                Full spectrum <span class="gradient-text">IT engineering</span>
             </h1>
             <p class="hero-subtitle">
-                From presales and procurement to cloud, security, websites, POS, and AI automation — we cover every layer of the IT stack, serving healthcare, restaurants, government, and businesses of every size.
+                Every layer of your business. Managed IT, cloud, security, web, POS, and AI automation from one team.
             </p>
             <div class="hero-actions">
-                <a href="#portal" class="btn-primary">Start a Project</a>
-                <a href="#services" class="btn-outline">Explore Services</a>
+                <a href="#portal" class="btn-primary" data-cta="contact">Start a project</a>
+                <a href="#services" class="btn-link">
+                    See what we do
+                    <svg aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+                </a>
             </div>
         </div>
-        <div class="hero-scroller">
-            <a href="#verticals" class="scroll-indicator" aria-label="Scroll to industries">
-                <span class="scroll-arrow"></span>
-            </a>
+
+        <div class="hero-visual" data-parallax="0.06">
+            <div class="topo-frame">
+                <div class="topo-head">
+                    <span class="topo-title">network.topology</span>
+                    <span class="topo-state"><span class="online-dot" aria-hidden="true"></span>live</span>
+                </div>
+                <canvas class="topo-canvas" id="topology-canvas" aria-hidden="true"></canvas>
+                <p class="topo-caption">Managed gateway mesh observed across client sites</p>
+            </div>
         </div>
-    </section>
-<div class="section-wave light-to-alt"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0 60V30c240 30 480 0 720-15s480 15 720 15v30H0z" fill="#f8fafc"/></svg></div>
+    </div>
+</section>
 
     <!-- WHO WE SERVE -->
     <section class="verticals-section" id="verticals">
         <div class="section-container">
             <div class="section-header">
-                <span class="section-label">WHO WE SERVE</span>
                 <h2 class="section-title">IT Solutions for Every Industry</h2>
-                <p class="section-description">From HIPAA-compliant medical networks to restaurant POS, government procurement, and small business managed IT — we tailor every solution to your industry.</p>
+                <p class="section-description">From HIPAA-compliant medical networks to restaurant POS, government procurement, and small business managed IT. Every solution is tailored to your industry.</p>
             </div>
             <div class="verticals-grid">
                 <div class="vertical-card">
-                    <div class="vertical-icon health"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d='M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1L12 21.2l7.7-7.8 1.1-1a5.5 5.5 0 0 0 0-7.8z'/></svg></div>
+                    <div class="vertical-icon health"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M3 5a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1zm4 15h10m-8-4v4m6-4v4"/><path d="M7 10h2l2 3l2-6l1 3h3"/></g></svg></div>
                     <h3>Healthcare &amp; Medical</h3>
                     <p>HIPAA-compliant networks, EMR/EHR integration, clinic workstations, patient Wi-Fi, secure backups, and medical device segmentation.</p>
                 </div>
                 <div class="vertical-card">
-                    <div class="vertical-icon restaurant"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d='M6 2v7a2 2 0 0 0 4 0V2'/><path d='M8 11v11'/><path d='M17 22V2c-2 2-3 4.5-3 7 0 2 1 3.5 3 4'/></svg></div>
+                    <div class="vertical-icon restaurant"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 3v12h-5c-.023-3.681.184-7.406 5-12m0 12v6h-1v-3M8 4v17M5 4v3a3 3 0 1 0 6 0V4"/></svg></div>
                     <h3>Restaurants &amp; Hospitality</h3>
                     <p>POS systems, online ordering, guest Wi-Fi, digital menu boards, surveillance, payment processing, and loyalty programs.</p>
                 </div>
                 <div class="vertical-card">
-                    <div class="vertical-icon government"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d='M3 21h18'/><path d='M4 21V10'/><path d='M20 21V10'/><path d='M2 10l10-6 10 6'/><path d='M8 21v-6'/><path d='M12 21v-6'/><path d='M16 21v-6'/></svg></div>
+                    <div class="vertical-icon government"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21h18M3 10h18M5 6l7-3l7 3M4 10v11m16-11v11M8 14v3m4-3v3m4-3v3"/></svg></div>
                     <h3>Government &amp; Defense</h3>
                     <p>BoM generation, RFP/RFQ response, NIST/CMMC compliance, secure procurement, and infrastructure specification.</p>
                 </div>
                 <div class="vertical-card">
-                    <div class="vertical-icon smb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d='M4 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16'/><path d='M16 9h2a2 2 0 0 1 2 2v10'/><path d='M2 21h20'/><path d='M8 7h1'/><path d='M8 11h1'/><path d='M8 15h1'/><path d='M12 7h1'/><path d='M12 11h1'/><path d='M12 15h1'/></svg></div>
+                    <div class="vertical-icon smb"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21h18M9 8h1m-1 4h1m-1 4h1m4-8h1m-1 4h1m-1 4h1M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"/></svg></div>
                     <h3>Small &amp; Medium Business</h3>
-                    <p>Managed IT, helpdesk support, cloud email, file sharing, network setup, security, and vendor management — we're your IT department.</p>
+                    <p>Managed IT, helpdesk support, cloud email, file sharing, network setup, security, and vendor management. We are your IT department.</p>
                 </div>
                 <div class="vertical-card">
-                    <div class="vertical-icon enterprise"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d='M2 21h20'/><path d='M4 21V11l5 3V11l5 3V8l6 4v9'/><path d='M9 21v-4'/><path d='M14 21v-4'/></svg></div>
+                    <div class="vertical-icon enterprise"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M3 21h18M5 21V9l5 4V9l5 4h4"/><path d="M19 21v-8l-1.436-9.574A.5.5 0 0 0 17.069 3h-1.145a.5.5 0 0 0-.494.418L14 12m-5 5h1m4 0h1"/></g></svg></div>
                     <h3>Enterprise</h3>
                     <p>Active Directory architecture, hybrid cloud migrations, security operations, identity management, and compliance auditing.</p>
                 </div>
@@ -143,22 +163,21 @@
     <section class="services-section" id="services">
         <div class="section-container">
             <div class="section-header">
-                <span class="section-label">WHAT WE DO</span>
-                <h2 class="section-title">Everything IT — One Partner</h2>
+                <h2 class="section-title">Everything IT, One Partner</h2>
                 <p class="section-description">Nine core practice areas. Every one backed by AI co-workers for faster delivery, fewer errors, and better outcomes.</p>
             </div>
             <div class="services-grid">
                 <!-- Card 1: Managed IT -->
                 <div class="service-card" data-target="modal-msp">
-                    <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+                    <div class="service-icon"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v2a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3zm0 8a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v2a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3zm4-7v.01M7 16v.01M11 8h6m-6 8h6"/></svg></div>
                     <h3>Managed IT Services</h3>
-                    <p>Your outsourced IT department — helpdesk, network management, security, backups, and procurement for one predictable monthly cost.</p>
+                    <p>Your outsourced IT department: helpdesk, network management, security, backups, and procurement for one predictable monthly cost.</p>
                     <span class="service-link">Learn More &rarr;</span>
                 </div>
 
                 <!-- Card 2: Presales -->
                 <div class="service-card" data-target="modal-presales">
-                    <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+                    <div class="service-icon"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2M9 9h1m-1 4h6m-6 4h6"/></g></svg></div>
                     <h3>Presales &amp; Procurement</h3>
                     <p>AI-assisted BOM generation, RFP/RFQ analysis, vendor price optimization, and hardware specification for government and enterprise.</p>
                     <span class="service-link">Learn More &rarr;</span>
@@ -166,7 +185,7 @@
 
                 <!-- Card 3: Cloud -->
                 <div class="service-card" data-target="modal-cloud">
-                    <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></div>
+                    <div class="service-icon"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6.657 18C4.085 18 2 15.993 2 13.517s2.085-4.482 4.657-4.482c.393-1.762 1.794-3.2 3.675-3.773c1.88-.572 3.956-.193 5.444 1c1.488 1.19 2.162 3.007 1.77 4.769h.99c1.913 0 3.464 1.56 3.464 3.486s-1.551 3.487-3.465 3.487H6.657"/></svg></div>
                     <h3>Cloud &amp; Infrastructure</h3>
                     <p>Hybrid cloud migrations, virtualization, Kubernetes, edge optimization, disaster recovery, and CDN deployment.</p>
                     <span class="service-link">Learn More &rarr;</span>
@@ -174,7 +193,7 @@
 
                 <!-- Card 4: Identity -->
                 <div class="service-card" data-target="modal-identity">
-                    <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+                    <div class="service-icon"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M18.9 7a8 8 0 0 1 1.1 5v1a6 6 0 0 0 .8 3M8 11a4 4 0 0 1 8 0v1a10 10 0 0 0 2 6"/><path d="M12 11v2a14 14 0 0 0 2.5 8M8 15a18 18 0 0 0 1.8 6m-4.9-2a22 22 0 0 1-.9-7v-1a8 8 0 0 1 12-6.95"/></g></svg></div>
                     <h3>Identity &amp; Access</h3>
                     <p>Active Directory, Azure AD, Okta, zero-trust architecture, conditional access, and multi-factor authentication rollouts.</p>
                     <span class="service-link">Learn More &rarr;</span>
@@ -182,7 +201,7 @@
 
                 <!-- Card 5: Security -->
                 <div class="service-card" data-target="modal-security">
-                    <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+                    <div class="service-icon"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.46 20.846A12 12 0 0 1 3.5 6A12 12 0 0 0 12 3a12 12 0 0 0 8.5 3a12 12 0 0 1-.09 7.06M15 19l2 2l4-4"/></svg></div>
                     <h3>Security Operations</h3>
                     <p>24/7 monitoring, SIEM, intrusion detection, penetration testing, incident response, and automated threat isolation.</p>
                     <span class="service-link">Learn More &rarr;</span>
@@ -190,7 +209,7 @@
 
                 <!-- Card 6: Websites -->
                 <div class="service-card" data-target="modal-web">
-                    <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+                    <div class="service-icon"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 8l-4 4l4 4m10-8l4 4l-4 4M14 4l-4 16"/></svg></div>
                     <h3>Websites &amp; Software</h3>
                     <p>Custom web applications, CMS platforms, e-commerce, SaaS products, API development, and system integrations.</p>
                     <span class="service-link">Learn More &rarr;</span>
@@ -198,7 +217,7 @@
 
                 <!-- Card 7: POS -->
                 <div class="service-card" data-target="modal-pos">
-                    <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="5" y1="8" x2="19" y2="8"/><line x1="5" y1="12" x2="19" y2="12"/><line x1="5" y1="16" x2="12" y2="16"/></svg></div>
+                    <div class="service-icon"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3zm0 2h18M7 15h.01M11 15h2"/></svg></div>
                     <h3>POS &amp; Business Systems</h3>
                     <p>Point-of-sale deployment, ERP integration, inventory management, payment processing, and business automation.</p>
                     <span class="service-link">Learn More &rarr;</span>
@@ -206,7 +225,7 @@
 
                 <!-- Card 8: AI -->
                 <div class="service-card" data-target="modal-ai">
-                    <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+                    <div class="service-icon"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M5 6a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1z"/><path d="M9 9h6v6H9zm-6 1h2m-2 4h2m5-11v2m4-2v2m7 5h-2m2 4h-2m-5 7v-2m-4 2v-2"/></g></svg></div>
                     <h3>AI-Augmented Services</h3>
                     <p>Document processing, RFP analysis, chatbot deployment, workflow automation, data analysis, and AI agent integration for your business.</p>
                     <span class="service-link">Learn More &rarr;</span>
@@ -214,7 +233,7 @@
 
                 <!-- Card 9: Compliance -->
                 <div class="service-card" data-target="modal-compliance">
-                    <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+                    <div class="service-icon"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.615 20H7a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8m-3 5l2 2l4-4M9 8h4m-4 4h2"/></svg></div>
                     <h3>Compliance &amp; Auditing</h3>
                     <p>CIS benchmarks, CMMC/NIST 800-171, HIPAA, SOC 2, DMZ segmentation, vulnerability assessments, and security hardening.</p>
                     <span class="service-link">Learn More &rarr;</span>
@@ -224,30 +243,28 @@
     </section>
 
     <!-- SERVICE MODALS (9) -->
-    <div class="spec-modal" id="modal-msp" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-msp-title"><div class="modal-overlay"></div><div class="modal-content"><button class="modal-close" aria-label="Close modal">&times;</button><div class="modal-body"><span class="modal-badge">MANAGED IT</span><h3 class="modal-title" id="modal-msp-title">Managed IT Services</h3><p class="modal-lead">We are your IT department. One predictable monthly cost covers everything — from helpdesk to security.</p><ul class="modal-list"><li><strong>24/7 Helpdesk Support</strong> — Remote and on-site technical support for your entire team.</li><li><strong>Network &amp; Wi-Fi Management</strong> — Design, deployment, and ongoing optimization of your network.</li><li><strong>Device Procurement &amp; Setup</strong> — We spec, purchase, configure, and deploy all hardware.</li><li><strong>Backup &amp; Disaster Recovery</strong> — Automated backups with tested recovery procedures.</li><li><strong>Security Patching &amp; Monitoring</strong> — Continuous updates and 24/7 threat detection.</li><li><strong>Cloud Email &amp; File Sharing</strong> — Microsoft 365 and Google Workspace administration.</li></ul></div></div></div>
-    <div class="spec-modal" id="modal-presales" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-presales-title"><div class="modal-overlay"></div><div class="modal-content"><button class="modal-close" aria-label="Close modal">&times;</button><div class="modal-body"><span class="modal-badge">PRESALES</span><h3 class="modal-title" id="modal-presales-title">Presales &amp; Procurement</h3><p class="modal-lead">AI-augmented presales engineering — faster, more accurate hardware specifications and procurement documentation.</p><ul class="modal-list"><li><strong>BOM Generation</strong> — Automated Bill of Materials with multi-vendor pricing comparison.</li><li><strong>RFP/RFQ Analysis</strong> — AI extracts requirements from 200+ page RFPs in minutes, not days.</li><li><strong>Vendor Optimization</strong> — Cross-reference pricing across CDW, GovConnection, SHI, and more.</li><li><strong>Hardware Compatibility Checking</strong> — Automated validation of power, rack, and protocol compatibility.</li><li><strong>Compliance Gap Analysis</strong> — Cross-reference specs against NIST, CMMC, and DFARS requirements.</li><li><strong>Technical Proposal Drafting</strong> — AI-generated first drafts of SOWs and compliance matrices.</li></ul></div></div></div>
-    <div class="spec-modal" id="modal-cloud" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-cloud-title"><div class="modal-overlay"></div><div class="modal-content"><button class="modal-close" aria-label="Close modal">&times;</button><div class="modal-body"><span class="modal-badge">CLOUD</span><h3 class="modal-title" id="modal-cloud-title">Cloud &amp; Infrastructure</h3><p class="modal-lead">Modern infrastructure — from on-prem to hybrid cloud, designed for reliability and scale.</p><ul class="modal-list"><li><strong>Cloud Migration</strong> — Zero-downtime AWS, Azure, and GCP migrations with real-time replication.</li><li><strong>Virtualization</strong> — VMware, Hyper-V, Proxmox, and KVM clustering and consolidation.</li><li><strong>Kubernetes &amp; Containers</strong> — Docker/K8s orchestration, private registries, CI/CD pipelines.</li><li><strong>Edge &amp; CDN</strong> — Global content delivery and edge compute for low-latency applications.</li><li><strong>Disaster Recovery</strong> — Multi-region failover, automated backup verification, RPO/RTO optimization.</li><li><strong>Server &amp; Storage</strong> — Hardware specification, RAID configuration, SAN/NAS deployment.</li></ul></div></div></div>
-    <div class="spec-modal" id="modal-identity" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-identity-title"><div class="modal-overlay"></div><div class="modal-content"><button class="modal-close" aria-label="Close modal">&times;</button><div class="modal-body"><span class="modal-badge">IDENTITY</span><h3 class="modal-title" id="modal-identity-title">Identity &amp; Access Management</h3><p class="modal-lead">Zero-trust identity architectures that keep the right people in and the wrong people out.</p><ul class="modal-list"><li><strong>Active Directory</strong> — Forest consolidation, group policy optimization, hybrid sync with Azure AD.</li><li><strong>Azure AD / Entra ID</strong> — Cloud identity, SSO, conditional access, and MFA deployment.</li><li><strong>Okta &amp; Third-Party IdP</strong> — Multi-vendor identity federation and SAML/OIDC integration.</li><li><strong>Zero-Trust Architecture</strong> — Device health, geolocation, and risk-based conditional access.</li><li><strong>MFA Rollouts</strong> — Enterprise-wide multi-factor authentication with user training and support.</li><li><strong>Privileged Access Management</strong> — Admin tier isolation, just-in-time access, audit logging.</li></ul></div></div></div>
-    <div class="spec-modal" id="modal-security" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-security-title"><div class="modal-overlay"></div><div class="modal-content"><button class="modal-close" aria-label="Close modal">&times;</button><div class="modal-body"><span class="modal-badge">SECURITY</span><h3 class="modal-title" id="modal-security-title">Security Operations</h3><p class="modal-lead">Proactive, full-stack security monitoring and incident response — 24/7.</p><ul class="modal-list"><li><strong>SIEM &amp; Log Management</strong> — Centralized log aggregation with real-time alerting and dashboards.</li><li><strong>Intrusion Detection</strong> — Network and host-based IDS/IPS with automated threat blocking.</li><li><strong>Penetration Testing</strong> — External and internal vulnerability assessments with remediation roadmaps.</li><li><strong>Incident Response</strong> — Documented IR plans, tabletop exercises, and 24/7 escalation.</li><li><strong>Email Security</strong> — Phishing protection, DMARC/DKIM/SPF, spoofing prevention.</li><li><strong>Endpoint Protection</strong> — EDR deployment, patch management, device compliance enforcement.</li></ul></div></div></div>
-    <div class="spec-modal" id="modal-web" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-web-title"><div class="modal-overlay"></div><div class="modal-content"><button class="modal-close" aria-label="Close modal">&times;</button><div class="modal-body"><span class="modal-badge">DEVELOPMENT</span><h3 class="modal-title" id="modal-web-title">Websites &amp; Software</h3><p class="modal-lead">From landing pages to full SaaS platforms — we build software that works for your business.</p><ul class="modal-list"><li><strong>Custom Websites</strong> — Corporate sites, portfolios, landing pages with modern design and SEO.</li><li><strong>E-Commerce</strong> — Shopify, WooCommerce, and custom storefronts with payment integration.</li><li><strong>Web Applications</strong> — React, Node.js, Python full-stack applications for any business need.</li><li><strong>SaaS Platforms</strong> — Multi-tenant cloud applications with subscription billing and user management.</li><li><strong>API Development</strong> — REST, GraphQL, and gRPC APIs with comprehensive documentation.</li><li><strong>System Integrations</strong> — Connect your CRM, ERP, email, and payment systems into one workflow.</li></ul></div></div></div>
-    <div class="spec-modal" id="modal-pos" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-pos-title"><div class="modal-overlay"></div><div class="modal-content"><button class="modal-close" aria-label="Close modal">&times;</button><div class="modal-body"><span class="modal-badge">BUSINESS SYSTEMS</span><h3 class="modal-title" id="modal-pos-title">POS &amp; Business Systems</h3><p class="modal-lead">End-to-end business technology — from the front counter to the back office.</p><ul class="modal-list"><li><strong>POS Deployment</strong> — Hardware selection, software setup, network configuration for retail and restaurants.</li><li><strong>Online Ordering</strong> — Integration with delivery platforms and custom ordering portals.</li><li><strong>ERP Integration</strong> — NetSuite, SAP, Microsoft Dynamics configuration and data migration.</li><li><strong>Inventory Management</strong> — Barcode scanning, stock tracking, automated reorder alerts.</li><li><strong>Payment Processing</strong> — Terminal setup, PCI compliance, multi-payment gateway integration.</li><li><strong>Business Automation</strong> — Workflow automation, reporting dashboards, custom tooling.</li></ul></div></div></div>
-    <div class="spec-modal" id="modal-ai" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-ai-title"><div class="modal-overlay"></div><div class="modal-content"><button class="modal-close" aria-label="Close modal">&times;</button><div class="modal-body"><span class="modal-badge">AI SERVICES</span><h3 class="modal-title" id="modal-ai-title">AI-Augmented Services</h3><p class="modal-lead">Whatever AI can do, we offer it as a service — integrated into your workflow, reviewed by engineers.</p><ul class="modal-list"><li><strong>Document Intelligence</strong> — Extract structured data from PDFs, invoices, contracts, and POs automatically.</li><li><strong>RFP &amp; Proposal Processing</strong> — AI parses complex RFPs, generates compliance matrices, and drafts responses.</li><li><strong>Chatbot Deployment</strong> — Custom AI chatbots for customer support, internal knowledge bases, and lead qualification.</li><li><strong>Workflow Automation</strong> — Connect your tools with AI-powered decision nodes and data transformation.</li><li><strong>Data Analysis</strong> — AI-driven business intelligence, trend analysis, and automated reporting.</li><li><strong>Content &amp; Email Generation</strong> — Marketing copy, client communications, technical documentation, and more.</li></ul></div></div></div>
-    <div class="spec-modal" id="modal-compliance" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-compliance-title"><div class="modal-overlay"></div><div class="modal-content"><button class="modal-close" aria-label="Close modal">&times;</button><div class="modal-body"><span class="modal-badge">COMPLIANCE</span><h3 class="modal-title" id="modal-compliance-title">Compliance &amp; Auditing</h3><p class="modal-lead">Prove your security posture. We audit, harden, and certify your systems against industry standards.</p><ul class="modal-list"><li><strong>CIS Benchmarks</strong> — Operating system and application hardening against CIS Level 1 and Level 2 profiles.</li><li><strong>NIST 800-171 / CMMC</strong> — Defense contractor compliance assessment and remediation.</li><li><strong>HIPAA Compliance</strong> — Technical safeguards, risk assessments, and policies for healthcare organizations.</li><li><strong>SOC 2 Readiness</strong> — Gap analysis and remediation for SOC 2 Type I and Type II certification.</li><li><strong>DMZ Segmentation</strong> — Network isolation, firewall rule auditing, and secure architecture design.</li><li><strong>Vulnerability Assessments</strong> — Automated and manual scanning with prioritized remediation plans.</li></ul></div></div></div>
-<div class="section-wave alt-to-light"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0 60V30c240 30 480 0 720-15s480 15 720 15v30H0z" fill="#ffffff"/></svg></div>
+    <div class="spec-modal" id="modal-msp" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-msp-title"><div class="modal-overlay"></div><div class="modal-content"><button class="modal-close" aria-label="Close modal">&times;</button><div class="modal-body"><span class="modal-badge">MANAGED IT</span><h3 class="modal-title" id="modal-msp-title">Managed IT Services</h3><p class="modal-lead">We are your IT department. One predictable monthly cost covers everything, from helpdesk to security.</p><ul class="modal-list"><li><strong>24/7 Helpdesk Support</strong>: Remote and on-site technical support for your entire team.</li><li><strong>Network &amp; Wi-Fi Management</strong>: Design, deployment, and ongoing optimization of your network.</li><li><strong>Device Procurement &amp; Setup</strong>: We spec, purchase, configure, and deploy all hardware.</li><li><strong>Backup &amp; Disaster Recovery</strong>: Automated backups with tested recovery procedures.</li><li><strong>Security Patching &amp; Monitoring</strong>: Continuous updates and 24/7 threat detection.</li><li><strong>Cloud Email &amp; File Sharing</strong>: Microsoft 365 and Google Workspace administration.</li></ul></div></div></div>
+    <div class="spec-modal" id="modal-presales" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-presales-title"><div class="modal-overlay"></div><div class="modal-content"><button class="modal-close" aria-label="Close modal">&times;</button><div class="modal-body"><span class="modal-badge">PRESALES</span><h3 class="modal-title" id="modal-presales-title">Presales &amp; Procurement</h3><p class="modal-lead">AI-augmented presales engineering for faster, more accurate hardware specifications and procurement documentation.</p><ul class="modal-list"><li><strong>BOM Generation</strong>: Automated Bill of Materials with multi-vendor pricing comparison.</li><li><strong>RFP/RFQ Analysis</strong>: AI extracts requirements from 200+ page RFPs in minutes, not days.</li><li><strong>Vendor Optimization</strong>: Cross-reference pricing across CDW, GovConnection, SHI, and more.</li><li><strong>Hardware Compatibility Checking</strong>: Automated validation of power, rack, and protocol compatibility.</li><li><strong>Compliance Gap Analysis</strong>: Cross-reference specs against NIST, CMMC, and DFARS requirements.</li><li><strong>Technical Proposal Drafting</strong>: AI-generated first drafts of SOWs and compliance matrices.</li></ul></div></div></div>
+    <div class="spec-modal" id="modal-cloud" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-cloud-title"><div class="modal-overlay"></div><div class="modal-content"><button class="modal-close" aria-label="Close modal">&times;</button><div class="modal-body"><span class="modal-badge">CLOUD</span><h3 class="modal-title" id="modal-cloud-title">Cloud &amp; Infrastructure</h3><p class="modal-lead">Modern infrastructure, from on-prem to hybrid cloud, designed for reliability and scale.</p><ul class="modal-list"><li><strong>Cloud Migration</strong>: Zero-downtime AWS, Azure, and GCP migrations with real-time replication.</li><li><strong>Virtualization</strong>: VMware, Hyper-V, Proxmox, and KVM clustering and consolidation.</li><li><strong>Kubernetes &amp; Containers</strong>: Docker/K8s orchestration, private registries, CI/CD pipelines.</li><li><strong>Edge &amp; CDN</strong>: Global content delivery and edge compute for low-latency applications.</li><li><strong>Disaster Recovery</strong>: Multi-region failover, automated backup verification, RPO/RTO optimization.</li><li><strong>Server &amp; Storage</strong>: Hardware specification, RAID configuration, SAN/NAS deployment.</li></ul></div></div></div>
+    <div class="spec-modal" id="modal-identity" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-identity-title"><div class="modal-overlay"></div><div class="modal-content"><button class="modal-close" aria-label="Close modal">&times;</button><div class="modal-body"><span class="modal-badge">IDENTITY</span><h3 class="modal-title" id="modal-identity-title">Identity &amp; Access Management</h3><p class="modal-lead">Zero-trust identity architectures that keep the right people in and the wrong people out.</p><ul class="modal-list"><li><strong>Active Directory</strong>: Forest consolidation, group policy optimization, hybrid sync with Azure AD.</li><li><strong>Azure AD / Entra ID</strong>: Cloud identity, SSO, conditional access, and MFA deployment.</li><li><strong>Okta &amp; Third-Party IdP</strong>: Multi-vendor identity federation and SAML/OIDC integration.</li><li><strong>Zero-Trust Architecture</strong>: Device health, geolocation, and risk-based conditional access.</li><li><strong>MFA Rollouts</strong>: Enterprise-wide multi-factor authentication with user training and support.</li><li><strong>Privileged Access Management</strong>: Admin tier isolation, just-in-time access, audit logging.</li></ul></div></div></div>
+    <div class="spec-modal" id="modal-security" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-security-title"><div class="modal-overlay"></div><div class="modal-content"><button class="modal-close" aria-label="Close modal">&times;</button><div class="modal-body"><span class="modal-badge">SECURITY</span><h3 class="modal-title" id="modal-security-title">Security Operations</h3><p class="modal-lead">Proactive, full-stack security monitoring and incident response, around the clock.</p><ul class="modal-list"><li><strong>SIEM &amp; Log Management</strong>: Centralized log aggregation with real-time alerting and dashboards.</li><li><strong>Intrusion Detection</strong>: Network and host-based IDS/IPS with automated threat blocking.</li><li><strong>Penetration Testing</strong>: External and internal vulnerability assessments with remediation roadmaps.</li><li><strong>Incident Response</strong>: Documented IR plans, tabletop exercises, and 24/7 escalation.</li><li><strong>Email Security</strong>: Phishing protection, DMARC/DKIM/SPF, spoofing prevention.</li><li><strong>Endpoint Protection</strong>: EDR deployment, patch management, device compliance enforcement.</li></ul></div></div></div>
+    <div class="spec-modal" id="modal-web" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-web-title"><div class="modal-overlay"></div><div class="modal-content"><button class="modal-close" aria-label="Close modal">&times;</button><div class="modal-body"><span class="modal-badge">DEVELOPMENT</span><h3 class="modal-title" id="modal-web-title">Websites &amp; Software</h3><p class="modal-lead">From landing pages to full SaaS platforms, we build software that works for your business.</p><ul class="modal-list"><li><strong>Custom Websites</strong>: Corporate sites, portfolios, landing pages with modern design and SEO.</li><li><strong>E-Commerce</strong>: Shopify, WooCommerce, and custom storefronts with payment integration.</li><li><strong>Web Applications</strong>: React, Node.js, Python full-stack applications for any business need.</li><li><strong>SaaS Platforms</strong>: Multi-tenant cloud applications with subscription billing and user management.</li><li><strong>API Development</strong>: REST, GraphQL, and gRPC APIs with comprehensive documentation.</li><li><strong>System Integrations</strong>: Connect your CRM, ERP, email, and payment systems into one workflow.</li></ul></div></div></div>
+    <div class="spec-modal" id="modal-pos" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-pos-title"><div class="modal-overlay"></div><div class="modal-content"><button class="modal-close" aria-label="Close modal">&times;</button><div class="modal-body"><span class="modal-badge">BUSINESS SYSTEMS</span><h3 class="modal-title" id="modal-pos-title">POS &amp; Business Systems</h3><p class="modal-lead">End-to-end business technology, from the front counter to the back office.</p><ul class="modal-list"><li><strong>POS Deployment</strong>: Hardware selection, software setup, network configuration for retail and restaurants.</li><li><strong>Online Ordering</strong>: Integration with delivery platforms and custom ordering portals.</li><li><strong>ERP Integration</strong>: NetSuite, SAP, Microsoft Dynamics configuration and data migration.</li><li><strong>Inventory Management</strong>: Barcode scanning, stock tracking, automated reorder alerts.</li><li><strong>Payment Processing</strong>: Terminal setup, PCI compliance, multi-payment gateway integration.</li><li><strong>Business Automation</strong>: Workflow automation, reporting dashboards, custom tooling.</li></ul></div></div></div>
+    <div class="spec-modal" id="modal-ai" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-ai-title"><div class="modal-overlay"></div><div class="modal-content"><button class="modal-close" aria-label="Close modal">&times;</button><div class="modal-body"><span class="modal-badge">AI SERVICES</span><h3 class="modal-title" id="modal-ai-title">AI-Augmented Services</h3><p class="modal-lead">Whatever AI can do, we offer it as a service, integrated into your workflow and reviewed by engineers.</p><ul class="modal-list"><li><strong>Document Intelligence</strong>: Extract structured data from PDFs, invoices, contracts, and POs automatically.</li><li><strong>RFP &amp; Proposal Processing</strong>: AI parses complex RFPs, generates compliance matrices, and drafts responses.</li><li><strong>Chatbot Deployment</strong>: Custom AI chatbots for customer support, internal knowledge bases, and lead qualification.</li><li><strong>Workflow Automation</strong>: Connect your tools with AI-powered decision nodes and data transformation.</li><li><strong>Data Analysis</strong>: AI-driven business intelligence, trend analysis, and automated reporting.</li><li><strong>Content &amp; Email Generation</strong>: Marketing copy, client communications, technical documentation, and more.</li></ul></div></div></div>
+    <div class="spec-modal" id="modal-compliance" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-compliance-title"><div class="modal-overlay"></div><div class="modal-content"><button class="modal-close" aria-label="Close modal">&times;</button><div class="modal-body"><span class="modal-badge">COMPLIANCE</span><h3 class="modal-title" id="modal-compliance-title">Compliance &amp; Auditing</h3><p class="modal-lead">Prove your security posture. We audit, harden, and certify your systems against industry standards.</p><ul class="modal-list"><li><strong>CIS Benchmarks</strong>: Operating system and application hardening against CIS Level 1 and Level 2 profiles.</li><li><strong>NIST 800-171 / CMMC</strong>: Defense contractor compliance assessment and remediation.</li><li><strong>HIPAA Compliance</strong>: Technical safeguards, risk assessments, and policies for healthcare organizations.</li><li><strong>SOC 2 Readiness</strong>: Gap analysis and remediation for SOC 2 Type I and Type II certification.</li><li><strong>DMZ Segmentation</strong>: Network isolation, firewall rule auditing, and secure architecture design.</li><li><strong>Vulnerability Assessments</strong>: Automated and manual scanning with prioritized remediation plans.</li></ul></div></div></div>
 
     <!-- AI CO-WORKER SECTION -->
     <section class="ai-section" id="ai">
         <div class="section-container">
             <div class="section-header">
-                <span class="section-label">AI CO-WORKERS</span>
                 <h2 class="section-title">AI Agents Work Alongside Every Engineer</h2>
-                <p class="section-description">We don't just use AI tools — AI agents operate as integrated team members, handling document analysis, spec validation, and compliance checks in parallel with our engineers.</p>
+                <p class="section-description">We don't just use AI tools. AI agents operate as integrated team members, handling document analysis, spec validation, and compliance checks in parallel with our engineers.</p>
             </div>
             <div class="ai-flow">
                 <div class="ai-step">
                     <div class="ai-step-num">1</div>
                     <h3>AI Processes &amp; Analyzes</h3>
-                    <p>AI agents ingest your RFPs, documents, and requirements — extracting structured data, flagging issues, and generating first-draft outputs in minutes instead of days.</p>
+                    <p>AI agents ingest your RFPs, documents, and requirements, extracting structured data, flagging issues, and generating first-draft outputs in minutes instead of days.</p>
                 </div>
                 <div class="ai-step">
                     <div class="ai-step-num">2</div>
@@ -257,12 +274,12 @@
                 <div class="ai-step">
                     <div class="ai-step-num">3</div>
                     <h3>Client-Ready Delivery</h3>
-                    <p>You receive polished, verified deliverables — BoMs, proposals, compliance reports, software — faster than any traditional workflow could produce.</p>
+                    <p>You receive polished, verified deliverables such as BoMs, proposals, compliance reports, and software, faster than any traditional workflow could produce.</p>
                 </div>
             </div>
             <div class="ai-trust-bar">
-                <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
-                <span>AI proposes, humans approve — every output is engineer-reviewed before delivery</span>
+                <svg class="trust-icon" aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M5 13a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z"/><path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0-2 0m-3-5V7a4 4 0 1 1 8 0v4"/></g></svg>
+                <span>AI proposes, humans approve. Every output is engineer-reviewed before delivery.</span>
             </div>
         </div>
     </section>
@@ -271,13 +288,12 @@
     <section class="engagement-section" id="how-we-work">
         <div class="section-container">
             <div class="section-header">
-                <span class="section-label">ENGAGEMENT MODELS</span>
                 <h2 class="section-title">Flexible Ways to Work With Us</h2>
-                <p class="section-description">Choose the model that fits your business — from fully managed IT to project-based delivery and on-demand AI services.</p>
+                <p class="section-description">Choose the model that fits your business, from fully managed IT to project-based delivery and on-demand AI services.</p>
             </div>
             <div class="engagement-grid">
                 <div class="engagement-card">
-                    <div class="engagement-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x='8' y='2' width='8' height='4' rx='1'/><path d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/><path d='M9 12h6'/><path d='M9 16h4'/></svg></div>
+                    <div class="engagement-icon"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><path d="M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2m0 7h.01M13 12h2m-6 4h.01M13 16h2"/></g></svg></div>
                     <h3>Project-Based</h3>
                     <p>Fixed-scope engagements with clear deliverables, timelines, and pricing. Ideal for migrations, audits, and one-off builds.</p>
                     <ul class="engagement-features">
@@ -286,15 +302,15 @@
                         <li>Clear timeline</li>
                         <li>Single point of contact</li>
                     </ul>
-                    <a href="#portal" class="btn-outline">Start a Project</a>
+                    <a href="#portal" class="btn-outline" data-cta="contact">Start a project</a>
                 </div>
 
                 <div class="engagement-card featured">
-                    <div class="engagement-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d='M3 12a9 9 0 0 1 15-6.7L21 8'/><path d='M21 3v5h-5'/><path d='M21 12a9 9 0 0 1-15 6.7L3 16'/><path d='M3 21v-5h5'/></svg></div>
+                    <div class="engagement-icon"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.05 11a8 8 0 1 1 .5 4m-.5 5v-5h5"/></svg></div>
                     <h3>Fully Managed</h3>
                     <div class="price">Custom</div>
                     <div class="price-period">monthly retainer</div>
-                    <p>Your complete outsourced IT department. We handle everything — helpdesk, security, procurement, compliance — for one predictable cost.</p>
+                    <p>Your complete outsourced IT department. We handle everything, from helpdesk to security, procurement and compliance, for one predictable cost.</p>
                     <ul class="engagement-features">
                         <li>24/7 helpdesk &amp; support</li>
                         <li>Network &amp; security management</li>
@@ -303,20 +319,20 @@
                         <li>Vendor management</li>
                         <li>Quarterly business reviews</li>
                     </ul>
-                    <a href="#portal" class="btn-primary">Get a Quote</a>
+                    <a href="#portal" class="btn-primary" data-cta="contact">Start a project</a>
                 </div>
 
                 <div class="engagement-card">
-                    <div class="engagement-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x='4' y='8' width='16' height='12' rx='2'/><path d='M12 8V5'/><circle cx='12' cy='3' r='1'/><path d='M9 14h.01'/><path d='M15 14h.01'/><path d='M9 17h6'/></svg></div>
+                    <div class="engagement-icon"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2zm6-4v2m-3 8v9m6-9v9M5 16l4-2m6 0l4 2M9 18h6M10 8v.01M14 8v.01"/></svg></div>
                     <h3>AI On-Demand</h3>
-                    <p>Leverage our AI capabilities for specific needs — document processing, RFP analysis, proposal drafting, workflow automation.</p>
+                    <p>Leverage our AI capabilities for specific needs: document processing, RFP analysis, proposal drafting, and workflow automation.</p>
                     <ul class="engagement-features">
                         <li>Pay per task or project</li>
                         <li>Rapid turnaround</li>
                         <li>Engineer-reviewed output</li>
                         <li>No long-term commitment</li>
                     </ul>
-                    <a href="#portal" class="btn-outline">Request AI Services</a>
+                    <a href="#portal" class="btn-outline" data-cta="contact">Start a project</a>
                 </div>
             </div>
         </div>
@@ -326,7 +342,6 @@
     <section class="dashboard-section" id="dashboard">
         <div class="section-container">
             <div class="section-header">
-                <span class="section-label">OPERATIONS CENTER</span>
                 <h2 class="section-title">Live Systems &amp; AI Ops Monitor</h2>
                 <p class="section-description">Real-time visibility into our infrastructure health and AI co-worker activity across active projects.</p>
             </div>
@@ -414,29 +429,27 @@
                 <div class="about-image-column">
                     <div class="logo-card-frame">
                         <div class="inner-frame-glowing">
-                            <img src="assets/logo.svg" alt="JL Tech Solutions Badge" class="about-logo-badge" onerror="this.style.display='none'">
+                            <img src="assets/logo.svg" alt="JL Tech Solutions Badge" class="about-logo-badge">
                         </div>
                     </div>
                 </div>
                 <div class="about-text-column">
-                    <span class="section-label">ABOUT US</span>
                     <h2 class="section-title">Engineered to Deliver</h2>
                     <p class="about-lead">
-                        Founded by Jonathan Lim, JL Tech Solutions brings deep expertise across the full IT spectrum — presales engineering, government procurement, systems architecture, security operations, software development, and AI-augmented service delivery.
+                        Founded by Jonathan Lim, JL Tech Solutions brings deep expertise across the full IT spectrum: presales engineering, government procurement, systems architecture, security operations, software development, and AI-augmented service delivery.
                     </p>
                     <p class="about-body">
-                        We serve healthcare clinics, restaurants, government agencies, SMBs, and enterprises with one philosophy: whatever the IT challenge, we have the expertise and the AI tools to solve it — faster, better, and more cost-effectively than any traditional firm.
+                        We serve healthcare clinics, restaurants, government agencies, SMBs, and enterprises with one philosophy: whatever the IT challenge, we have the expertise and the AI tools to solve it, faster and more cost-effectively than any traditional firm.
                     </p>
                     <div class="about-credentials">
-                        <div class="credential-item"><div class="cred-icon">✓</div><span>Full-spectrum IT across every industry vertical</span></div>
-                        <div class="credential-item"><div class="cred-icon">✓</div><span>AI co-workers integrated into every engineering workflow</span></div>
-                        <div class="credential-item"><div class="cred-icon">✓</div><span>Flexible engagement — managed, project-based, or on-demand AI</span></div>
+                        <div class="credential-item"><div class="cred-icon"><svg aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 12l5 5L20 7"/></svg></div><span>Full-spectrum IT across every industry vertical</span></div>
+                        <div class="credential-item"><div class="cred-icon"><svg aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 12l5 5L20 7"/></svg></div><span>AI co-workers integrated into every engineering workflow</span></div>
+                        <div class="credential-item"><div class="cred-icon"><svg aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 12l5 5L20 7"/></svg></div><span>Flexible engagement: managed, project-based, or on-demand AI</span></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-<div class="section-wave alt-to-light"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0 60V30c240 30 480 0 720-15s480 15 720 15v30H0z" fill="#ffffff"/></svg></div>
 
     <!-- PROJECT INQUIRY FORM -->
     <section class="portal-section" id="portal">
@@ -447,7 +460,7 @@
                         <span class="portal-badge-status">PROJECT INQUIRY</span>
                         <h2 class="portal-title">Start Your Project</h2>
                     </div>
-                    <img src="assets/logo.svg" alt="JL Tech Badge" class="portal-mini-logo" onerror="this.style.display='none'">
+                    <img src="assets/logo.svg" alt="JL Tech Badge" class="portal-mini-logo">
                 </div>
 
                 <form class="portal-form" id="incident-ticket-form" novalidate>
@@ -537,9 +550,7 @@
                 <div class="portal-receipt" id="portal-receipt-screen" style="display:none">
                     <div class="receipt-success-badge">
                         <div class="success-glowing-ring">
-                            <svg class="success-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                                <polyline points="20 6 9 17 4 12"/>
-                            </svg>
+                            <svg class="success-icon" aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 12l5 5L20 7"/></svg>
                         </div>
                     </div>
                     <h3 class="receipt-title" id="receipt-title">Inquiry Submitted</h3>
@@ -550,11 +561,11 @@
                             <span class="ticket-id" id="receipt-ticket-id">INQ-0000-0000</span>
                         </div>
                         <div class="ticket-details-grid">
-                            <div class="ticket-detail"><span class="t-lbl">CLIENT</span><span class="t-val" id="receipt-client-name">—</span></div>
-                            <div class="ticket-detail"><span class="t-lbl">ORGANIZATION</span><span class="t-val" id="receipt-client-org">—</span></div>
-                            <div class="ticket-detail"><span class="t-lbl">SERVICE</span><span class="t-val" id="receipt-category">—</span></div>
-                            <div class="ticket-detail"><span class="t-lbl">TIMELINE</span><span class="t-val" id="receipt-severity">—</span></div>
-                            <div class="ticket-detail col-12"><span class="t-lbl">TIMESTAMP</span><span class="t-val" id="receipt-timestamp">—</span></div>
+                            <div class="ticket-detail"><span class="t-lbl">CLIENT</span><span class="t-val" id="receipt-client-name">Pending</span></div>
+                            <div class="ticket-detail"><span class="t-lbl">ORGANIZATION</span><span class="t-val" id="receipt-client-org">Pending</span></div>
+                            <div class="ticket-detail"><span class="t-lbl">SERVICE</span><span class="t-val" id="receipt-category">Pending</span></div>
+                            <div class="ticket-detail"><span class="t-lbl">TIMELINE</span><span class="t-val" id="receipt-severity">Pending</span></div>
+                            <div class="ticket-detail col-12"><span class="t-lbl">TIMESTAMP</span><span class="t-val" id="receipt-timestamp">Pending</span></div>
                         </div>
                         <div class="ticket-barcode-box">
                             <div class="barcode-stripes"></div>
@@ -572,9 +583,9 @@
         <div class="footer-container">
             <div class="footer-brand">
                 <a href="#" class="brand-logo">
-                        <img src="assets/logo-light.svg" alt="JL Tech Solutions Logo" class="footer-logo" onerror="this.style.display='none'">
+                        <img src="assets/logo-light.svg" alt="JL Tech Solutions Logo" class="footer-logo">
                     </a>
-                <p class="footer-desc">Full-spectrum IT engineering — managed services, cloud, security, websites, POS, and AI-augmented delivery for every industry.</p>
+                <p class="footer-desc">Full-spectrum IT engineering: managed services, cloud, security, websites, POS, and AI-augmented delivery for every industry.</p>
             </div>
             <div class="footer-links">
                 <h3>Services</h3>
@@ -593,7 +604,7 @@
                     <li><a href="#how-we-work">Engagement Models</a></li>
                     <li><a href="#dashboard">Ops Center</a></li>
                     <li><a href="#about">About</a></li>
-                    <li><a href="#portal">Get Started</a></li>
+                    <li><a href="#portal" data-cta="contact">Start a project</a></li>
                 </ul>
             </div>
             <div class="footer-legal">

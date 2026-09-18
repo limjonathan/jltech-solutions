@@ -1,5 +1,5 @@
 /* ==========================================================================
-   JL TECH SOLUTIONS — Application Logic
+   JL TECH SOLUTIONS - Application Logic
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -24,22 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-
-    // Header scroll (throttled)
-    const mainHeader = document.querySelector('.main-header');
-    let scrollTicking = false;
-    window.addEventListener('scroll', () => {
-        if (!scrollTicking) {
-            requestAnimationFrame(() => {
-                if (mainHeader) {
-                    mainHeader.classList.toggle('scrolled', window.scrollY > 40);
-                }
-                scrollTicking = false;
-            });
-            scrollTicking = true;
-        }
-    });
-
 
     // 2. SERVICE MODALS
     const solutionCards = document.querySelectorAll('.service-card');
@@ -192,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    // 4. TELEMETRY — System + AI Ops metrics
+    // 4. TELEMETRY - System + AI Ops metrics
     const cpuVal = document.querySelector('#stat-cpu .stat-value');
     const cpuBar = document.querySelector('#stat-cpu .graph-bar');
     const ramVal = document.querySelector('#stat-ram .stat-value');
@@ -320,7 +304,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function buildMailtoLink(inquiry) {
-        const subject = `Project Inquiry — ${inquiry.categoryText} (${inquiry.clientOrg})`;
+        const subject = `Project Inquiry: ${inquiry.categoryText} (${inquiry.clientOrg})`;
         const body = [
             `Name: ${inquiry.clientName}`,
             `Organization: ${inquiry.clientOrg}`,
@@ -395,7 +379,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (receiptLead) {
             receiptLead.textContent = delivered
                 ? "Your project inquiry has been sent. We'll review your requirements and respond within one business day."
-                : "Your email draft is ready in your mail app — press Send to reach us. We'll respond within one business day.";
+                : "Your email draft is ready in your mail app. Press Send to reach us. We'll respond within one business day.";
         }
 
         const receiptTitleEl = document.getElementById('receipt-title');
@@ -420,7 +404,7 @@ document.addEventListener('DOMContentLoaded', () => {
             `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
 
         receiptScreen.style.display = 'flex';
-        addLogEntry('success', 'SYS_INQ', `Project inquiry ${delivered ? 'submitted' : 'drafted'}: [${ticketId}] ${inquiry.categoryText} — ${inquiry.clientOrg}.`);
+        addLogEntry('success', 'SYS_INQ', `Project inquiry ${delivered ? 'submitted' : 'drafted'}: [${ticketId}] ${inquiry.categoryText}, ${inquiry.clientOrg}.`);
     }
 
     function validateField(inputEl) {
@@ -521,7 +505,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 transScreen.style.display = 'none';
                 ticketForm.style.display = 'block';
                 showFormError(
-                    `Sorry — we couldn't submit your inquiry automatically (${err.message}). Please `,
+                    `Sorry, we couldn't submit your inquiry automatically (${err.message}). Please `,
                     buildMailtoLink(inquiry)
                 );
                 if (formErrorEl) formErrorEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -551,23 +535,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     syncSeverityClasses();
 
-
-    // 7. SCROLL REVEAL
-    if ('IntersectionObserver' in window) {
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('revealed');
-                    revealObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.section-container').forEach(el => {
-            el.classList.add('reveal');
-            revealObserver.observe(el);
-        });
-    }
 
     // 8. CLEANUP
     window.addEventListener('beforeunload', () => {

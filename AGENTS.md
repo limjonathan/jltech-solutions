@@ -5,8 +5,12 @@ Live: <https://limjonathan.github.io/jltech-solutions/>
 
 ## Stack
 
-- Static HTML + CSS + vanilla JS. No build step, no framework, no dependencies.
-- Google Fonts (Inter, JetBrains Mono) loaded from the CDN.
+- Static HTML + CSS + vanilla JS. No build step, no framework, no npm dependencies.
+- **GSAP 3.15 vendored into `vendor/gsap/`** (core, ScrollTrigger, SplitText, DrawSVG).
+  Free for commercial use since Apr 2025; see `vendor/gsap/README.txt`. Self-hosted
+  rather than CDN so the page has no third-party runtime dependency and needs no SRI
+  upkeep. Loaded `defer`, so it never blocks LCP.
+- Google Fonts: **Geist** (display/body) + **JetBrains Mono** (ops/terminal layer).
 - `server.js` — zero-dependency Node static server for local dev only. GitHub Pages
   ignores it (Pages serves the branch root as static files).
 
@@ -23,20 +27,70 @@ browser (see "Verification" below).
 ## Layout
 
 ```
-index.html      Single page: hero, industries, 9 services (+9 modals), AI section,
-                engagement models, ops dashboard, about, inquiry form, footer
-style.css       Design system + responsive breakpoints (1100 / 1024 / 768 / 480)
+index.html      Single page: hero (asymmetric split + topology canvas), industries,
+                9 services (+9 modals), AI section, engagement models, ops dashboard,
+                about, inquiry form, footer
+style.css       Token layer + design system + responsive breakpoints
 app.js          Interactivity: nav, modals, ops log, telemetry, inquiry form
+motion.js       ALL GSAP timelines. One gsap.matchMedia() block owns every tween.
+background.js   Topology canvas behind the hero (rAF loop that pauses off-screen)
 server.js       Dev-only static server (rate limiting, security headers, caching)
 sitemap.xml     Single-URL sitemap
 robots.txt      Crawl rules -> sitemap
+vendor/gsap/    Vendored GSAP 3.15 + plugins (see README.txt there)
 assets/
   logo.svg          Primary logo (viewBox cropped tight to the artwork)
   logo-light.svg    Light variant (#4D4D4D -> #E2E8F0) for dark backgrounds
   og-cover.png      1200x630 social card
+  grain.png         128x128 noise tile, tiled by body::after
   logo.png          3125x3125 RGBA source raster (padding NOT trimmed; source only)
   logo.jpg          Unused, gitignored
 ```
+
+## Design system locks
+
+Change these in one place or not at all:
+
+| Lock | Rule |
+|---|---|
+| THEME | One light theme. No section flips to inverted mode mid-page. |
+| COLOR | One accent (`--color-primary`). Status hues are semantic only, never decorative. Text on light blue uses `--color-primary-dark`. |
+| SHAPE | Three radii only: `--radius-sm/md/lg` (+ `--radius-pill`). No ad-hoc values. |
+| MOTION | One easing + duration vocabulary: `--ease-out`, `--ease-in-out`, `--ease-spring`, `--dur-press/ui/surface`. No invented curves. |
+| TYPE | `--font-sans` (Geist) for everything; `--font-mono` for the ops/terminal layer only. |
+
+## Motion invariants
+
+**1. `window.addEventListener('scroll')` is banned.** It fires every scroll frame and is
+jank-prone. Use ScrollTrigger (pin/scrub), IntersectionObserver (boolean "am I in this
+section"), or CSS scroll-driven animations as decoration only. Note: CSS
+`animation-timeline` is still **not Baseline** in 2026 (Firefox stable is flag-gated) and
+`@supports (animation-timeline: scroll())` wrongly reports true on flagged Firefox, so
+never let anything load-bearing depend on it.
+
+**2. Hidden start states are applied by JS, never CSS.** `motion.js` calls `gsap.set(...)`
+only inside a `prefers-reduced-motion: no-preference` block. If GSAP is blocked or fails,
+the page renders fully visible rather than blank. Verified with JS disabled.
+
+**3. `prefers-reduced-motion: reduce` must collapse everything.** Auroras are gated behind
+`no-preference`; the topology canvas draws one static frame and starts no loop; all
+timelines sit inside the matchMedia block. Verify with computed `animation-duration` and
+`animation-iteration-count`, **not** `animation-name` - the global `!important` reduce rule
+zeroes the duration while leaving the name intact, so `animationName !== 'none'` is a
+false negative.
+
+**4. Animate `transform` and `opacity` only**, never `top/left/width/height`. Press
+feedback is `transform: scale(0.975)` at `--dur-press`.
+
+**5. Never fade a container that holds a CTA.** Dimming text dims the button inside it and
+drops it below 4.5:1 mid-scroll. The hero scrub translates but deliberately does not fade.
+
+**6. The topology canvas stays contained.** It is absolutely positioned inside the hero and
+paused by IntersectionObserver when off-screen and on `visibilitychange`. A permanently
+running full-viewport canvas is a battery and INP tax for no benefit.
+
+**7. Scroll progress uses `fromTo`.** The bar ships at `transform: scaleX(0)` with
+`width: 100%`; a plain `to()` would animate 0 to 1 to 1 and never appear to move.
 
 ## Critical invariants
 
@@ -85,14 +139,24 @@ node server.js
 ```
 
 Then in a browser:
-- Header: logo sits fully inside the bar at 320–1440px; no horizontal scroll.
-- Modal at 740×420 (landscape phone): content fits, `.modal-body` scrolls, close button
-  reachable, Escape restores focus to the card.
-- Form: submit valid data -> a `mailto:` draft opens and the receipt reads
-  "Draft Ready to Send". Then Reset -> exactly one severity option highlighted.
-- Accessibility: run axe (`color-contrast`, `landmark-one-main`, `region`,
-  `heading-order`, `scrollable-region-focusable`) with reveal transitions disabled —
-  forcing `.revealed` mid-transition yields false contrast positives.
+- Header: logo sits fully inside the bar at 320-1440px; no horizontal scroll.
+- Motion: the hero headline reveals in at most 2 lines and both CTAs sit above the fold;
+  scroll-progress fills 0 -> 25% -> 50% -> 100% monotonically; the nav marks the current
+  section; the topology canvas pauses once the hero is scrolled away.
+- Reduced motion: emulate `prefers-reduced-motion: reduce`, then assert that no hero or
+  section element is left below opacity 1, that every CSS animation reports
+  `animation-duration` under 0.01s (not just `animation-name: none`), and that the canvas
+  renders exactly one static frame.
+- JS disabled: the hero and every section must still render fully visible. Hidden start
+  states are applied by JS, so a blocked GSAP must not blank the page.
+- Modal at 740x420 (landscape phone): content fits, `.modal-body` scrolls internally, the
+  close button is reachable, and Escape restores focus to the triggering card.
+- Form: submit valid data -> a `mailto:` draft opens and the receipt reads "Draft Ready to
+  Send". Reset -> exactly one severity option highlighted, matching the checked value.
+- Accessibility: axe must report zero violations on desktop and mobile, at rest and
+  mid-scroll. Disable the reveal transitions before auditing, or run the scroll sweep
+  first and let the tweens settle - sampling mid-tween reports blended colours as
+  contrast failures that do not exist in the settled state.
 
 ## Secrets
 

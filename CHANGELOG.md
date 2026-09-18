@@ -2,6 +2,103 @@
 
 All notable changes to the JL Tech Solutions site are documented here.
 
+## 2026-09-18 - Visual and motion rebuild, Phase A+B
+
+First half of a two-part rebuild: foundations plus the motion system, header and hero.
+Phases C-F (section recomposition, generated imagery, full gate) are still to come.
+
+### Typography and token layer
+
+- Replaced **Inter** with **Geist** (Google Fonts, OFL) and kept JetBrains Mono for the
+  ops/terminal layer. Inter is the single most common AI-default sans; Geist is a
+  geometric Swiss-rooted face that suits an infrastructure brand better.
+- Added a `clamp()`-based type scale so headings stop being pinned to fixed rem values at
+  each breakpoint, and switched display sizes to tighter tracking. The hero headline
+  carries `text-wrap: balance`.
+- Consolidated four ad-hoc corner radii (6/10/16/24px) onto a documented three-step scale
+  and aliased `--radius-xl` to it so the old value cannot creep back.
+- Shadows are now tinted to the background hue (slate) instead of pure black.
+- Collapsed the palette onto **one accent**. `--color-secondary` is gone; the gradient is
+  now two stops of the same hue (different lightness), which is not a second accent.
+- Added a motion token vocabulary (`--ease-out`, `--ease-in-out`, `--ease-spring`,
+  `--dur-press/ui/surface`) and folded the old `--transition` / `--transition-fast` onto
+  it so no rule can invent its own curve.
+
+### Removed templated tells
+
+- **96 em-dashes purged** from the copy (meta, OG, JSON-LD, prose and code comments).
+  The glossary lists in the nine service modals now use a colon, which is the correct
+  punctuation for a term/definition pair.
+- Section eyebrows cut from **6 to 0**. Each h2 already carried the meaning, and an
+  uppercase tracked micro-label above every section is the classic templated pattern.
+  Two micro-labels remain (the hero status pill and the form badge) against a budget of 3.
+- Duplicate-intent CTAs consolidated: "Get Started", "Get a Quote", "Request AI Services"
+  and "Start a Project" are now one label, **"Start a project"**, used identically in the
+  nav, hero, engagement cards and footer.
+- Hero subtitle trimmed from 35 words to 17, and the headline reduced to a 2-line shape
+  (both are pre-flight limits).
+- Removed the hero scroll cue ("Scroll to explore" style affordance) and the three generic
+  section-wave dividers.
+- All 18 hand-drawn icon paths and the remaining emoji replaced with **Tabler** icons
+  (via the Iconify API), inlined at a consistent 1.75 stroke weight.
+- `100vh` replaced with `100dvh` for the modal shell and mobile drawer.
+- Removed the four inline `onerror` handlers on the logo images; a failed logo now shows
+  its alt text instead of silently collapsing, and the page has no inline JS left.
+
+### Motion system (new `motion.js`)
+
+- All timelines live in one `gsap.matchMedia()` block so responsive and reduced-motion
+  variants cannot drift apart. GSAP 3.15 is **vendored** into `vendor/gsap/` (core,
+  ScrollTrigger, SplitText, DrawSVG) rather than CDN-loaded: no third-party runtime
+  dependency, no SRI upkeep, deterministic at deploy.
+- Hero: SplitText line-mask reveal, staggered entrance for the eyebrow/subtitle/CTAs and
+  the visual panel, pointer parallax on a fine pointer only, and a scroll-scrubbed exit.
+- Scroll progress rail and the condensed header are driven by ScrollTrigger, replacing the
+  `window.addEventListener('scroll')` handler that was the last banned pattern in the code.
+- Nav marks the current section via IntersectionObserver.
+- Section grids reveal on entry with a 60ms stagger.
+
+### Animated background (new `background.js`)
+
+- Live topology canvas behind the hero: drifting nodes with proximity links and a gentle
+  pointer repulsion. It is DPR-capped at 2, node-capped for perf, and the rAF loop stops
+  the moment the hero scrolls out of view or the tab is hidden.
+- A fixed aurora field and a masked grid sit behind the content; the hero and industries
+  sections are transparent so the field reads at the top of the page.
+- A tiled noise overlay on a fixed, `pointer-events: none` pseudo-element only (never on a
+  scrolling container, which would force continuous repaints).
+
+### Fixed along the way
+
+- **Scroll progress bar never moved**: it shipped at `width: 0%` and animated `scaleX` to a
+  value it already had, so it was permanently full. Now `width: 100%` with
+  `transform: scaleX(0)` and a `fromTo` tween.
+- **Hero aurora ignored reduced motion.** The override lost on source order to the base
+  rule. It is now declared inside `@media (prefers-reduced-motion: no-preference)`.
+- **`.pulse-indicator` lost its rule** when the old hero block was replaced, leaving an
+  invisible status dot. Restored.
+- **The hero scrub faded the CTA below contrast.** Removed opacity from that tween: the
+  scrub now translates only, so the button stays above 4.5:1 at every scroll position.
+- Reveal ownership moved out of `app.js` into `motion.js`; `app.js` no longer observes
+  anything, so there is exactly one source of motion truth.
+
+### Verified
+
+- axe: **zero violations** on desktop and mobile, at rest and mid-scroll, across all
+  severity states, the receipt and all four log levels.
+- LCP 716ms cold / 112ms warm (budget 2500ms), **CLS 0.0005** cold and 0 warm (budget 0.1).
+- Reduced motion: no element below opacity 1, every CSS animation inert, canvas draws one
+  static frame.
+- JS disabled: hero and all sections render fully visible.
+- Zero horizontal overflow and no scroll-arrow/CTA overlap from 320px to 1920px.
+- Modal still fits 740x420 with internal scroll and restores focus on Escape; the form
+  still emits a real `mailto:` and never claims undelivered success.
+
+### Files
+
+- Added: `motion.js`, `background.js`, `vendor/gsap/*`, `assets/grain.png`
+- Changed: `index.html`, `style.css`, `app.js`, `AGENTS.md`
+
 ## 2026-09-17 — Audit fixes: form delivery, logo proportionality, SEO, accessibility
 
 Full audit of the live site (Published Pages URL, `main` branch root). Findings and fixes
