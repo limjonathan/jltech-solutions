@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://jltech.com/sitemap.xml
+
+Sitemap: https://limjonathan.github.io/jltech-solutions/sitemap.xml

@@ -2,6 +2,19 @@ node_modules/
 .DS_Store
 *.log
 .env
+
+# Build / AI index artifacts
+repomix-output.xml
+graphify-out/
+
+# Browser audit artifacts (screenshots + playwright-mcp dumps at repo root)
+.playwright-mcp/
+/*.png
+
+# Source/vendor material (not part of the published site)
 handover_85334751/
 Envato/
 Freelancer/
+
+# Unused raster brand asset (kept on disk, not published)
+assets/logo.jpg

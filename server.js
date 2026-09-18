@@ -84,7 +84,8 @@ const server = http.createServer((req, res) => {
 
     if (!applyRateLimit(req, res)) return;
 
-    const urlPath = decodeURIComponent(req.url);
+    // Strip query string / fragment so assets resolve when cache-busted (e.g. ?v=2)
+    const urlPath = decodeURIComponent(req.url.split('?')[0].split('#')[0]);
     const normalized = path.normalize(urlPath).replace(/^(\.\.[/\\])+/, '');
     let filePath = normalized === '/' || normalized === ''
         ? path.join(__dirname, 'index.html')
@@ -117,8 +118,12 @@ const server = http.createServer((req, res) => {
             }
         } else {
             setSecurityHeaders(res);
-            const thirtyDays = 30 * 24 * 60 * 60;
-            res.setHeader('Cache-Control', `public, max-age=${thirtyDays}`);
+            // HTML must always revalidate or deploys serve stale markup/asset refs.
+            // Static assets get a short TTL instead of a 30-day one for the same reason.
+            res.setHeader(
+                'Cache-Control',
+                extname === '.html' ? 'no-cache, no-store, must-revalidate' : 'public, max-age=3600'
+            );
             res.writeHead(200, { 'Content-Type': contentType });
             if (isText) {
                 res.end(content, 'utf-8');

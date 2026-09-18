@@ -44,42 +44,53 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. SERVICE MODALS
     const solutionCards = document.querySelectorAll('.service-card');
     const specModals = document.querySelectorAll('.spec-modal');
+    let modalTrigger = null;
+
+    function openModal(card) {
+        const modalId = card.getAttribute('data-target');
+        const targetModal = document.getElementById(modalId);
+        if (!targetModal) return;
+        modalTrigger = card;
+        targetModal.classList.add('active');
+        targetModal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        const closeBtn = targetModal.querySelector('.modal-close');
+        if (closeBtn) closeBtn.focus();
+    }
+
+    function closeModal(modal) {
+        if (!modal) return;
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        if (modalTrigger) {
+            modalTrigger.focus();
+            modalTrigger = null;
+        }
+    }
 
     solutionCards.forEach(card => {
-        card.addEventListener('click', () => {
-            const modalId = card.getAttribute('data-target');
-            const targetModal = document.getElementById(modalId);
-            if (targetModal) {
-                targetModal.classList.add('active');
-                targetModal.setAttribute('aria-hidden', 'false');
-                document.body.style.overflow = 'hidden';
-                const closeBtn = targetModal.querySelector('.modal-close');
-                if (closeBtn) closeBtn.focus();
+        card.setAttribute('role', 'button');
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('aria-haspopup', 'dialog');
+        card.addEventListener('click', () => openModal(card));
+        card.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+                e.preventDefault();
+                openModal(card);
             }
         });
     });
 
     document.querySelectorAll('.modal-close, .modal-overlay').forEach(close => {
-        close.addEventListener('click', () => {
-            const activeModal = close.closest('.spec-modal');
-            if (activeModal) {
-                activeModal.classList.remove('active');
-                activeModal.setAttribute('aria-hidden', 'true');
-                document.body.style.overflow = '';
-            }
-        });
+        close.addEventListener('click', () => closeModal(close.closest('.spec-modal')));
     });
 
     window.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            specModals.forEach(modal => {
-                if (modal.classList.contains('active')) {
-                    modal.classList.remove('active');
-                    modal.setAttribute('aria-hidden', 'true');
-                    document.body.style.overflow = '';
-                }
-            });
-        }
+        if (e.key !== 'Escape') return;
+        specModals.forEach(modal => {
+            if (modal.classList.contains('active')) closeModal(modal);
+        });
     });
 
     // Modal focus trap
@@ -129,7 +140,20 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!logConsole) return;
         const row = document.createElement('div');
         row.className = `log-row ${type}`;
-        row.innerHTML = `<span class="log-timestamp">${getFormattedTimestamp()}</span><span class="log-tag">[${tag}]</span><span class="log-msg">${msg}</span>`;
+
+        const tsEl = document.createElement('span');
+        tsEl.className = 'log-timestamp';
+        tsEl.textContent = getFormattedTimestamp();
+
+        const tagEl = document.createElement('span');
+        tagEl.className = 'log-tag';
+        tagEl.textContent = `[${tag}]`;
+
+        const msgEl = document.createElement('span');
+        msgEl.className = 'log-msg';
+        msgEl.textContent = msg;
+
+        row.append(tsEl, tagEl, msgEl);
         logConsole.appendChild(row);
         logConsole.scrollTop = logConsole.scrollHeight;
         if (logConsole.childElementCount > 50) {
@@ -230,10 +254,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // 5. PROJECT INQUIRY FORM
+    // Set FORM_ENDPOINT to a form service URL (Formspree / Web3Forms / your own API) to
+    // enable server-side delivery. While it is empty the form falls back to a prefilled
+    // mailto: draft so an inquiry is never silently discarded.
+    const FORM_ENDPOINT = '';
+    const CONTACT_USER = 'limjonathan1990';
+    const CONTACT_DOMAIN = 'gmail.com';
+
     const ticketForm = document.getElementById('incident-ticket-form');
     const transScreen = document.getElementById('portal-transmitting-screen');
     const receiptScreen = document.getElementById('portal-receipt-screen');
     const uplinkConsole = document.getElementById('uplink-console-body');
+    const formErrorEl = document.getElementById('portal-form-error');
+    const receiptLead = document.getElementById('receipt-lead');
     const resetFormBtn = document.getElementById('btn-reset-form');
 
     const nameInput = document.getElementById('input-client-name');
@@ -242,6 +275,153 @@ document.addEventListener('DOMContentLoaded', () => {
     const phoneInput = document.getElementById('input-client-phone');
     const catSelect = document.getElementById('select-service-cat');
     const descTextarea = document.getElementById('textarea-desc');
+    const honeypotInput = document.getElementById('input-website-url');
+
+    const severityOptions = document.querySelectorAll('.severity-option');
+
+    const CATEGORY_MAP = {
+        'managed_it': 'Managed IT Services',
+        'presales': 'Presales & Procurement',
+        'cloud': 'Cloud & Infrastructure',
+        'identity': 'Identity & Access',
+        'security': 'Security Operations',
+        'web': 'Websites & Software',
+        'pos': 'POS & Business Systems',
+        'ai': 'AI-Augmented Services',
+        'compliance': 'Compliance & Auditing'
+    };
+
+    function syncSeverityClasses() {
+        severityOptions.forEach(opt => {
+            const input = opt.querySelector('input[type="radio"]');
+            opt.classList.toggle('is-checked', !!(input && input.checked));
+        });
+    }
+
+    function getContactEmail() {
+        return `${CONTACT_USER}@${CONTACT_DOMAIN}`;
+    }
+
+    function collectInquiry() {
+        const checkedRadio = ticketForm.querySelector('input[name="severity_level"]:checked');
+        const severity = checkedRadio ? checkedRadio.value.toUpperCase() : 'MEDIUM';
+        const categoryText = CATEGORY_MAP[catSelect.value] || 'General Inquiry';
+        const severityLabel = severity === 'HIGH' ? 'Urgent' : severity === 'MEDIUM' ? 'Standard' : 'Flexible';
+        return {
+            clientName: nameInput.value.trim(),
+            clientOrg: orgInput.value.trim(),
+            clientEmail: emailInput.value.trim(),
+            clientPhone: phoneInput ? phoneInput.value.trim() : '',
+            categoryText,
+            severity,
+            severityLabel,
+            description: descTextarea.value.trim()
+        };
+    }
+
+    function buildMailtoLink(inquiry) {
+        const subject = `Project Inquiry — ${inquiry.categoryText} (${inquiry.clientOrg})`;
+        const body = [
+            `Name: ${inquiry.clientName}`,
+            `Organization: ${inquiry.clientOrg}`,
+            `Email: ${inquiry.clientEmail}`,
+            `Phone: ${inquiry.clientPhone || 'Not provided'}`,
+            `Service: ${inquiry.categoryText}`,
+            `Timeline: ${inquiry.severityLabel}`,
+            '',
+            'Project details:',
+            inquiry.description
+        ].join('\n');
+        return `mailto:${getContactEmail()}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    }
+
+    function hideFormError() {
+        if (!formErrorEl) return;
+        formErrorEl.hidden = true;
+        formErrorEl.textContent = '';
+    }
+
+    function showFormError(message, mailtoHref) {
+        if (!formErrorEl) return;
+        formErrorEl.textContent = '';
+        formErrorEl.appendChild(document.createTextNode(message));
+        if (mailtoHref) {
+            const link = document.createElement('a');
+            link.href = mailtoHref;
+            link.textContent = 'send it by email instead';
+            formErrorEl.appendChild(link);
+            formErrorEl.appendChild(document.createTextNode(' so it reaches us.'));
+        }
+        formErrorEl.hidden = false;
+    }
+
+    function buildProcessingSteps(inquiry) {
+        return [
+            { text: 'Initializing secure inquiry processing...', delay: 0 },
+            { text: 'Connecting to JL Tech dispatch system...', delay: 450 },
+            { text: 'Secure session established. TLS 1.3 verified.', delay: 900, class: 'success' },
+            { text: `Logging inquiry for: [${inquiry.clientOrg}]`, delay: 1350, class: 'active' },
+            { text: `Service category identified: ${inquiry.categoryText}`, delay: 1800, class: 'accent' },
+            { text: `Timeline classification: [${inquiry.severityLabel}] priority`, delay: 2250, class: inquiry.severity === 'HIGH' ? 'success' : 'accent' },
+            { text: 'Generating inquiry tracking identifier...', delay: 2700 },
+            { text: 'Inquiry registered in JL Tech project queue.', delay: 3150, class: 'success' }
+        ];
+    }
+
+    function runProcessingSteps(steps) {
+        steps.forEach(step => {
+            setTimeout(() => {
+                if (!uplinkConsole) return;
+                const row = document.createElement('div');
+                row.className = 'uplink-row';
+                if (step.class) row.classList.add(step.class);
+                row.textContent = `> ${step.text}`;
+                uplinkConsole.appendChild(row);
+                uplinkConsole.scrollTop = uplinkConsole.scrollHeight;
+            }, step.delay);
+        });
+    }
+
+    function renderReceipt(inquiry, delivered) {
+        const ticketId = `INQ-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
+
+        const ticketIdEl = document.getElementById('receipt-ticket-id');
+        if (ticketIdEl) ticketIdEl.textContent = ticketId;
+
+        document.getElementById('receipt-client-name').textContent = inquiry.clientName;
+        document.getElementById('receipt-client-org').textContent = inquiry.clientOrg;
+        document.getElementById('receipt-category').textContent = inquiry.categoryText;
+
+        if (receiptLead) {
+            receiptLead.textContent = delivered
+                ? "Your project inquiry has been sent. We'll review your requirements and respond within one business day."
+                : "Your email draft is ready in your mail app — press Send to reach us. We'll respond within one business day.";
+        }
+
+        const receiptTitleEl = document.getElementById('receipt-title');
+        if (receiptTitleEl) {
+            receiptTitleEl.textContent = delivered ? 'Inquiry Submitted' : 'Draft Ready to Send';
+        }
+
+        const sevEl = document.getElementById('receipt-severity');
+        sevEl.textContent = inquiry.severityLabel;
+        sevEl.className = 't-val';
+        if (inquiry.severity === 'HIGH') {
+            sevEl.style.color = 'var(--color-alert-text)';
+        } else if (inquiry.severity === 'MEDIUM') {
+            sevEl.style.color = 'var(--color-warning-text)';
+        } else {
+            sevEl.style.color = 'var(--color-accent-text)';
+        }
+
+        const d = new Date();
+        const pad = (n) => String(n).padStart(2, '0');
+        document.getElementById('receipt-timestamp').textContent =
+            `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+
+        receiptScreen.style.display = 'flex';
+        addLogEntry('success', 'SYS_INQ', `Project inquiry ${delivered ? 'submitted' : 'drafted'}: [${ticketId}] ${inquiry.categoryText} — ${inquiry.clientOrg}.`);
+    }
 
     function validateField(inputEl) {
         if (!inputEl) return true;
@@ -276,8 +456,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     if (ticketForm) {
-        ticketForm.addEventListener('submit', (e) => {
+        ticketForm.addEventListener('submit', async (e) => {
             e.preventDefault();
+            hideFormError();
+
+            // Honeypot: bots fill every field. Real users never see or reach this one.
+            if (honeypotInput && honeypotInput.value !== '') return;
 
             const isNameValid = validateField(nameInput);
             const isOrgValid = validateField(orgInput);
@@ -291,126 +475,99 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
+            const inquiry = collectInquiry();
+            const submitBtn = document.getElementById('btn-submit-incident');
+            if (submitBtn) submitBtn.disabled = true;
+
+            // No endpoint configured: hand the inquiry to the visitor's mail client so it
+            // actually reaches us instead of being discarded by a fake success screen.
+            if (!FORM_ENDPOINT) {
+                ticketForm.style.display = 'none';
+                renderReceipt(inquiry, false);
+                window.location.href = buildMailtoLink(inquiry);
+                if (submitBtn) submitBtn.disabled = false;
+                return;
+            }
+
             ticketForm.style.display = 'none';
             transScreen.style.display = 'flex';
-            uplinkConsole.innerHTML = '';
+            uplinkConsole.textContent = '';
 
-            const clientName = nameInput.value.trim();
-            const clientOrg = orgInput.value.trim();
-            const checkedRadio = ticketForm.querySelector('input[name="severity_level"]:checked');
-            const severity = checkedRadio ? checkedRadio.value.toUpperCase() : 'STANDARD';
+            const steps = buildProcessingSteps(inquiry);
+            runProcessingSteps(steps);
 
-            const categoryMap = {
-                'managed_it': 'Managed IT Services',
-                'presales': 'Presales & Procurement',
-                'cloud': 'Cloud & Infrastructure',
-                'identity': 'Identity & Access',
-                'security': 'Security Operations',
-                'web': 'Websites & Software',
-                'pos': 'POS & Business Systems',
-                'ai': 'AI-Augmented Services',
-                'compliance': 'Compliance & Auditing'
-            };
-            const categoryText = categoryMap[catSelect.value] || 'General Inquiry';
+            try {
+                const response = await fetch(FORM_ENDPOINT, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify({
+                        name: inquiry.clientName,
+                        organization: inquiry.clientOrg,
+                        email: inquiry.clientEmail,
+                        phone: inquiry.clientPhone,
+                        service: inquiry.categoryText,
+                        timeline: inquiry.severityLabel,
+                        details: inquiry.description
+                    })
+                });
 
-            const severityLabel = severity === 'HIGH' ? 'Urgent' : severity === 'MEDIUM' ? 'Standard' : 'Flexible';
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
-            const simSteps = [
-                { text: 'Initializing secure inquiry processing...', delay: 0 },
-                { text: 'Connecting to JL Tech dispatch system...', delay: 500 },
-                { text: 'Secure session established. TLS 1.3 verified.', delay: 1000, class: 'success' },
-                { text: `Logging inquiry for: [${clientOrg}]`, delay: 1400, class: 'active' },
-                { text: `Service category identified: ${categoryText}`, delay: 1900, class: 'accent' },
-                { text: `Timeline classification: [${severityLabel}] priority`, delay: 2400, class: severity === 'HIGH' ? 'success' : 'accent' },
-                { text: 'AI co-worker assigned for initial requirements analysis...', delay: 2900 },
-                { text: 'Generating inquiry tracking identifier...', delay: 3400 },
-                { text: 'Inquiry successfully registered in JL Tech project queue!', delay: 3900, class: 'success' },
-                { text: 'Confirmation email will be sent within moments.', delay: 4400 }
-            ];
+                await new Promise(resolve => setTimeout(resolve, steps.length * 450));
 
-            simSteps.forEach(step => {
-                setTimeout(() => {
-                    const row = document.createElement('div');
-                    row.className = 'uplink-row';
-                    if (step.class) row.classList.add(step.class);
-                    row.textContent = `> ${step.text}`;
-                    uplinkConsole.appendChild(row);
-                    uplinkConsole.scrollTop = uplinkConsole.scrollHeight;
-                }, step.delay);
-            });
-
-            setTimeout(() => {
                 transScreen.style.display = 'none';
-                receiptScreen.style.display = 'flex';
-
-                const ticketId = `INQ-2026-${Math.floor(1000 + Math.random() * 9000)}`;
-                document.getElementById('receipt-ticket-id').textContent = ticketId;
-                document.getElementById('receipt-client-name').textContent = clientName;
-                document.getElementById('receipt-client-org').textContent = clientOrg;
-                document.getElementById('receipt-category').textContent = categoryText;
-
-                const sevEl = document.getElementById('receipt-severity');
-                sevEl.textContent = severityLabel;
-                sevEl.className = 't-val';
-                if (severity === 'HIGH') {
-                    sevEl.style.color = 'var(--color-alert)';
-                } else if (severity === 'MEDIUM') {
-                    sevEl.style.color = 'var(--color-warning)';
-                } else {
-                    sevEl.style.color = 'var(--color-accent)';
-                }
-
-                const d = new Date();
-                const pad = (n) => String(n).padStart(2, '0');
-                const tsStr = `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
-                document.getElementById('receipt-timestamp').textContent = tsStr;
-
-                addLogEntry('success', 'SYS_INQ', `Project inquiry logged: [${ticketId}] ${categoryText} — ${clientOrg}.`);
-
-            }, 5200);
+                renderReceipt(inquiry, true);
+            } catch (err) {
+                transScreen.style.display = 'none';
+                ticketForm.style.display = 'block';
+                showFormError(
+                    `Sorry — we couldn't submit your inquiry automatically (${err.message}). Please `,
+                    buildMailtoLink(inquiry)
+                );
+                if (formErrorEl) formErrorEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } finally {
+                if (submitBtn) submitBtn.disabled = false;
+            }
         });
     }
 
     if (resetFormBtn) {
         resetFormBtn.addEventListener('click', () => {
-            if (ticketForm) {
-                ticketForm.reset();
-                ticketForm.querySelectorAll('.form-group').forEach(grp => grp.classList.remove('has-error'));
-                receiptScreen.style.display = 'none';
-                ticketForm.style.display = 'block';
-            }
+            if (!ticketForm) return;
+            ticketForm.reset();
+            ticketForm.querySelectorAll('.form-group').forEach(grp => grp.classList.remove('has-error'));
+            syncSeverityClasses();
+            hideFormError();
+            receiptScreen.style.display = 'none';
+            ticketForm.style.display = 'block';
         });
     }
 
 
-    // 6. FIREFOX :has() FALLBACK
-    document.querySelectorAll('.severity-option input[type="radio"]').forEach(radio => {
-        radio.addEventListener('change', () => {
-            document.querySelectorAll('.severity-option').forEach(opt => opt.classList.remove('is-checked'));
-            const parent = radio.closest('.severity-option');
-            if (parent) parent.classList.add('is-checked');
-        });
-        if (radio.checked) {
-            const parent = radio.closest('.severity-option');
-            if (parent) parent.classList.add('is-checked');
-        }
+    // 6. RADIO STATE SYNC (fallback for browsers without :has())
+    severityOptions.forEach(opt => {
+        const input = opt.querySelector('input[type="radio"]');
+        if (input) input.addEventListener('change', syncSeverityClasses);
     });
+    syncSeverityClasses();
 
 
     // 7. SCROLL REVEAL
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('revealed');
-                revealObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1 });
+    if ('IntersectionObserver' in window) {
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
 
-    document.querySelectorAll('.section-container').forEach(el => {
-        el.classList.add('reveal');
-        revealObserver.observe(el);
-    });
+        document.querySelectorAll('.section-container').forEach(el => {
+            el.classList.add('reveal');
+            revealObserver.observe(el);
+        });
+    }
 
     // 8. CLEANUP
     window.addEventListener('beforeunload', () => {
