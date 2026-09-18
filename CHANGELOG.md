@@ -2,6 +2,20 @@
 
 All notable changes to the JL Tech Solutions site are documented here.
 
+## 2026-09-18 - Dev server stops serving dotfiles (hardening ahead of Tailscale exposure)
+
+- The dev server resolved requests inside the repo root but never blocked dot-leading
+  path segments, so `/.git/config`, `/.git/HEAD`, `/.gitignore`, `/.env` and
+  `/.playwright-mcp/*` were all readable by anything that could reach the port. `.git/`
+  lives inside the repo root, so path containment alone did not protect it.
+- `server.js` now 404s any path containing a dot-leading segment. Verified from the
+  Tailscale IP: all five of the paths above return 404, while `/`, `/style.css` and
+  `/assets/logo.svg` still return 200 and localhost is unaffected.
+- This was fixed **before** the port was exposed, because the same port now serves the
+  local preview harnesses.
+- Also added `_preview/` to `.gitignore` so throwaway comparison harnesses can never be
+  published to GitHub Pages.
+
 ## 2026-09-18 - Hero rebuilt around an animated field, industries restacked, imagery replaced
 
 Four revision requests: drop the network topology, replace the static gradient hero with

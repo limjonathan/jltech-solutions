@@ -3,6 +3,9 @@ node_modules/
 *.log
 .env
 
+# Throwaway comparison harnesses (never published)
+_preview/
+
 # Build / AI index artifacts
 repomix-output.xml
 graphify-out/

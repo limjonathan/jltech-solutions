@@ -89,6 +89,19 @@ const server = http.createServer((req, res) => {
     // Strip query string / fragment so assets resolve when cache-busted (e.g. ?v=2)
     const urlPath = decodeURIComponent(req.url.split('?')[0].split('#')[0]);
     const normalized = path.normalize(urlPath).replace(/^(\.\.[/\\])+/, '');
+
+    // Refuse any dot-leading path segment. The realpath check below keeps
+    // requests inside the repo root, but .git/ lives inside that root, so
+    // without this the object database, refs and config are readable by
+    // anything that can reach the port. Same for .env and .gitignore.
+    const isDotSegment = normalized
+        .split(/[/\\]/)
+        .some((seg) => seg.startsWith('.') && seg !== '.' && seg !== '..');
+    if (isDotSegment) {
+        sendError(res, 404, 'Not Found');
+        return;
+    }
+
     let filePath = normalized === '/' || normalized === ''
         ? path.join(__dirname, 'index.html')
         : path.join(__dirname, normalized);
