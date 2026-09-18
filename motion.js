@@ -213,6 +213,17 @@
                 stagger: 0.085,
                 delay: 0.34
             });
+
+            // Watchdog. Animation frames are throttled in a background tab, so a
+            // tween can sit part-way indefinitely while the user is elsewhere.
+            // setTimeout still runs when throttled, so this guarantees the hero
+            // is never left invisible. Cheap, and never fires in the normal case.
+            window.setTimeout(function () {
+                var stranded = secondary.filter(function (el) {
+                    return parseFloat(window.getComputedStyle(el).opacity) < 0.9;
+                });
+                if (stranded.length) gsap.set(stranded, { opacity: 1, y: 0 });
+            }, 3000);
         }
 
         // Scrub the copy out as the hero leaves. No pinning, so the scrollbar,
@@ -240,12 +251,16 @@
             document.fonts.ready.then(function () { ScrollTrigger.refresh(); }).catch(function () {});
         }
     }
-
     /* ---------------------------------------------------------------- boot */
 
     // Not motion, so it stays on under reduced-motion too.
     initScrollChrome();
     initSectionSpy();
+
+    // Late layout (webfonts, the canvas sizing itself) shifts trigger positions.
+    window.addEventListener('load', function () {
+        if (ScrollTrigger) ScrollTrigger.refresh();
+    });
 
     gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', function () {
         initHero();

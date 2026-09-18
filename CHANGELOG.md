@@ -81,6 +81,10 @@ Phases C-F (section recomposition, generated imagery, full gate) are still to co
   scrub now translates only, so the button stays above 4.5:1 at every scroll position.
 - Reveal ownership moved out of `app.js` into `motion.js`; `app.js` no longer observes
   anything, so there is exactly one source of motion truth.
+- The hero entrance has a 3s watchdog. Animation frames are throttled in a background
+  tab, so a part-way tween can sit there indefinitely while the user is elsewhere;
+  `setTimeout` still runs, so the hero can never be left invisible. Verified by starving
+  `requestAnimationFrame`: the panel reads opacity 0 and the watchdog restores it.
 
 ### Verified
 
