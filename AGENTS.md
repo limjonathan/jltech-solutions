@@ -34,6 +34,8 @@ style.css       Token layer + design system + responsive breakpoints
 app.js          Interactivity: nav, modals, ops log, telemetry, inquiry form
 motion.js       ALL GSAP timelines. One gsap.matchMedia() block owns every tween.
 background.js   Topology canvas behind the hero (rAF loop that pauses off-screen)
+                Section shapes: industries rail, 9-row sticky service stack,
+                drawn AI pipeline, asymmetric engagement rows, two media bands
 server.js       Dev-only static server (rate limiting, security headers, caching)
 sitemap.xml     Single-URL sitemap
 robots.txt      Crawl rules -> sitemap
@@ -41,8 +43,10 @@ vendor/gsap/    Vendored GSAP 3.15 + plugins (see README.txt there)
 assets/
   logo.svg          Primary logo (viewBox cropped tight to the artwork)
   logo-light.svg    Light variant (#4D4D4D -> #E2E8F0) for dark backgrounds
-  og-cover.png      1200x630 social card
+  og-cover.jpg      1200x630 social card (photographic, so JPEG not PNG)
   grain.png         128x128 noise tile, tiled by body::after
+  tech-datacenter.webp  Media band image (ComfyUI / DreamShaperXL Lightning)
+  tech-network.webp     Media band image (same pipeline)
   logo.png          3125x3125 RGBA source raster (padding NOT trimmed; source only)
   logo.jpg          Unused, gitignored
 ```
@@ -88,6 +92,24 @@ drops it below 4.5:1 mid-scroll. The hero scrub translates but deliberately does
 **6. The topology canvas stays contained.** It is absolutely positioned inside the hero and
 paused by IntersectionObserver when off-screen and on `visibilitychange`. A permanently
 running full-viewport canvas is a battery and INP tax for no benefit.
+
+**7. The industries rail may listen to its own scroll, never the page's.** The one
+`scroll` listener in the codebase is attached to `[data-rail-viewport]`, a contained
+horizontal scroller, and is rAF-throttled. That is not the banned page-scroll pattern. If
+you ever attach one to `window`, you have reintroduced the thing invariant 1 forbids.
+
+**8. The service stack is CSS-only.** `position: sticky` with a per-row `top` offset
+(`--row-i`) does the stacking, so it still reads as an ordered list with JS or motion off.
+GSAP only adds a scale on the outgoing row. Do not move the stacking into JS.
+
+**9. Media bands carry their own scrim.** `.media-band-scrim` holds white text above 4.5:1
+over an image whose luminance is not ours to control. Never remove it, and never place text
+on a band without it. Below 768px the band stacks (image on top, copy on dark below) and the
+scrim switches to a vertical gradient.
+
+**10. Telemetry count-ups and the live updater must not both write a value.** `motion.js`
+sets `dataset.counting` while a `.stat-value` counts up and `app.js` skips any element
+carrying that flag. Removing either half makes the panel flicker.
 
 **7. Scroll progress uses `fromTo`.** The bar ships at `transform: scaleX(0)` with
 `width: 100%`; a plain `to()` would animate 0 to 1 to 1 and never appear to move.
@@ -149,6 +171,15 @@ Then in a browser:
   renders exactly one static frame.
 - JS disabled: the hero and every section must still render fully visible. Hidden start
   states are applied by JS, so a blocked GSAP must not blank the page.
+- Rail: the next/prev buttons advance one card, the `NN / 05` counter tracks it, prev is
+  disabled at the start, and drag-to-pan does not fire a click on release.
+- Service stack: rows are `position: sticky`, each "Learn more" opens its modal, and Escape
+  returns focus to that button (not the row).
+- Media bands: both images load, and white band text clears 4.5:1 against the scrim at
+  desktop and in the stacked mobile layout.
+- Nothing is left hidden: after a slow full-page scroll, no element outside `.spec-modal`
+  sits below opacity 1 except the intentional ones (`.pulse-indicator`, a disabled
+  `.rail-btn`, `.portal-mini-logo`, the hidden radio inputs, `.barcode-stripes`).
 - Modal at 740x420 (landscape phone): content fits, `.modal-body` scrolls internally, the
   close button is reachable, and Escape restores focus to the triggering card.
 - Form: submit valid data -> a `mailto:` draft opens and the receipt reads "Draft Ready to

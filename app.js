@@ -26,15 +26,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 2. SERVICE MODALS
-    const solutionCards = document.querySelectorAll('.service-card');
+    // The real interactive element is now a <button>, so keyboard and screen
+    // reader users get a proper control instead of role="button" on a container
+    // that also holds a heading and body text.
+    const serviceOpeners = document.querySelectorAll('.service-open');
+    const serviceRows = document.querySelectorAll('.service-row');
     const specModals = document.querySelectorAll('.spec-modal');
     let modalTrigger = null;
 
-    function openModal(card) {
-        const modalId = card.getAttribute('data-target');
-        const targetModal = document.getElementById(modalId);
+    function openModal(trigger) {
+        const row = trigger.closest('[data-target]');
+        const modalId = row ? row.getAttribute('data-target') : null;
+        const targetModal = modalId ? document.getElementById(modalId) : null;
         if (!targetModal) return;
-        modalTrigger = card;
+        modalTrigger = trigger;
         targetModal.classList.add('active');
         targetModal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
@@ -53,16 +58,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    solutionCards.forEach(card => {
-        card.setAttribute('role', 'button');
-        card.setAttribute('tabindex', '0');
-        card.setAttribute('aria-haspopup', 'dialog');
-        card.addEventListener('click', () => openModal(card));
-        card.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
-                e.preventDefault();
-                openModal(card);
-            }
+    serviceOpeners.forEach(btn => {
+        btn.setAttribute('aria-haspopup', 'dialog');
+        btn.addEventListener('click', () => openModal(btn));
+    });
+
+    // Mouse convenience: clicking the row body opens its modal too. Keyboard and
+    // AT users use the button, which is the accessible control.
+    serviceRows.forEach(row => {
+        row.addEventListener('click', (e) => {
+            if (e.target.closest('.service-open')) return;
+            if (window.getSelection && String(window.getSelection()).length) return;
+            const btn = row.querySelector('.service-open');
+            if (btn) openModal(btn);
         });
     });
 
@@ -177,61 +185,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // 4. TELEMETRY - System + AI Ops metrics
-    const cpuVal = document.querySelector('#stat-cpu .stat-value');
-    const cpuBar = document.querySelector('#stat-cpu .graph-bar');
-    const ramVal = document.querySelector('#stat-ram .stat-value');
-    const ramBar = document.querySelector('#stat-ram .graph-bar');
-    const latVal = document.querySelector('#stat-latency .stat-value');
-    const latBar = document.querySelector('#stat-latency .graph-bar');
-    const aiTasksVal = document.querySelector('#stat-ai-tasks .stat-value');
-    const aiTasksBar = document.querySelector('#stat-ai-tasks .graph-bar');
-    const aiDocsVal = document.querySelector('#stat-ai-docs .stat-value');
-    const aiDocsBar = document.querySelector('#stat-ai-docs .graph-bar');
-    const aiTimeVal = document.querySelector('#stat-ai-time .stat-value');
-    const aiTimeBar = document.querySelector('#stat-ai-time .graph-bar');
-    const aiAccVal = document.querySelector('#stat-ai-accuracy .stat-value');
-    const aiAccBar = document.querySelector('#stat-ai-accuracy .graph-bar');
+    // Each metric is a [selector, generator, formatter] triple. The sparkline is
+    // drawn once by motion.js and never re-animated, so this only writes text.
+    function statValue(id) {
+        return document.querySelector('#' + id + ' .stat-value');
+    }
+
+    const TELEMETRY = [
+        ['stat-cpu',         function () { return 8 + Math.random() * 10; },        function (v) { return v.toFixed(1) + '%'; }],
+        ['stat-ram',         function () { return 40 + Math.random() * 4; },        function (v) { return v.toFixed(1) + '%'; }],
+        ['stat-latency',     function () { return Math.floor(6 + Math.random() * 8); }, function (v) { return v + 'ms'; }],
+        ['stat-uptime',      function () { return 99.99 + Math.random() * 0.009; }, function (v) { return v.toFixed(3) + '%'; }],
+        ['stat-ai-tasks',    function () { return Math.floor(820 + Math.random() * 60); }, function (v) { return v.toLocaleString('en-US'); }],
+        ['stat-ai-docs',     function () { return Math.floor(12300 + Math.random() * 200); }, function (v) { return v.toLocaleString('en-US'); }],
+        ['stat-ai-time',     function () { return 1.5 + Math.random() * 1.5; },     function (v) { return v.toFixed(1) + 's'; }],
+        ['stat-ai-accuracy', function () { return 96.8 + Math.random() * 1.5; },    function (v) { return v.toFixed(1) + '%'; }]
+    ].map(function (entry) {
+        return { el: statValue(entry[0]), next: entry[1], format: entry[2] };
+    }).filter(function (m) { return m.el; });
 
     let telemetryTimer = null;
 
     function updateTelemetryValues() {
         if (logsPaused) return;
 
-        if (cpuVal && cpuBar) {
-            const cpu = (8 + Math.random() * 10).toFixed(1);
-            cpuVal.textContent = `${cpu}%`;
-            cpuBar.style.width = `${cpu * 2.5}%`;
-        }
-        if (ramVal && ramBar) {
-            const ram = (40 + Math.random() * 4).toFixed(1);
-            ramVal.textContent = `${ram}%`;
-            ramBar.style.width = `${ram}%`;
-        }
-        if (latVal && latBar) {
-            const latency = Math.floor(6 + Math.random() * 8);
-            latVal.textContent = `${latency}ms`;
-            latBar.style.width = `${latency * 5}%`;
-        }
-        if (aiTasksVal && aiTasksBar) {
-            const tasks = Math.floor(820 + Math.random() * 60);
-            aiTasksVal.textContent = tasks.toLocaleString();
-            aiTasksBar.style.width = `${Math.min((tasks / 1200) * 100, 100)}%`;
-        }
-        if (aiDocsVal && aiDocsBar) {
-            const docs = Math.floor(12300 + Math.random() * 200);
-            aiDocsVal.textContent = docs.toLocaleString();
-            aiDocsBar.style.width = `${Math.min((docs / 20000) * 100, 100)}%`;
-        }
-        if (aiTimeVal && aiTimeBar) {
-            const t = (1.5 + Math.random() * 1.5).toFixed(1);
-            aiTimeVal.textContent = `${t}s`;
-            aiTimeBar.style.width = `${t * 15}%`;
-        }
-        if (aiAccVal && aiAccBar) {
-            const acc = (96.8 + Math.random() * 1.5).toFixed(1);
-            aiAccVal.textContent = `${acc}%`;
-            aiAccBar.style.width = `${acc}%`;
-        }
+        TELEMETRY.forEach(function (metric) {
+            // motion.js owns the element while it counts up; do not fight it.
+            if (metric.el.dataset.counting) return;
+            metric.el.textContent = metric.format(metric.next());
+        });
     }
 
     telemetryTimer = setInterval(updateTelemetryValues, 2500);
@@ -352,18 +334,56 @@ document.addEventListener('DOMContentLoaded', () => {
         ];
     }
 
+    // The newest line is typed out; older lines are finalised instantly, which
+    // is how a real terminal reads. Falls back to instant text if timers are
+    // throttled, so the sequence can never stall half-written.
+    let typingTimer = null;
+    let typingRow = null;
+
+    function finishTyping() {
+        if (typingTimer) { clearInterval(typingTimer); typingTimer = null; }
+        if (typingRow) {
+            typingRow.textContent = typingRow.dataset.full || typingRow.textContent;
+            delete typingRow.dataset.full;
+            typingRow = null;
+        }
+    }
+
+    function typeRow(row, text) {
+        row.dataset.full = text;
+        let i = 0;
+        row.textContent = '';
+        typingTimer = setInterval(() => {
+            i += 1;
+            row.textContent = text.slice(0, i);
+            if (uplinkConsole) uplinkConsole.scrollTop = uplinkConsole.scrollHeight;
+            if (i >= text.length) {
+                clearInterval(typingTimer);
+                typingTimer = null;
+                delete row.dataset.full;
+                typingRow = null;
+            }
+        }, 12);
+    }
+
     function runProcessingSteps(steps) {
         steps.forEach(step => {
             setTimeout(() => {
                 if (!uplinkConsole) return;
+                finishTyping();
+
                 const row = document.createElement('div');
                 row.className = 'uplink-row';
                 if (step.class) row.classList.add(step.class);
-                row.textContent = `> ${step.text}`;
                 uplinkConsole.appendChild(row);
-                uplinkConsole.scrollTop = uplinkConsole.scrollHeight;
+                typingRow = row;
+                typeRow(row, `> ${step.text}`);
             }, step.delay);
         });
+    }
+
+    function stopProcessingSteps() {
+        finishTyping();
     }
 
     function renderReceipt(inquiry, delivered) {
@@ -403,6 +423,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('receipt-timestamp').textContent =
             `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
 
+        stopProcessingSteps();
         receiptScreen.style.display = 'flex';
         addLogEntry('success', 'SYS_INQ', `Project inquiry ${delivered ? 'submitted' : 'drafted'}: [${ticketId}] ${inquiry.categoryText}, ${inquiry.clientOrg}.`);
     }
@@ -454,6 +475,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const isDescValid = validateField(descTextarea);
 
             if (!(isNameValid && isOrgValid && isEmailValid && isCatValid && isDescValid)) {
+                // Nudge each offending field, then clear the class so it can run
+                // again on the next attempt.
+                ticketForm.querySelectorAll('.form-group.has-error').forEach(grp => {
+                    grp.classList.remove('shake');
+                    void grp.offsetWidth;
+                    grp.classList.add('shake');
+                    setTimeout(() => grp.classList.remove('shake'), 320);
+                });
                 const firstError = ticketForm.querySelector('.has-error');
                 if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 return;
@@ -535,6 +564,100 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     syncSeverityClasses();
 
+
+    // 9. INDUSTRIES RAIL
+    // A contained horizontal scroller with drag-to-pan and explicit controls.
+    // Deliberately NOT a vertical-scroll-to-horizontal hijack: the page scrolls
+    // normally and the user drives this rail directly.
+    (function initRail() {
+        const viewport = document.querySelector('[data-rail-viewport]');
+        if (!viewport) return;
+
+        const track = viewport.querySelector('.rail-track');
+        const prevBtn = document.querySelector('[data-rail-prev]');
+        const nextBtn = document.querySelector('[data-rail-next]');
+        const currentEl = document.querySelector('[data-rail-current]');
+        const totalEl = document.querySelector('[data-rail-total]');
+        const cards = Array.prototype.slice.call(viewport.querySelectorAll('.vertical-card'));
+        if (!cards.length) return;
+
+        if (totalEl) totalEl.textContent = String(cards.length).padStart(2, '0');
+
+        function stepSize() {
+            const gap = track ? (parseFloat(getComputedStyle(track).columnGap) || 18) : 18;
+            return cards[0].getBoundingClientRect().width + gap;
+        }
+
+        function sync() {
+            const max = viewport.scrollWidth - viewport.clientWidth;
+            if (prevBtn) prevBtn.disabled = viewport.scrollLeft <= 2;
+            if (nextBtn) nextBtn.disabled = max <= 2 || viewport.scrollLeft >= max - 2;
+            if (currentEl) {
+                const idx = Math.round(viewport.scrollLeft / stepSize()) + 1;
+                currentEl.textContent = String(Math.min(cards.length, Math.max(1, idx))).padStart(2, '0');
+            }
+        }
+
+        if (prevBtn) prevBtn.addEventListener('click', () => viewport.scrollBy({ left: -stepSize(), behavior: 'smooth' }));
+        if (nextBtn) nextBtn.addEventListener('click', () => viewport.scrollBy({ left: stepSize(), behavior: 'smooth' }));
+
+        // Scoped to this element, not the window: it fires only while the rail
+        // itself scrolls, which is not the banned page-scroll pattern.
+        let ticking = false;
+        viewport.addEventListener('scroll', () => {
+            if (ticking) return;
+            ticking = true;
+            window.requestAnimationFrame(() => { sync(); ticking = false; });
+        }, { passive: true });
+
+        // Drag to pan. Mouse only; touch already has native momentum scrolling.
+        let dragging = false;
+        let startX = 0;
+        let startScroll = 0;
+        let travel = 0;
+
+        viewport.addEventListener('pointerdown', (e) => {
+            if (e.pointerType !== 'mouse') return;
+            dragging = true;
+            travel = 0;
+            startX = e.clientX;
+            startScroll = viewport.scrollLeft;
+            viewport.classList.add('is-dragging');
+        });
+
+        viewport.addEventListener('pointermove', (e) => {
+            if (!dragging) return;
+            const dx = e.clientX - startX;
+            travel = Math.abs(dx);
+            viewport.scrollLeft = startScroll - dx;
+        });
+
+        function endDrag() {
+            if (!dragging) return;
+            dragging = false;
+            viewport.classList.remove('is-dragging');
+        }
+        viewport.addEventListener('pointerup', endDrag);
+        viewport.addEventListener('pointerleave', endDrag);
+        viewport.addEventListener('pointercancel', endDrag);
+
+        // Swallow the click that follows a drag so it cannot activate the card.
+        viewport.addEventListener('click', (e) => {
+            if (travel > 6) { e.preventDefault(); e.stopPropagation(); travel = 0; }
+        }, true);
+
+        sync();
+        window.addEventListener('resize', () => window.requestAnimationFrame(sync), { passive: true });
+    })();
+
+    // 10. ENGAGEMENT ROWS - directional hover fill
+    document.querySelectorAll('.engage-row').forEach(row => {
+        row.addEventListener('pointerenter', (e) => {
+            const rect = row.getBoundingClientRect();
+            const fromLeft = (e.clientX - rect.left) < rect.width / 2;
+            row.style.setProperty('--fill-x', fromLeft ? '0%' : '100%');
+        });
+    });
 
     // 8. CLEANUP
     window.addEventListener('beforeunload', () => {

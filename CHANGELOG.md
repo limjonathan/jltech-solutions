@@ -2,6 +2,88 @@
 
 All notable changes to the JL Tech Solutions site are documented here.
 
+## 2026-09-18 - Visual rebuild, Phases C-F (section recomposition, dashboard, imagery)
+
+Second half of the rebuild. Every content section was recomposed so no two share a layout
+family, the dashboard and form got their interaction polish, and the page gained real
+imagery.
+
+### Sections recomposed (the three-equal-cards tell is gone)
+
+- **Industries** is now a horizontal rail instead of a five-across card grid: a contained
+  scroller with drag-to-pan, scroll-snap, prev/next buttons and a monospace `NN / 05`
+  position counter. Deliberately **not** a vertical-to-horizontal scroll hijack, so the page
+  scrollbar and find-in-page behave normally. Touch keeps native momentum scrolling.
+- **Services** is now a sticky scroll stack rather than a 3x3 card grid: nine full-width
+  rows with a number, icon, description and capability tags, each pinning so the next
+  covers it. The stack is pure CSS (`position: sticky` + a per-row offset), so it still
+  reads as an ordered list with JS or motion off; GSAP only eases the outgoing row back.
+  Each row gained a real `<button>` for "Learn more" in place of `role="button"` on a
+  container that also held a heading and body text, and clicking the row body still opens
+  the modal as a mouse convenience.
+- **AI workflow** is now a connected pipeline: the three steps sit on a flow with curved
+  connectors that draw themselves via DrawSVG as the section arrives, instead of three
+  identical detached cards. On narrow screens the connectors become a vertical dashed rule.
+- **Engagement models** are now asymmetric rows separated by rules rather than three equal
+  cards: the first is a standard row, the second (Fully Managed) is emphasised with a tinted
+  surface and a two-column feature list, and the third is **mirrored** (icon right, copy
+  left, CTA left). Each row has a directional hover fill that enters from the side the
+  pointer came from. All three share the single "Start a project" label.
+
+### Dashboard
+
+- Replaced the eight uniform progress bars with **per-metric SVG sparklines**, shaped toward
+  each metric's level and drawn on reveal via DrawSVG.
+- Headline values now **count up once** on first view, then hand over to the live updater.
+  `motion.js` sets `dataset.counting` while a value animates and `app.js` skips any element
+  carrying it, so the two writers never fight.
+- Added a slow decorative **scan line** over the vitals panel (gated behind
+  `no-preference`, clipped by the panel, `pointer-events: none`).
+- Rewrote the telemetry updater, which had been silently dead: it still bound to the removed
+  `.graph-bar` elements, so its guards skipped every write.
+
+### Form
+
+- Inline validation errors now animate in, and each offending field gets a 2px one-pass
+  nudge on submit failure so the error is felt and not just seen.
+- The POST-path terminal now **types** its newest line character by character (older lines
+  are finalised instantly, as a real terminal reads), with a fallback that finalises text if
+  timers are throttled so the sequence can never stall half-written.
+- Severity options respond physically to selection.
+
+### Imagery
+
+- Generated four abstract technical visuals on the local ComfyUI instance
+  (DreamShaperXL Lightning), brand-graded to the cool blue/navy palette and cropped 2:1.
+  Two are used: a data-centre aisle and an abstract network mesh.
+- Added two **media bands** with different heights so they read as editorial rhythm rather
+  than a repeated template. Each carries its own scrim, which is what holds white text above
+  4.5:1 over an image whose luminance we do not control; below 768px the band stacks and the
+  scrim becomes a vertical gradient.
+- Rebuilt the social card as `og-cover.jpg` (1200x630) on the data-centre image, 104KB
+  instead of 723KB as PNG, and declared `og:image:type`.
+
+### Fixed
+
+- **`.service-num` / `.engage-num` failed contrast** at 2.82:1 (`--color-text-light` on
+  white). Now `--color-text-muted`.
+- **The mirrored engagement row was squeezed into a 190px column.** `order` reorders paint
+  but leaves grid auto-placement intact; replaced with explicit column placement.
+- **`server.js` served `.webp` as `application/octet-stream`**, so the browser refused to
+  decode the band images. Added `webp` and `avif` to the MIME map.
+
+### Verified
+
+- axe: **zero violations** at desktop, laptop and mobile, at rest, mid-scroll and after a
+  full reveal pass.
+- LCP 948ms (budget 2500ms), **CLS 0**.
+- Reduced motion: no element below opacity 1, zero live animations.
+- JS disabled: all 29 primary content elements visible.
+- No horizontal overflow and correct column collapses from 320px to 1920px.
+- Rail advances and disables correctly; service modals open from the button and from the
+  row, and Escape restores focus to the button; the form still emits a real `mailto:`.
+- No window-scoped scroll listener anywhere; the only one is element-scoped on the rail.
+
 ## 2026-09-18 - Visual and motion rebuild, Phase A+B
 
 First half of a two-part rebuild: foundations plus the motion system, header and hero.

@@ -125,41 +125,47 @@
 
     // Section reveals. Elements already on screen at load are left alone; only
     // what the user scrolls to gets an entrance, so the hero is never delayed.
+    //
+    // Containers that hold a CTA translate but never fade: dimming them would
+    // drop the button inside below 4.5:1 while the tween runs. Text-only groups
+    // can fade safely.
     function initReveals() {
         if (!ScrollTrigger) return;
 
-        var groups = [
-            '.verticals-grid > *',
-            '.services-grid > *',
+        var fades = [
+            '.rail-track > *',
             '.ai-flow > *',
-            '.engagement-grid > *',
+            '.ai-trust-bar',
             '.dashboard-grid > *',
-            '.about-grid > *',
+            '.about-grid > *'
+        ];
+        var rises = [
+            '.service-row',
+            '.engage-row',
             '.portal-card'
         ];
 
-        groups.forEach(function (selector) {
+        function batch(selector, withFade) {
             var items = gsap.utils.toArray(selector);
             if (!items.length) return;
 
-            // 1 rather than 0: an element that somehow never enters still reads.
-            gsap.set(items, { opacity: 0, y: 26 });
+            var from = withFade ? { opacity: 0, y: 26 } : { y: 26 };
+            gsap.set(items, from);
 
             ScrollTrigger.batch(items, {
-                start: 'top 90%',
+                start: 'top 92%',
                 once: true,
-                onEnter: function (batch) {
-                    gsap.to(batch, {
-                        opacity: 1,
-                        y: 0,
-                        duration: 0.7,
-                        ease: 'power3.out',
-                        stagger: 0.06,
-                        overwrite: true
-                    });
+                onEnter: function (group) {
+                    var to = withFade
+                        ? { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', stagger: 0.06, overwrite: true }
+                        : { y: 0, duration: 0.8, ease: 'power3.out', stagger: 0.07, overwrite: true };
+                    gsap.to(group, to);
                 }
             });
-        });
+        }
+
+        fades.forEach(function (sel) { batch(sel, true); });
+        rises.forEach(function (sel) { batch(sel, false); });
 
         gsap.utils.toArray('.section-header').forEach(function (header) {
             gsap.set(header, { opacity: 0, y: 20 });
@@ -169,6 +175,94 @@
                 duration: 0.7,
                 ease: 'power3.out',
                 scrollTrigger: { trigger: header, start: 'top 92%', once: true }
+            });
+        });
+    }
+
+    // AI pipeline: the connectors draw themselves as the section arrives.
+    function initPipeline() {
+        var paths = gsap.utils.toArray('.ai-link-path, .ai-link-tip');
+        if (!paths.length || !window.DrawSVGPlugin) return;
+
+        gsap.set(paths, { drawSVG: '0%' });
+        gsap.to(paths, {
+            drawSVG: '100%',
+            duration: 0.55,
+            ease: 'power2.out',
+            stagger: 0.14,
+            scrollTrigger: { trigger: '.ai-flow', start: 'top 78%', once: true }
+        });
+    }
+
+    // Telemetry: sparklines draw once, and the headline number counts up once.
+    // Restrained on purpose: this panel is functional data, so nothing keeps
+    // moving after the entrance, and the live updater takes over afterwards.
+    function initTelemetry() {
+        if (!ScrollTrigger) return;
+
+        var sparks = gsap.utils.toArray('.stat-spark-path');
+        if (sparks.length && window.DrawSVGPlugin) {
+            gsap.set(sparks, { drawSVG: '0%' });
+            gsap.to(sparks, {
+                drawSVG: '100%',
+                duration: 0.9,
+                ease: 'power2.out',
+                stagger: 0.05,
+                scrollTrigger: { trigger: '.telemetry-stats', start: 'top 88%', once: true }
+            });
+        }
+
+        gsap.utils.toArray('.stat-value').forEach(function (el, i) {
+            var raw = el.textContent.trim();
+            var match = raw.match(/^([\d,.]+)(.*)$/);
+            if (!match) return;
+
+            var decimals = (match[1].split('.')[1] || '').length;
+            var target = parseFloat(match[1].replace(/,/g, ''));
+            var suffix = match[2];
+            if (!isFinite(target)) return;
+
+            var proxy = { v: 0 };
+
+            // The live updater in app.js skips any value carrying this flag, so
+            // the two never overwrite each other mid-animation.
+            gsap.to(proxy, {
+                v: target,
+                duration: 1.1,
+                ease: 'power2.out',
+                delay: i * 0.045,
+                scrollTrigger: { trigger: el, start: 'top 95%', once: true },
+                onStart: function () { el.dataset.counting = '1'; },
+                onUpdate: function () {
+                    var n = proxy.v;
+                    el.textContent = (decimals
+                        ? n.toFixed(decimals)
+                        : Math.round(n).toLocaleString('en-US')) + suffix;
+                },
+                onComplete: function () {
+                    el.textContent = raw;
+                    delete el.dataset.counting;
+                }
+            });
+        });
+    }
+
+    // Sticky service rows: the outgoing row eases back as the next covers it.
+    // Scale only, never opacity, so nothing inside loses contrast.
+    function initServiceStack() {
+        if (!ScrollTrigger) return;
+
+        gsap.utils.toArray('.service-row').forEach(function (row, i, all) {
+            if (i === all.length - 1) return;
+            gsap.to(row, {
+                scale: 0.975,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: row,
+                    start: 'top 92px',
+                    end: 'bottom 240px',
+                    scrub: 0.4
+                }
             });
         });
     }
@@ -265,6 +359,9 @@
     gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', function () {
         initHero();
         initReveals();
+        initPipeline();
+        initServiceStack();
+        initTelemetry();
         var cleanupParallax = initParallax();
 
         // Only the triggers created in this branch are reverted; the scroll
