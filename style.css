@@ -427,19 +427,53 @@ body::after {
     background: transparent;
 }
 
-/* Flow field: full-bleed behind the copy, never interactive. The mask pushes the
-   motion to the right of the frame, so the single-column hero keeps asymmetric
-   weight and the streaks never sit directly behind the headline. */
-.hero-field {
+/* Hero background: a receding perspective grid. Pure CSS 3D, so the hero has no
+   canvas and no rAF loop at all. The mask biases the grid to the right of the
+   frame, keeping the single-column hero asymmetric and the copy area clean. */
+.hero-tunnel {
     position: absolute;
     inset: 0;
-    width: 100%;
-    height: 100%;
     z-index: 0;
     pointer-events: none;
-    display: block;
-    mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.28) 34%, #000 76%);
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.28) 34%, #000 76%);
+    overflow: hidden;
+    perspective: 300px;
+    perspective-origin: 64% 44%;
+    mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.30) 32%, #000 74%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.30) 32%, #000 74%);
+}
+
+.tunnel-plane {
+    position: absolute;
+    left: -70%;
+    right: -70%;
+    top: 44%;
+    bottom: -110%;
+    transform: rotateX(73deg);
+    transform-origin: 50% 0;
+    background-image:
+        linear-gradient(to right, rgba(37, 99, 235, 0.40) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(37, 99, 235, 0.40) 1px, transparent 1px);
+    background-size: 78px 78px;
+    mask-image: linear-gradient(to bottom, transparent 0%, #000 44%, #000 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 44%, #000 100%);
+}
+
+.tunnel-horizon {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 34%;
+    height: 42%;
+    background: linear-gradient(to bottom, rgba(37, 99, 235, 0.30), rgba(37, 99, 235, 0));
+    filter: blur(26px);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .tunnel-plane { animation: tunnelRun 3.4s linear infinite; }
+}
+@keyframes tunnelRun {
+    from { background-position: 0 0; }
+    to   { background-position: 0 78px; }
 }
 
 .hero-aurora {
@@ -1882,82 +1916,102 @@ body::after {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* 15b. MEDIA BANDS
-   Two photographic breathers with different heights, so they read as editorial
-   rhythm rather than a repeated template. The scrim exists to hold white text
-   above 4.5:1 over an image whose luminance we do not control. */
-.media-band {
+/* 15b. COMPARISON BAND
+   Replaces the two media bands. This is the closing argument: it sits between
+   About and the inquiry form, so the last thing read before the CTA is why to
+   choose us. Dark by design, like the footer, rather than a mid-page theme flip. */
+.vs-band {
     position: relative;
-    display: flex;
-    align-items: flex-end;
-    min-height: clamp(340px, 62vh, 560px);
     overflow: hidden;
     isolation: isolate;
     background: var(--color-bg-dark);
 }
-.media-band--short { min-height: clamp(260px, 40vh, 400px); }
 
-.media-band-img {
+.vs-glow {
     position: absolute;
     inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
     z-index: 0;
+    pointer-events: none;
+    background: radial-gradient(58% 120% at 76% 38%, rgba(37, 99, 235, 0.24), transparent 70%);
 }
 
-.media-band-scrim {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    background: linear-gradient(
-        100deg,
-        rgba(11, 18, 32, 0.94) 0%,
-        rgba(11, 18, 32, 0.80) 42%,
-        rgba(11, 18, 32, 0.42) 100%
-    );
-}
-
-.media-band-inner {
+.vs-inner {
     position: relative;
-    z-index: 2;
-    width: 100%;
+    z-index: 1;
     max-width: var(--max-width);
     margin: 0 auto;
-    padding: clamp(40px, 6vw, 76px) var(--shell);
+    padding: clamp(56px, 7vw, 96px) var(--shell);
 }
 
-.media-band-title {
+.vs-title {
     font-size: clamp(1.5rem, 3vw, 2.4rem);
     font-weight: 600;
     letter-spacing: -0.028em;
     line-height: 1.14;
     color: #ffffff;
-    margin-bottom: 12px;
-    max-width: 20ch;
+    margin-bottom: clamp(30px, 4vw, 46px);
+    max-width: 22ch;
     text-wrap: balance;
 }
 
-.media-band-text {
-    font-size: clamp(0.95rem, 1.15vw, 1.05rem);
-    line-height: 1.6;
-    color: #d7e2f2;
-    max-width: 56ch;
+.vs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
 }
 
-/* On narrow screens the scrim goes vertical: the copy stacks under a shorter
-   image, so a left-to-right gradient would leave text over the bright side. */
-@media (max-width: 768px) {
-    .media-band { min-height: 0; }
-    .media-band-img { position: static; height: 200px; }
-    .media-band {
-        display: block;
-        background: var(--color-bg-dark);
-    }
-    .media-band-scrim {
-        inset: 0 0 auto 0;
-        height: 200px;
-        background: linear-gradient(180deg, rgba(11, 18, 32, 0.25), rgba(11, 18, 32, 0.85));
+.vs-col { padding: 0 40px; }
+.vs-col:first-child { border-right: 1px solid rgba(147, 197, 253, 0.16); padding-left: 0; }
+.vs-col:last-child { padding-right: 0; }
+
+.vs-col h3 {
+    font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+.vs-col--them h3 { color: #8fa6c2; }
+
+.vs-col ul { display: grid; gap: 13px; }
+
+.vs-col li {
+    position: relative;
+    padding-left: 28px;
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: #dbe7f6;
+}
+.vs-col--them li { color: #8fa6c2; }
+
+.vs-col li::before {
+    position: absolute;
+    left: 0;
+    top: -1px;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+.vs-col--us li::before { content: '\2713'; color: #6ee7b7; }
+.vs-col--them li::before { content: '\00D7'; color: #7f97b5; }
+
+.vs-foot {
+    margin-top: clamp(30px, 4vw, 44px);
+    padding-top: 24px;
+    border-top: 1px solid rgba(147, 197, 253, 0.16);
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: #93c5fd;
+    max-width: 76ch;
+}
+
+@media (max-width: 760px) {
+    .vs-grid { grid-template-columns: 1fr; }
+    .vs-col { padding: 0; }
+    .vs-col:first-child {
+        border-right: 0;
+        border-bottom: 1px solid rgba(147, 197, 253, 0.16);
+        padding-bottom: 30px;
+        margin-bottom: 30px;
     }
 }
 
@@ -2008,7 +2062,7 @@ body::after {
         min-height: 0;
         top: calc(84px + var(--row-i) * 6px);
     }
-    .hero-field { opacity: 0.5; }
+    .hero-tunnel { opacity: 0.45; perspective: 220px; perspective-origin: 62% 40%; }
     .vertical-head { grid-template-columns: auto minmax(0, 1fr); gap: 6px 14px; }
     .vertical-icon { width: 50px; height: 50px; }
     .vertical-icon svg { width: 24px; height: 24px; }

@@ -2,6 +2,47 @@
 
 All notable changes to the JL Tech Solutions site are documented here.
 
+## 2026-09-18 - Perspective-grid hero, and the band slots become a comparison section
+
+### Hero background
+
+- Replaced the particle flow field with a **CSS perspective grid**: a receding plane with a
+  slow drift and a horizon glow, masked to favour the right so the copy area stays clean.
+- **`background.js` is deleted**, along with its script tag. The hero now costs **no canvas,
+  no rAF loop and no GPU compositing** beyond the transform. The page has zero canvases.
+
+### The band slots
+
+Eighteen images were rejected across three entirely different approaches - generated
+photography (data centre, network mesh, fibre, processor, switch, cabling, workstations, NOC,
+rack detail), hand-built vector graphics (isometric stack, contour map, scan fan, trace
+routing, stacked planes), and AI abstraction (architectural, caustics, ribbons, smoke).
+
+At that point the conclusion was not that the execution was wrong but that the slot was. A
+decorative image band on a B2B infrastructure site is filler, and no image was going to earn
+its place there. So the two media bands were removed and replaced with **one comparison
+band** - a side-by-side of a typical IT provider against JL Tech - positioned between About
+and the inquiry form so the last thing read before the CTA is why to choose us.
+
+- Every line in the "us" column restates a claim already made on the page. Nothing was
+  invented: an earlier draft had "15 minute urgent response", which the site does not claim
+  and which was removed. The "them" column is a generic alternative and names no competitor.
+- Pure HTML and CSS. No images, no generation step, no asset pipeline, nothing to download.
+- The two band images (`tech-chip.webp`, `tech-fibre.webp`) were deleted, and the
+  `.media-band*` CSS block was removed with them.
+- The social card was rebuilt to match the new hero: brand navy with the perspective-grid
+  motif, no photograph. 117KB -> 55KB.
+
+### Verified
+
+- axe: zero violations on desktop, laptop and mobile, at rest, mid-scroll and after a full
+  reveal pass.
+- Section order confirmed as hero, verticals, services, ai, how-we-work, dashboard, about,
+  comparison band, portal.
+- Zero canvases, zero scroll listeners, no horizontal overflow from 320px to 1920px.
+- Reduced motion: nothing below opacity 1, zero live animations.
+- JS disabled: all content elements visible.
+
 ## 2026-09-18 - Dev server stops serving dotfiles (hardening ahead of Tailscale exposure)
 
 - The dev server resolved requests inside the repo root but never blocked dot-leading

@@ -47,7 +47,6 @@
     <script defer src="vendor/gsap/ScrollTrigger.min.js"></script>
     <script defer src="vendor/gsap/SplitText.min.js"></script>
     <script defer src="vendor/gsap/DrawSVGPlugin.min.js"></script>
-    <script defer src="background.js"></script>
     <script defer src="motion.js"></script>
 </head>
 <body>
@@ -86,7 +85,10 @@
 
 <main id="main-content" tabindex="-1">
 <section class="hero-section" id="hero">
-    <canvas class="hero-field" id="hero-field" aria-hidden="true"></canvas>
+    <div class="hero-tunnel" aria-hidden="true">
+        <div class="tunnel-plane"></div>
+        <div class="tunnel-horizon"></div>
+    </div>
     <div class="hero-aurora" aria-hidden="true"></div>
     <div class="hero-grid" aria-hidden="true"></div>
 
@@ -411,19 +413,7 @@
         </div>
     </section>
 
-    <!-- MEDIA BAND: network scale -->
-    <section class="media-band media-band--short" aria-labelledby="band-net-title">
-        <img class="media-band-img" src="assets/tech-fibre.webp"
-             alt="Blue light travelling through a bundle of fibre-optic strands"
-             width="2000" height="1000" loading="lazy" decoding="async">
-        <div class="media-band-scrim" aria-hidden="true"></div>
-        <div class="media-band-inner">
-            <h2 class="media-band-title" id="band-net-title">Every site is a node we can see</h2>
-            <p class="media-band-text">Gateways, switches and endpoints report into one monitored fabric, so a fault surfaces before a user calls.</p>
-        </div>
-    </section>
-
-    <!-- NOC DASHBOARD -->
+        <!-- NOC DASHBOARD -->
     <section class="dashboard-section" id="dashboard">
         <div class="section-container">
             <div class="section-header">
@@ -508,19 +498,7 @@
         </div>
     </section>
 
-    <!-- MEDIA BAND: infrastructure proof -->
-    <section class="media-band" aria-labelledby="band-infra-title">
-        <img class="media-band-img" src="assets/tech-chip.webp"
-             alt="Macro view of a processor chip mounted on a circuit board"
-             width="2000" height="1000" loading="lazy" decoding="async">
-        <div class="media-band-scrim" aria-hidden="true"></div>
-        <div class="media-band-inner">
-            <h2 class="media-band-title" id="band-infra-title">Infrastructure we would run ourselves</h2>
-            <p class="media-band-text">Every rack, VLAN and backup target we specify is something we operate in production. No recommendations we have not lived with.</p>
-        </div>
-    </section>
-
-    <!-- ABOUT -->
+        <!-- ABOUT -->
     <section class="about-section" id="about">
         <div class="section-container">
             <div class="about-grid">
@@ -546,6 +524,43 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- COMPARISON BAND
+         Replaces the two media bands. Every "us" line restates a claim already made
+         elsewhere on this page: 24/7 helpdesk and monitoring, AI-assisted
+         multi-vendor procurement, continuous SIEM and incident response, compliance
+         evidence, and one predictable monthly cost. The "them" column is a generic
+         alternative, deliberately not a named competitor. No response-time SLA is
+         claimed because the site does not claim one. -->
+    <section class="vs-band" aria-labelledby="vs-title">
+        <div class="vs-glow" aria-hidden="true"></div>
+        <div class="vs-inner">
+            <h2 class="vs-title" id="vs-title">What changes when we take over</h2>
+            <div class="vs-grid">
+                <div class="vs-col vs-col--them">
+                    <h3>Typical IT provider</h3>
+                    <ul>
+                        <li>Tickets queued during business hours</li>
+                        <li>Hardware quoted from a single distributor</li>
+                        <li>Security limited to an occasional penetration test</li>
+                        <li>Compliance evidence assembled by hand before an audit</li>
+                        <li>Hourly billing that is hard to forecast</li>
+                    </ul>
+                </div>
+                <div class="vs-col vs-col--us">
+                    <h3>JL Tech Solutions</h3>
+                    <ul>
+                        <li>24/7 helpdesk and monitoring, not office hours</li>
+                        <li>AI-assisted multi-vendor pricing on every bill of materials</li>
+                        <li>Continuous SIEM, intrusion detection and incident response</li>
+                        <li>Compliance evidence captured as the work is done</li>
+                        <li>One predictable monthly cost</li>
+                    </ul>
+                </div>
+            </div>
+            <p class="vs-foot">Every line on the right maps to a service on this page. Ask us to show the working.</p>
         </div>
     </section>
 

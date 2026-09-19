@@ -36,7 +36,7 @@ motion.js       ALL GSAP timelines. One gsap.matchMedia() block owns every tween
 background.js   Flow-field particle canvas behind the hero (rAF loop that pauses
                 off-screen). Not a decorative extra: the hero's whole visual weight.
                 Section shapes: 9-row sticky service stack, tall sticky industries
-                stack, drawn AI pipeline, asymmetric engagement rows, media bands
+                stack, drawn AI pipeline, asymmetric engagement rows, comparison band
 server.js       Dev-only static server (rate limiting, security headers, caching)
 sitemap.xml     Single-URL sitemap
 robots.txt      Crawl rules -> sitemap
@@ -46,8 +46,6 @@ assets/
   logo-light.svg    Light variant (#4D4D4D -> #E2E8F0) for dark backgrounds
   og-cover.jpg      1200x630 social card (photographic, so JPEG not PNG)
   grain.png         128x128 noise tile, tiled by body::after
-  tech-chip.webp        Media band image, macro processor (ComfyUI / DSXL Lightning)
-  tech-fibre.webp       Media band image, macro fibre optics (same pipeline)
   logo.png          3125x3125 RGBA source raster (padding NOT trimmed; source only)
   logo.jpg          Unused, gitignored
 ```
@@ -90,12 +88,11 @@ feedback is `transform: scale(0.975)` at `--dur-press`.
 **5. Never fade a container that holds a CTA.** Dimming text dims the button inside it and
 drops it below 4.5:1 mid-scroll. The hero scrub translates but deliberately does not fade.
 
-**6. The hero flow field stays contained and must actually stop.** It is absolutely
-positioned inside the hero, and the rAF loop is stopped by IntersectionObserver when
-off-screen and on `visibilitychange`. A permanently running full-bleed canvas is a battery
-and INP tax for no benefit. Its trails fade with `globalCompositeOperation =
-'destination-out'`; painting a translucent colour instead would accumulate alpha toward
-opaque on a transparent layer and flood the hero, which is exactly what it did first time.
+**6. The hero background is a CSS perspective grid, and there is no canvas anywhere.** An
+earlier revision used a `background.js` canvas (topology mesh, then a particle flow field);
+both were rejected on looks and the canvas was deleted. `.hero-tunnel` is pure CSS 3D, so
+the hero costs no rAF frames and no GPU compositing beyond the transform. Do not reintroduce
+a canvas here without a reason the grid cannot serve.
 
 **7. There are currently ZERO `scroll` listeners in the codebase.** An earlier revision had
 exactly one, element-scoped on the industries rail, which was permitted because it was a
@@ -106,10 +103,13 @@ to zero. Keep it there.
 (`--row-i`) does the stacking, so it still reads as an ordered list with JS or motion off.
 GSAP only adds a scale on the outgoing row. Do not move the stacking into JS.
 
-**9. Media bands carry their own scrim.** `.media-band-scrim` holds white text above 4.5:1
-over an image whose luminance is not ours to control. Never remove it, and never place text
-on a band without it. Below 768px the band stacks (image on top, copy on dark below) and the
-scrim switches to a vertical gradient.
+**9. The comparison band asserts only claims the site already makes.** `.vs-band` is the
+closing argument, sitting between About and the inquiry form. Every line in the "us" column
+restates a claim made elsewhere on the page (24/7 helpdesk and monitoring, AI-assisted
+multi-vendor procurement, continuous SIEM and incident response, compliance evidence, one
+predictable monthly cost). The "them" column is a generic alternative and must never name a
+competitor. **Do not add response-time SLAs, uptime percentages or guarantees** — the site
+does not claim them and they would be fabricated commitments.
 
 **10. Telemetry count-ups and the live updater must not both write a value.** `motion.js`
 sets `dataset.counting` while a `.stat-value` counts up and `app.js` skips any element
@@ -180,8 +180,8 @@ Then in a browser:
   button (not the row).
 - Flow field: it paints on load, and the canvas stops updating once the hero is scrolled
   out of view (sample two frames off-screen and assert they are identical).
-- Media bands: both images load, and white band text clears 4.5:1 against the scrim at
-  desktop and in the stacked mobile layout.
+- Comparison band: both columns render, the two columns stack below 760px, and the `vs-foot`
+  line is the last thing before the inquiry form.
 - Nothing is left hidden: after a slow full-page scroll, no element outside `.spec-modal`
   sits below opacity 1 except the intentional ones (`.pulse-indicator`, a disabled
   `.rail-btn`, `.portal-mini-logo`, the hidden radio inputs, `.barcode-stripes`).
