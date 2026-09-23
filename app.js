@@ -574,6 +574,65 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // 10. REEL BAND - attach and play only when it is worth it
+    // The videos ship with no src. A source is attached only once the section is
+    // near the viewport, and never at all under prefers-reduced-motion, where the
+    // poster frame is the intended end state and the ~1.7MB never downloads.
+    const reelVideos = Array.from(document.querySelectorAll('.reel-video'));
+
+    if (reelVideos.length && 'IntersectionObserver' in window) {
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        const reelObservers = new Map();
+
+        const attachReelSource = (video) => {
+            if (video.dataset.attached === 'true') return;
+            video.dataset.attached = 'true';
+            const source = document.createElement('source');
+            source.src = video.dataset.src;
+            source.type = 'video/mp4';
+            video.appendChild(source);
+            video.load();
+        };
+
+        const watchReel = (video) => {
+            if (reelObservers.has(video)) return;
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        attachReelSource(video);
+                        const attempt = video.play();
+                        // A refused autoplay just leaves the first frame up.
+                        if (attempt && typeof attempt.catch === 'function') attempt.catch(() => {});
+                    } else if (!video.paused) {
+                        video.pause();
+                    }
+                });
+            }, { rootMargin: '200px 0px', threshold: 0.01 });
+            observer.observe(video);
+            reelObservers.set(video, observer);
+        };
+
+        const unwatchReel = () => {
+            reelObservers.forEach((observer, video) => {
+                observer.disconnect();
+                if (!video.paused) video.pause();
+            });
+            reelObservers.clear();
+        };
+
+        const syncReelPlayback = () => {
+            if (reduceMotion.matches) unwatchReel();
+            else reelVideos.forEach(watchReel);
+        };
+
+        syncReelPlayback();
+        if (typeof reduceMotion.addEventListener === 'function') {
+            reduceMotion.addEventListener('change', syncReelPlayback);
+        } else if (typeof reduceMotion.addListener === 'function') {
+            reduceMotion.addListener(syncReelPlayback);
+        }
+    }
+
     // 8. CLEANUP
     window.addEventListener('beforeunload', () => {
         if (logTimer) clearInterval(logTimer);

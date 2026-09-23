@@ -29,7 +29,8 @@ browser (see "Verification" below).
 ```
 index.html      Single page: hero (single column + animated flow field), industries
                 stack, 9 services (+9 modals), AI section, engagement models, ops
-                dashboard, about, inquiry form, footer
+                dashboard, about, reel band (2 silent brand films), comparison band,
+                inquiry form, footer
 style.css       Token layer + design system + responsive breakpoints
 app.js          Interactivity: nav, modals, ops log, telemetry, inquiry form
 motion.js       ALL GSAP timelines. One gsap.matchMedia() block owns every tween.
@@ -48,7 +49,14 @@ assets/
   grain.png         128x128 noise tile, tiled by body::after
   logo.png          3125x3125 RGBA source raster (padding NOT trimmed; source only)
   logo.jpg          Unused, gitignored
+  reel-enterprise.*  Brand film + poster for the reel band (mp4 + -poster.jpg)
+  reel-local.*       Second brand film, same set
 ```
+
+The two `reel-*` films are ~1.7MB combined (MP4 only) and are **built in a separate project**
+(`~/Projects/media/jltech-ads`), then copied here. Regenerate there, not here - the
+Remotion source, stills, VO and music bed all live in that repo, and this one only
+carries the shipped encodes.
 
 ## Design system locks
 
@@ -118,6 +126,14 @@ carrying that flag. Removing either half makes the panel flicker.
 **7. Scroll progress uses `fromTo`.** The bar ships at `transform: scaleX(0)` with
 `width: 100%`; a plain `to()` would animate 0 to 1 to 1 and never appear to move.
 
+**11. The reel band video is an enhancement and must stay one.** Both `<video>` elements
+ship `preload="none"` with their URL in `data-src`; `app.js` attaches
+`<source>` elements only within 200px of the viewport, and **skips attaching entirely
+under `prefers-reduced-motion: reduce`** so the poster stands in and the ~1.7MB is never
+downloaded. `width`/`height` + `aspect-ratio: 2 / 1` reserve the box so attaching cannot
+shift layout. Do not add `autoplay`, do not put a `src` in the HTML, and do not make the
+section's copy depend on the video having loaded. It also must not introduce a `scroll`
+listener — it uses the same IntersectionObserver pattern as everything else.
 ## Critical invariants
 
 **1. `assets/logo.svg` is viewBox-cropped — do not "fix" the size with negative margins.**

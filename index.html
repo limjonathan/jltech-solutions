@@ -527,6 +527,52 @@
         </div>
     </section>
 
+    <!-- REEL BAND
+         Two short brand films. Both are silent, muted and looped - browsers
+         block autoplay with sound, so a band video is silent by definition.
+
+         Performance contract:
+         - No src until the section is within 200px of the viewport. The videos
+           are ~1.7MB combined and must not touch first load (preload="none" +
+           data-* src, attached by IntersectionObserver in app.js).
+         - They never play under prefers-reduced-motion. The poster frame stands
+           in, so the section still reads with motion off AND with JS off.
+         - width/height + aspect-ratio are set, so attaching a source cannot
+           shift layout.
+
+         Captions restate claims already made on this page: 24/7 monitoring and
+         security operations, and repairs / data recovery / custom builds. -->
+    <section class="reel-band" aria-labelledby="reel-title">
+        <div class="reel-inner">
+            <h2 class="reel-title" id="reel-title">See how we work</h2>
+            <p class="reel-lede">Two short films: how we run infrastructure and security operations, and how we look after the machines on your desk.</p>
+            <div class="reel-grid">
+                <figure class="reel-card">
+                    <video class="reel-video" muted loop playsinline preload="none"
+                           poster="assets/reel-enterprise-poster.jpg"
+                           width="1600" height="800"
+                           data-src="assets/reel-enterprise.mp4"
+                           aria-label="Enterprise IT infrastructure and security operations"></video>
+                    <figcaption>
+                        <span class="reel-kicker">Enterprise</span>
+                        <span class="reel-caption">Infrastructure and security operations, monitored around the clock.</span>
+                    </figcaption>
+                </figure>
+                <figure class="reel-card">
+                    <video class="reel-video" muted loop playsinline preload="none"
+                           poster="assets/reel-local-poster.jpg"
+                           width="1600" height="800"
+                           data-src="assets/reel-local.mp4"
+                           aria-label="Computer repair, data recovery and custom builds"></video>
+                    <figcaption>
+                        <span class="reel-kicker">On-site</span>
+                        <span class="reel-caption">Repairs, data recovery and custom builds, on your first call.</span>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
     <!-- COMPARISON BAND
          Replaces the two media bands. Every "us" line restates a claim already made
          elsewhere on this page: 24/7 helpdesk and monitoring, AI-assisted

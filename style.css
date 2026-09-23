@@ -1916,6 +1916,99 @@ body::after {
     to { opacity: 1; transform: translateY(0); }
 }
 
+/* 15a. REEL BAND
+   Two short brand films, immediately before the comparison band and sharing its
+   dark treatment so the two read as one closing sequence rather than a mid-page
+   theme flip.
+
+   The videos are silent, muted and looped - autoplay with sound is blocked by
+   every browser, so a band video is silent by definition. They carry no src
+   until app.js attaches one near the viewport, and they never play under
+   prefers-reduced-motion, where the poster frame stands in. That means the
+   section is complete with JS off and with motion off; the video is an
+   enhancement, never load-bearing. */
+.reel-band {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    background: var(--color-bg-dark);
+}
+
+.reel-inner {
+    position: relative;
+    z-index: 1;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: clamp(56px, 7vw, 96px) var(--shell);
+}
+
+.reel-title {
+    font-size: clamp(1.5rem, 3vw, 2.4rem);
+    font-weight: 600;
+    letter-spacing: -0.028em;
+    line-height: 1.14;
+    color: #ffffff;
+    margin-bottom: 14px;
+    max-width: 22ch;
+    text-wrap: balance;
+}
+
+.reel-lede {
+    font-size: clamp(0.95rem, 1.15vw, 1.05rem);
+    line-height: 1.6;
+    color: #8fa6c2;
+    max-width: 58ch;
+    margin-bottom: clamp(28px, 4vw, 44px);
+}
+
+.reel-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(18px, 2.4vw, 30px);
+}
+
+.reel-card {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* width/height attributes + aspect-ratio reserve the box, so attaching a
+   source at runtime cannot shift layout. */
+.reel-video {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 2 / 1;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    background: #05090f;
+    border: 1px solid rgba(147, 197, 253, 0.16);
+}
+
+.reel-kicker {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--color-primary-soft);
+    margin-bottom: 6px;
+}
+
+.reel-caption {
+    display: block;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    color: #dbe7f6;
+    text-wrap: pretty;
+}
+
+@media (max-width: 860px) {
+    .reel-grid { grid-template-columns: 1fr; }
+}
+
 /* 15b. COMPARISON BAND
    Replaces the two media bands. This is the closing argument: it sits between
    About and the inquiry form, so the last thing read before the CTA is why to

@@ -2,6 +2,72 @@
 
 All notable changes to the JL Tech Solutions site are documented here.
 
+## 2026-09-19 - Reel band: two short brand films before the comparison band
+
+### The section
+
+Added `15a. REEL BAND` (`<section class="reel-band">`) directly between About and the
+comparison band, carrying two silent looped brand films:
+
+- **Enterprise** - infrastructure and security operations, monitored around the clock.
+- **On-site** - repairs, data recovery and custom builds, on your first call.
+
+Both captions restate claims already made on the page. Nothing new is claimed.
+
+It shares the comparison band's `var(--color-bg-dark)` treatment, so the two now read as
+one closing sequence rather than as a mid-page theme flip.
+
+### Why silent, and why not the old media bands
+
+Autoplay with sound is blocked by every browser, so a band video is silent by definition.
+The captions carry the meaning; the films are atmosphere. This is deliberately **not** a
+return of the decorative image bands that were removed - those were stills with nothing to
+say, and the copy here does work.
+
+### Performance contract (must not regress)
+
+The section is an enhancement. It is complete with JS off, with motion off, and before any
+byte of video is fetched.
+
+- **No `src` until needed.** Both `<video>` elements ship `preload="none"` with the URL in
+  `data-src`. `app.js` attaches a `<source>` only when the section is
+  within 200px of the viewport. Combined payload is ~1.7MB and it stays out of first load.
+- **Never plays under `prefers-reduced-motion: reduce`.** `app.js` skips attaching
+  entirely - so the poster frame stands in *and* the download never happens. Verified: with
+  reduced motion emulated, 0 sources, 0 media requests.
+- **No layout shift.** `width`/`height` attributes plus `aspect-ratio: 2 / 1` reserve the
+  box, so attaching a source at runtime cannot move anything.
+- **Paused off-screen** via the same IntersectionObserver, so an unwatched loop is not a
+  battery or CPU tax. No `window.addEventListener('scroll')` was added.
+- **MP4 (H.264) only, no WebM.** The VP9 cuts were 0.78-0.81MB against 0.88MB for
+  H.264 - an ~8% saving on two files for double the repo payload. H.264 is universally
+  supported, so the WebM pair was dropped before publishing.
+- An empty `.nojekyll` was added, so Pages serves the repo as-is instead of running
+  Jekyll over it. Binary assets were never at risk, but it makes deploys faster and
+  more predictable.
+
+### Assets
+
+Produced offline in `~/Projects/media/jltech-ads` (local ComfyUI + Piper + Remotion), then
+copied in. Four files, ~1.7MB total:
+
+| File | Notes |
+|---|---|
+| `assets/reel-enterprise.mp4` | 2000x1000 source, served 1600x800 |
+| `assets/reel-local.mp4` | same |
+| `assets/reel-enterprise-poster.jpg` / `reel-local-poster.jpg` | 1600x800 poster frames |
+
+### Verified
+
+Against the running site in a real Chrome, at 1440px and 390px:
+
+- Both videos attach and play; `readyState` 4, `videoWidth` 1600. Zero console errors, zero
+  failed requests.
+- Reduced motion: not attached, not playing, 0 sources, no media downloaded, poster shown.
+- Mobile 390px: grid collapses to one column, `scrollWidth === clientWidth` (no horizontal
+  overflow).
+- `node --check` clean on `app.js` and `motion.js`.
+
 ## 2026-09-18 - Perspective-grid hero, and the band slots become a comparison section
 
 ### Hero background
