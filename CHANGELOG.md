@@ -548,6 +548,8 @@ highlighted while the real value was Standard. Reset now re-syncs the severity c
   `assets/logo.jpg`.
 ## 2026-11-13
 
+- Corrected homepage structured data to use `LocalBusiness`, aligned social metadata, and linked service providers to the shared business entity.
+- Updated public contact copy for the service-area model without exposing the former street address.
 - Improved SEO targeting for Philadelphia IT support and managed services.
 - Added Google Business Profile phone and address consistency to homepage metadata and contact footer.
 - Added page-specific local titles, descriptions, service areas, breadcrumb structured data, sitemap `lastmod` values, and deeper supporting content on service pages.
