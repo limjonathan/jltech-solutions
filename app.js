@@ -240,6 +240,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const emailInput = document.getElementById('input-client-email');
     const phoneInput = document.getElementById('input-client-phone');
     const catSelect = document.getElementById('select-service-cat');
+    const engagementSelect = document.getElementById('select-engagement-path');
+    const locationInput = document.getElementById('input-service-location');
     const descTextarea = document.getElementById('textarea-desc');
     const honeypotInput = document.getElementById('input-website-url');
 
@@ -257,6 +259,13 @@ document.addEventListener('DOMContentLoaded', () => {
         'compliance': 'Compliance & Auditing'
     };
 
+    const ENGAGEMENT_MAP = {
+        remote: 'Remote support, anywhere in the U.S.',
+        onsite: 'On-site support near Philadelphia',
+        unsure: 'Not sure yet'
+    };
+    const SEVERITY_VALUES = new Set(['LOW', 'MEDIUM', 'HIGH']);
+
     function syncSeverityClasses() {
         severityOptions.forEach(opt => {
             const input = opt.querySelector('input[type="radio"]');
@@ -272,6 +281,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const checkedRadio = ticketForm.querySelector('input[name="severity_level"]:checked');
         const severity = checkedRadio ? checkedRadio.value.toUpperCase() : 'MEDIUM';
         const categoryText = CATEGORY_MAP[catSelect.value] || 'General Inquiry';
+        const engagementText = ENGAGEMENT_MAP[engagementSelect.value] || 'Not specified';
         const severityLabel = severity === 'HIGH' ? 'Urgent' : severity === 'MEDIUM' ? 'Standard' : 'Flexible';
         return {
             clientName: nameInput.value.trim(),
@@ -279,6 +289,9 @@ document.addEventListener('DOMContentLoaded', () => {
             clientEmail: emailInput.value.trim(),
             clientPhone: phoneInput ? phoneInput.value.trim() : '',
             categoryText,
+            engagementPath: engagementSelect.value,
+            engagementText,
+            serviceLocation: locationInput ? locationInput.value.trim() : '',
             severity,
             severityLabel,
             description: descTextarea.value.trim()
@@ -293,6 +306,8 @@ document.addEventListener('DOMContentLoaded', () => {
             `Email: ${inquiry.clientEmail}`,
             `Phone: ${inquiry.clientPhone || 'Not provided'}`,
             `Service: ${inquiry.categoryText}`,
+            `Engagement: ${inquiry.engagementText}`,
+            `City / ZIP: ${inquiry.serviceLocation || 'Not provided'}`,
             `Timeline: ${inquiry.severityLabel}`,
             '',
             'Project details:',
@@ -395,6 +410,8 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('receipt-client-name').textContent = inquiry.clientName;
         document.getElementById('receipt-client-org').textContent = inquiry.clientOrg;
         document.getElementById('receipt-category').textContent = inquiry.categoryText;
+        document.getElementById('receipt-engagement').textContent = inquiry.engagementText;
+        document.getElementById('receipt-location').textContent = inquiry.serviceLocation || 'Not provided';
 
         if (receiptLead) {
             receiptLead.textContent = delivered
@@ -442,13 +459,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const formGroup = inputEl.closest('.form-group');
         if (formGroup) {
+            const errorEl = formGroup.querySelector('.validation-error');
+            if (errorEl && inputEl.id) {
+                errorEl.id = `${inputEl.id}-error`;
+                inputEl.setAttribute('aria-describedby', errorEl.id);
+            }
+            inputEl.setAttribute('aria-invalid', String(!isValid));
             if (!isValid) formGroup.classList.add('has-error');
             else formGroup.classList.remove('has-error');
         }
         return isValid;
     }
 
-    [nameInput, orgInput, emailInput, phoneInput, catSelect, descTextarea].forEach(input => {
+    [nameInput, orgInput, emailInput, phoneInput, catSelect, engagementSelect, locationInput, descTextarea].forEach(input => {
         if (input) {
             const eventType = input.tagName === 'SELECT' ? 'change' : 'input';
             input.addEventListener(eventType, () => {
@@ -471,10 +494,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const isNameValid = validateField(nameInput);
             const isOrgValid = validateField(orgInput);
             const isEmailValid = validateField(emailInput);
-            const isCatValid = validateField(catSelect);
+            const isCatValid = validateField(catSelect)
+                && Object.prototype.hasOwnProperty.call(CATEGORY_MAP, catSelect.value);
+            const isEngagementValid = validateField(engagementSelect)
+                && Object.prototype.hasOwnProperty.call(ENGAGEMENT_MAP, engagementSelect.value);
+            const isSeverityValid = SEVERITY_VALUES.has((ticketForm.querySelector('input[name="severity_level"]:checked') || {}).value?.toUpperCase());
             const isDescValid = validateField(descTextarea);
 
-            if (!(isNameValid && isOrgValid && isEmailValid && isCatValid && isDescValid)) {
+            if (!(isNameValid && isOrgValid && isEmailValid && isCatValid && isEngagementValid && isSeverityValid && isDescValid)) {
                 // Nudge each offending field, then clear the class so it can run
                 // again on the next attempt.
                 ticketForm.querySelectorAll('.form-group.has-error').forEach(grp => {
@@ -519,6 +546,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         email: inquiry.clientEmail,
                         phone: inquiry.clientPhone,
                         service: inquiry.categoryText,
+                        engagement_path: inquiry.engagementPath,
+                        engagement: inquiry.engagementText,
+                        service_location: inquiry.serviceLocation,
                         timeline: inquiry.severityLabel,
                         details: inquiry.description
                     })

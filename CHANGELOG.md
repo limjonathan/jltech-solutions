@@ -2,6 +2,77 @@
 
 All notable changes to the JL Tech Solutions site are documented here.
 
+## 2026-10-06 - SEO landing pages and service-area targeting
+
+Added crawlable static landing pages for managed IT services, cybersecurity and SecOps,
+healthcare IT, and Philadelphia-area on-site IT support. The pages use the existing design
+tokens, include unique metadata and Service structured data, provide related-service links,
+and route qualified visitors to the existing inquiry form. The local page describes an
+approximate 50-mile operating area around ZIP 19142 without inventing a storefront or
+guaranteeing coverage. Expanded homepage internal links, sitemap entries, and project docs.
+
+## 2026-09-21 - Ad creatives (30) + US pricing research
+
+### Creative system
+
+New `ads/` tree shipping **30 ad creatives**: 10 services x {1080x1080, 1080x1920,
+1200x627}. `ads/template/ad-template.html` is the single layout (size variants are CSS-var
+classes `s-square` / `s-story` / `s-linkedin`), `ads/template/services.json` holds all copy,
+and `ads/template/build.py` fills the template per service/size and screenshots it with
+headless Chrome. Re-runnable: `python3 ads/template/build.py [service ...]`.
+
+Services covered: Managed IT, Presales & Procurement, Cloud & Infrastructure,
+Identity & Access, Security Operations, Websites & Software, POS & Business Systems,
+AI-Augmented Services, Compliance & Auditing, plus one umbrella creative.
+
+### AI backgrounds
+
+10 backgrounds generated locally via ComfyUI's HTTP API (`POST /prompt` on
+`127.0.0.1:8188`, DreamShaper 8 / SD1.5, 6 steps, 640x640). The `comfyui` MCP server was
+not registered in-session, so the API was driven directly; the MCP being present is not a
+dependency. **ComfyUI runs CPU-only here** (`--cpu --cpu-vae`, not the ROCm iGPU) at ~78s
+per image, ~13 min for the full set. `build.py` skips backgrounds that already exist, so a
+bad one can be regenerated alone. `security` was regenerated once (the first seed produced
+a humanoid head, which the no-people brief forbids) and `cloud`/`umbrella` were regenerated
+to pull warm-orange output back toward the brand blue.
+
+### Contrast is verified, not eyeballed
+
+Text is always composited by Chrome - the backgrounds cannot render legible text. The
+first pass failed the contrast check: the diagonal `.scrim` thinned out to ~0.42 alpha
+where the copy block sits, so over bright art the tagline fell to ~2.1:1. Fixed by adding a
+text-anchored `.shield` (bottom-left radial + top gradient for the logo/brandmark) and
+brightening the dim text colours (`--ink-muted` -> `#e2e8f0`, eyebrow -> `#93c5fd`, url ->
+`#bfdbfe`, brandmark -> 82%). The check renders each element in isolation to find its real
+bounding box, then measures the brightest backdrop pixel inside that box over a worst-case
+flat mid-grey background. **Worst case is now 5.17:1** (CTA: white on `#2563eb`); every
+other element is 6.2:1 or better, and the headline lands at ~15:1.
+
+Two template bugs found and fixed during review: an unsubstituted `__PAD__` token left
+`.top` unpositioned so the logo clipped off the canvas, and the LinkedIn layout centred its
+content into the logo at the top - it is now bottom-anchored.
+
+### Copy rules
+
+Every chip and tagline restates a claim the page already makes ("24/7 Helpdesk",
+"Zero-Downtime Migration", "around the clock"). No SLAs, uptime percentages or guarantees,
+and **no prices on the creatives** - same discipline as the comparison band.
+
+### Pricing research
+
+`PRICING-RESEARCH.md` - US-national 2026 benchmarks for all nine service lines, with
+low/typical/premium bands, an "affordable deal" band, red flags, and a discount-levers
+section (bundling, co-managed IT, annual prepay, AWS MAP credits, licence-tier fit,
+fixed-scope pricing). Compiled from published 2026 pricing guides and vendor rate cards;
+rows without a direct benchmark are explicitly marked `[estimate]`. Sourced and dated
+(accessed 2026-09-21). It is market research, not a quote and not a published price list.
+
+### Docs
+
+`AGENTS.md` gains an "Ad creatives" section recording the six invariants (composited text,
+replaceable backgrounds, verified contrast, no prices, no out-claiming, load-bearing Chrome
+flags) plus the `ads/` layout tree and the render command.
+
 ## 2026-09-19 - Reel band: two short brand films before the comparison band
 
 ### The section
@@ -475,3 +546,18 @@ highlighted while the real value was Standard. Reset now re-syncs the severity c
 - `CHANGELOG.md` (this file).
 - `.gitignore` entries for browser-audit artifacts, AI index outputs and the unused
   `assets/logo.jpg`.
+## 2026-11-13
+
+- Improved SEO targeting for Philadelphia IT support and managed services.
+- Added Google Business Profile phone and address consistency to homepage metadata and contact footer.
+- Added page-specific local titles, descriptions, service areas, breadcrumb structured data, sitemap `lastmod` values, and deeper supporting content on service pages.
+- Added consistent public contact details and social image metadata to all crawlable landing pages.
+- Added a branded GitHub Pages `404.html` fallback.
+
+## 2026-10-06
+
+- Added remote nationwide, Philadelphia-area on-site, and unsure engagement-path fields to the project inquiry form.
+- Included engagement path and optional city/ZIP context in mailto drafts, optional form POST payloads, and the inquiry receipt.
+- Added client-side allowlist validation, bounded location input, and accessible timeline group labeling.
+- Bounded inquiry text fields and associated validation messages with `aria-invalid` and `aria-describedby` at runtime.
+- Added submitted city/ZIP context to the inquiry receipt and corrected an HTML entity in the README.

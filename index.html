@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JL Tech Solutions | Full Spectrum IT Engineering, Amplified by AI</title>
-    <meta name="description" content="JL Tech Solutions delivers complete IT services: managed IT, cloud, security, websites, POS, and AI automation for healthcare, restaurants, government, and SMBs.">
+    <title>Philadelphia IT Support &amp; Managed Services | JL Tech Solutions</title>
+    <meta name="description" content="Philadelphia IT support and managed services for small businesses, clinics, and growing teams, with remote help for organizations nationwide.">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#ffffff">
 
@@ -27,11 +27,14 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "ProfessionalService",
+      "@type": "ComputerSupport",
       "name": "JL Tech Solutions",
-      "description": "Full-spectrum IT engineering: managed IT, cloud, security, websites, POS, and AI-augmented services for healthcare, restaurants, government, and SMBs.",
+      "description": "Philadelphia IT support and managed services for small businesses, clinics, and growing teams.",
       "url": "https://limjonathan.github.io/jltech-solutions/",
       "logo": "https://limjonathan.github.io/jltech-solutions/assets/logo.svg",
+      "telephone": "+1-267-699-6991",
+      "address": { "@type": "PostalAddress", "streetAddress": "6840 Finch Pl", "addressLocality": "Philadelphia", "addressRegion": "PA", "postalCode": "19142", "addressCountry": "US" },
+      "areaServed": { "@type": "City", "name": "Philadelphia" },
       "founder": { "@type": "Person", "name": "Jonathan Lim" }
     }
     </script>
@@ -121,6 +124,7 @@
             <div class="section-header">
                 <h2 class="section-title">IT Solutions for Every Industry</h2>
                 <p class="section-description">From HIPAA-compliant medical networks to restaurant POS, government procurement, and small business managed IT. Every solution is tailored to your industry.</p>
+                <p class="seo-links"><a href="healthcare-it.html">Healthcare IT solutions</a><a href="philadelphia-on-site-it-support.html">Philadelphia-area on-site support</a></p>
             </div>
             <div class="verticals-stack">
                 <article class="vertical-row" style="--row-i:0">
@@ -173,6 +177,7 @@
             <div class="section-header">
                 <h2 class="section-title">Everything IT, One Partner</h2>
                 <p class="section-description">Nine core practice areas. Every one backed by AI co-workers for faster delivery, fewer errors, and better outcomes.</p>
+                <p class="seo-links"><a href="managed-it-services.html">Managed IT services</a><a href="cybersecurity.html">Cybersecurity and SecOps</a></p>
             </div>
             <div class="services-stack">
                 <article class="service-row" data-target="modal-msp" style="--row-i:0">
@@ -626,22 +631,22 @@
                     <div class="form-grid">
                         <div class="form-group col-6">
                             <label for="input-client-name">Full Name</label>
-                            <input type="text" id="input-client-name" name="client_name" autocomplete="name" required placeholder="John Doe">
+                            <input type="text" id="input-client-name" name="client_name" autocomplete="name" maxlength="120" required placeholder="John Doe">
                             <span class="validation-error">Please enter your name.</span>
                         </div>
                         <div class="form-group col-6">
                             <label for="input-client-org">Company / Organization</label>
-                            <input type="text" id="input-client-org" name="client_org" autocomplete="organization" required placeholder="Acme Corp">
+                            <input type="text" id="input-client-org" name="client_org" autocomplete="organization" maxlength="160" required placeholder="Acme Corp">
                             <span class="validation-error">Please enter your organization.</span>
                         </div>
                         <div class="form-group col-6">
                             <label for="input-client-email">Email Address</label>
-                            <input type="email" id="input-client-email" name="client_email" autocomplete="email" required placeholder="john@acme.com">
+                            <input type="email" id="input-client-email" name="client_email" autocomplete="email" maxlength="254" required placeholder="john@acme.com">
                             <span class="validation-error">Please enter a valid email.</span>
                         </div>
                         <div class="form-group col-6">
                             <label for="input-client-phone">Phone</label>
-                            <input type="tel" id="input-client-phone" name="client_phone" autocomplete="tel" placeholder="(555) 123-4567">
+                            <input type="tel" id="input-client-phone" name="client_phone" autocomplete="tel" maxlength="40" placeholder="(555) 123-4567">
                         </div>
                         <div class="form-group col-6">
                             <label for="select-service-cat">Service Needed</label>
@@ -660,8 +665,22 @@
                             <span class="validation-error">Please select a service.</span>
                         </div>
                         <div class="form-group col-6">
-                            <label for="select-urgency">Timeline</label>
-                            <div class="severity-selector-wrapper">
+                            <label for="select-engagement-path">How should we help?</label>
+                            <select id="select-engagement-path" name="engagement_path" required>
+                                <option value="" disabled selected>Select engagement path...</option>
+                                <option value="remote">Remote support, anywhere in the U.S.</option>
+                                <option value="onsite">On-site support near Philadelphia</option>
+                                <option value="unsure">Not sure yet</option>
+                            </select>
+                            <span class="validation-error">Please select an engagement path.</span>
+                        </div>
+                        <div class="form-group col-6">
+                            <label for="input-service-location">City / ZIP (if on-site)</label>
+                            <input type="text" id="input-service-location" name="service_location" maxlength="120" placeholder="Philadelphia, PA 19142">
+                        </div>
+                        <div class="form-group col-6">
+                            <label id="select-urgency-label">Timeline</label>
+                            <div class="severity-selector-wrapper" role="group" aria-labelledby="select-urgency-label">
                                 <label class="severity-option">
                                     <input type="radio" name="severity_level" value="low">
                                     <span class="custom-radio-label">Flexible</span>
@@ -678,7 +697,7 @@
                         </div>
                         <div class="form-group col-12">
                             <label for="textarea-desc">Project Details</label>
-                            <textarea id="textarea-desc" name="incident_desc" required rows="5" placeholder="Describe your project, requirements, timeline, and any specific needs..."></textarea>
+                            <textarea id="textarea-desc" name="incident_desc" maxlength="4000" required rows="5" placeholder="Describe your project, requirements, timeline, and any specific needs..."></textarea>
                             <span class="validation-error">Please describe your project.</span>
                         </div>
                         <div class="form-group honeypot-field" aria-hidden="true">
@@ -723,6 +742,8 @@
                             <div class="ticket-detail"><span class="t-lbl">CLIENT</span><span class="t-val" id="receipt-client-name">Pending</span></div>
                             <div class="ticket-detail"><span class="t-lbl">ORGANIZATION</span><span class="t-val" id="receipt-client-org">Pending</span></div>
                             <div class="ticket-detail"><span class="t-lbl">SERVICE</span><span class="t-val" id="receipt-category">Pending</span></div>
+                            <div class="ticket-detail"><span class="t-lbl">ENGAGEMENT</span><span class="t-val" id="receipt-engagement">Pending</span></div>
+                            <div class="ticket-detail col-12"><span class="t-lbl">CITY / ZIP</span><span class="t-val" id="receipt-location">Not provided</span></div>
                             <div class="ticket-detail"><span class="t-lbl">TIMELINE</span><span class="t-val" id="receipt-severity">Pending</span></div>
                             <div class="ticket-detail col-12"><span class="t-lbl">TIMESTAMP</span><span class="t-val" id="receipt-timestamp">Pending</span></div>
                         </div>
@@ -745,13 +766,14 @@
                         <img src="assets/logo-light.svg" alt="JL Tech Solutions Logo" class="footer-logo">
                     </a>
                 <p class="footer-desc">Full-spectrum IT engineering: managed services, cloud, security, websites, POS, and AI-augmented delivery for every industry.</p>
+                <p class="footer-contact"><a href="tel:+12676996991">(267) 699-6991</a><br>6840 Finch Pl, Philadelphia, PA 19142</p>
             </div>
             <div class="footer-links">
                 <h3>Services</h3>
                 <ul>
-                    <li><a href="#services">Managed IT</a></li>
+                    <li><a href="managed-it-services.html">Managed IT</a></li>
                     <li><a href="#services">Cloud &amp; Infrastructure</a></li>
-                    <li><a href="#services">Security Operations</a></li>
+                    <li><a href="cybersecurity.html">Security Operations</a></li>
                     <li><a href="#services">Websites &amp; Software</a></li>
                     <li><a href="#services">AI-Augmented Services</a></li>
                 </ul>
@@ -760,6 +782,7 @@
                 <h3>Company</h3>
                 <ul>
                     <li><a href="#verticals">Industries</a></li>
+                    <li><a href="philadelphia-on-site-it-support.html">Philadelphia on-site IT</a></li>
                     <li><a href="#how-we-work">Engagement Models</a></li>
                     <li><a href="#dashboard">Ops Center</a></li>
                     <li><a href="#about">About</a></li>

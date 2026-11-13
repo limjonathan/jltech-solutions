@@ -24,22 +24,38 @@ PORT=3000 node server.js
 There is no test suite, linter, or bundler. Verify changes by loading the page in a
 browser (see "Verification" below).
 
+```bash
+python3 ads/template/build.py            # render all 30 ad creatives
+python3 ads/template/build.py security   # re-render one service (all 3 sizes)
+```
+
+Ad rendering needs `google-chrome-stable`, ImageMagick and `rsvg-convert` (all present).
+The AI backgrounds are optional once they exist - `build.py` only fails if a
+`ads/backgrounds/<service>.png` is missing.
+
 ## Layout
 
 ```
-index.html      Single page: hero (single column + animated flow field), industries
+  index.html      Visual home page: hero (single column + animated flow field), industries
                 stack, 9 services (+9 modals), AI section, engagement models, ops
                 dashboard, about, reel band (2 silent brand films), comparison band,
-                inquiry form, footer
+                inquiry form (engagement path + optional city/ZIP), footer
 style.css       Token layer + design system + responsive breakpoints
 app.js          Interactivity: nav, modals, ops log, telemetry, inquiry form
 motion.js       ALL GSAP timelines. One gsap.matchMedia() block owns every tween.
-background.js   Flow-field particle canvas behind the hero (rAF loop that pauses
-                off-screen). Not a decorative extra: the hero's whole visual weight.
-                Section shapes: 9-row sticky service stack, tall sticky industries
-                stack, drawn AI pipeline, asymmetric engagement rows, comparison band
+                The hero background is CSS-only. Section shapes: 9-row sticky service
+                stack, tall sticky industries stack, drawn AI pipeline, asymmetric
+                engagement rows, comparison band
 server.js       Dev-only static server (rate limiting, security headers, caching)
-sitemap.xml     Single-URL sitemap
+  managed-it-services.html
+                  Crawlable nationwide managed IT service page
+  cybersecurity.html
+                  Crawlable nationwide cybersecurity/SecOps service page
+  healthcare-it.html
+                  Crawlable healthcare industry page
+  philadelphia-on-site-it-support.html
+                  Crawlable Philadelphia-area on-site service page
+  sitemap.xml     Homepage plus crawlable landing pages
 robots.txt      Crawl rules -> sitemap
 vendor/gsap/    Vendored GSAP 3.15 + plugins (see README.txt there)
 assets/
@@ -51,12 +67,54 @@ assets/
   logo.jpg          Unused, gitignored
   reel-enterprise.*  Brand film + poster for the reel band (mp4 + -poster.jpg)
   reel-local.*       Second brand film, same set
+ads/
+  template/ad-template.html  The only ad layout. CSS-var size classes: s-square /
+                             s-story / s-linkedin. Tokens resolved at build time.
+  template/services.json     All ad copy (10 services x sizes) - edit copy here
+  template/build.py          Fills the template, screenshots it with headless Chrome
+  backgrounds/<service>.png  10 AI backgrounds, 640x640, generated locally
+  output/<service>-<size>.png  30 shipped creatives (1080x1080 / 1080x1920 / 1200x627)
+PRICING-RESEARCH.md  US-national 2026 price benchmarks + "affordable deal" bands
 ```
 
 The two `reel-*` films are ~1.7MB combined (MP4 only) and are **built in a separate project**
 (`~/Projects/media/jltech-ads`), then copied here. Regenerate there, not here - the
 Remotion source, stills, VO and music bed all live in that repo, and this one only
 carries the shipped encodes.
+
+## Ad creatives
+
+30 creatives: 10 services x {1080x1080, 1080x1920, 1200x627}. Copy lives in
+`ads/template/services.json`; the layout lives in `ads/template/ad-template.html`.
+
+**1. Text is always composited, never generated.** The backgrounds come from local
+ComfyUI (DreamShaper 8 / SD1.5) which cannot render legible text, so every word is real
+DOM text rendered by headless Chrome. Never ask a diffusion model for a word.
+
+**2. The backgrounds are decorative and replaceable.** They run CPU-only on this host
+(`comfyui` is not GPU-backed here) at ~78s each. If one looks wrong, regenerate that
+service alone; `build.py` skips backgrounds that already exist. The layout must stay
+readable if a background is swapped or missing.
+
+**3. Text contrast is guaranteed by `.shield`, not by the art.** `.scrim` alone thins
+out where the copy sits, so `.shield` adds a text-anchored radial + top gradient. Verified
+by rendering each text element over a worst-case flat mid-grey background and measuring the
+brightest pixel inside the element's real bounding box. **Worst case is currently
+5.17:1** (the CTA: white on `--color-primary`), which clears AA. If you lighten the
+scrims or add copy, re-run that check - do not eyeball it.
+
+**4. No prices on the creatives.** Pricing lives in `PRICING-RESEARCH.md` only. It is
+market research with sources and dates, not a quote, and not a published price list.
+
+**5. Ad copy must not out-claim the site.** Every chip and tagline restates a claim the
+page already makes. Do not introduce SLAs, uptime percentages or guarantees (same rule as
+the comparison band).
+
+**6. `--force-device-scale-factor=1` and `--virtual-time-budget` are load-bearing.**
+The former keeps the PNG at exact pixel dimensions; the latter waits for the local
+`@font-face` (Geist) before the screenshot. Geist is installed system-wide but does **not**
+resolve via fontconfig on this host, so the template embeds it with explicit `file://`
+`@font-face` rules - keep them.
 
 ## Design system locks
 
@@ -84,8 +142,8 @@ only inside a `prefers-reduced-motion: no-preference` block. If GSAP is blocked 
 the page renders fully visible rather than blank. Verified with JS disabled.
 
 **3. `prefers-reduced-motion: reduce` must collapse everything.** Auroras are gated behind
-`no-preference`; the topology canvas draws one static frame and starts no loop; all
-timelines sit inside the matchMedia block. Verify with computed `animation-duration` and
+`no-preference`; the CSS hero grid stays static; all timelines sit inside the matchMedia block.
+Verify with computed `animation-duration` and
 `animation-iteration-count`, **not** `animation-name` - the global `!important` reduce rule
 zeroes the duration while leaving the name intact, so `animationName !== 'none'` is a
 false negative.
@@ -134,6 +192,7 @@ downloaded. `width`/`height` + `aspect-ratio: 2 / 1` reserve the box so attachin
 shift layout. Do not add `autoplay`, do not put a `src` in the HTML, and do not make the
 section's copy depend on the video having loaded. It also must not introduce a `scroll`
 listener — it uses the same IntersectionObserver pattern as everything else.
+
 ## Critical invariants
 
 **1. `assets/logo.svg` is viewBox-cropped — do not "fix" the size with negative margins.**
@@ -184,18 +243,15 @@ Then in a browser:
 - Header: logo sits fully inside the bar at 320-1440px; no horizontal scroll.
 - Motion: the hero headline reveals in at most 2 lines and both CTAs sit above the fold;
   scroll-progress fills 0 -> 25% -> 50% -> 100% monotonically; the nav marks the current
-  section; the topology canvas pauses once the hero is scrolled away.
+  section.
 - Reduced motion: emulate `prefers-reduced-motion: reduce`, then assert that no hero or
-  section element is left below opacity 1, that every CSS animation reports
-  `animation-duration` under 0.01s (not just `animation-name: none`), and that the canvas
-  renders exactly one static frame.
+  section element is left below opacity 1, and that every CSS animation reports
+  `animation-duration` under 0.01s (not just `animation-name: none`).
 - JS disabled: the hero and every section must still render fully visible. Hidden start
   states are applied by JS, so a blocked GSAP must not blank the page.
 - Sticky stacks: both the industries and services rows are `position: sticky` and pin as
   you scroll. Each service "Learn more" opens its modal, and Escape returns focus to that
   button (not the row).
-- Flow field: it paints on load, and the canvas stops updating once the hero is scrolled
-  out of view (sample two frames off-screen and assert they are identical).
 - Comparison band: both columns render, the two columns stack below 760px, and the `vs-foot`
   line is the last thing before the inquiry form.
 - Nothing is left hidden: after a slow full-page scroll, no element outside `.spec-modal`
@@ -203,7 +259,7 @@ Then in a browser:
   `.rail-btn`, `.portal-mini-logo`, the hidden radio inputs, `.barcode-stripes`).
 - Modal at 740x420 (landscape phone): content fits, `.modal-body` scrolls internally, the
   close button is reachable, and Escape restores focus to the triggering card.
-- Form: submit valid data -> a `mailto:` draft opens and the receipt reads "Draft Ready to
+- Form: choose remote/on-site/unsure, submit valid data -> a `mailto:` draft opens and the receipt reads "Draft Ready to
   Send". Reset -> exactly one severity option highlighted, matching the checked value.
 - Accessibility: axe must report zero violations on desktop and mobile, at rest and
   mid-scroll. Disable the reveal transitions before auditing, or run the scroll sweep
