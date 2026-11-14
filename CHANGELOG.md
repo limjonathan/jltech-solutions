@@ -2,6 +2,14 @@
 
 All notable changes to the JL Tech Solutions site are documented here.
 
+## 2026-11-14 - Separate reel videos by user intent
+
+- Kept the enterprise film as the single featured video in the reel band.
+- Moved the on-site film beside the inquiry form as a hands-on support callout.
+- Made the on-site film user-started instead of automatically playing.
+- Added exclusive playback so starting one reel pauses the other.
+- Added static layout tests covering placement and playback behavior.
+
 ## 2026-10-06 - SEO landing pages and service-area targeting
 
 Added crawlable static landing pages for managed IT services, cybersecurity and SecOps,
