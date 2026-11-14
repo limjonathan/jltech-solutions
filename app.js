@@ -624,15 +624,28 @@ document.addEventListener('DOMContentLoaded', () => {
             video.load();
         };
 
+        const pauseOtherReels = (video) => {
+            reelVideos.forEach((otherVideo) => {
+                if (otherVideo !== video) otherVideo.pause();
+            });
+        };
+
+        reelVideos.forEach((video) => {
+            video.addEventListener('play', () => pauseOtherReels(video));
+        });
+
         const watchReel = (video) => {
             if (reelObservers.has(video)) return;
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
                         attachReelSource(video);
-                        const attempt = video.play();
-                        // A refused autoplay just leaves the first frame up.
-                        if (attempt && typeof attempt.catch === 'function') attempt.catch(() => {});
+                        if (video.dataset.autoplay === 'true') {
+                            pauseOtherReels(video);
+                            const attempt = video.play();
+                            // A refused autoplay just leaves the first frame up.
+                            if (attempt && typeof attempt.catch === 'function') attempt.catch(() => {});
+                        }
                     } else if (!video.paused) {
                         video.pause();
                     }

@@ -1416,7 +1416,7 @@ body::after {
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-md);
-    max-width: 800px;
+    max-width: 1120px;
     margin: 0 auto;
     overflow: hidden;
 }
@@ -1452,7 +1452,47 @@ body::after {
     opacity: 0.9;
 }
 
-.portal-form { padding: 40px; }
+.portal-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.75fr);
+    align-items: stretch;
+}
+
+.portal-form {
+    padding: 40px;
+}
+
+.portal-video-callout {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 40px;
+    background: var(--color-bg-alt);
+    border-left: 1px solid var(--color-border);
+}
+
+.portal-video-copy h3 {
+    max-width: 16ch;
+    margin: 12px 0;
+    color: var(--color-text);
+    font-size: clamp(1.35rem, 2.3vw, 1.9rem);
+    line-height: 1.12;
+}
+
+.portal-video-copy p {
+    color: var(--color-text-muted);
+    line-height: 1.6;
+}
+
+.portal-video-callout .reel-kicker {
+    color: var(--color-primary-dark);
+}
+
+.reel-video-secondary {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+}
 
 .form-grid {
     display: grid;
@@ -1939,9 +1979,9 @@ body::after {
 }
 
 /* 15a. REEL BAND
-   Two short brand films, immediately before the comparison band and sharing its
-   dark treatment so the two read as one closing sequence rather than a mid-page
-   theme flip.
+   The featured enterprise film sits immediately before the comparison band and
+   shares its dark treatment. The on-site film is placed beside the inquiry form
+   so it supports the local-service conversion moment instead of competing here.
 
    The videos are silent, muted and looped - autoplay with sound is blocked by
    every browser, so a band video is silent by definition. They carry no src
@@ -1985,8 +2025,9 @@ body::after {
 
 .reel-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(18px, 2.4vw, 30px);
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 900px;
+    gap: 30px;
 }
 
 .reel-card {
@@ -2027,8 +2068,13 @@ body::after {
     text-wrap: pretty;
 }
 
-@media (max-width: 860px) {
-    .reel-grid { grid-template-columns: 1fr; }
+@media (max-width: 900px) {
+    .portal-body { grid-template-columns: 1fr; }
+    .portal-video-callout {
+        border-top: 1px solid var(--color-border);
+        border-left: 0;
+    }
+    .reel-video-secondary { aspect-ratio: 2 / 1; }
 }
 
 /* 15b. COMPARISON BAND

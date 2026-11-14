@@ -538,15 +538,18 @@
     </section>
 
     <!-- REEL BAND
-         Two short brand films. Both are silent, muted and looped - browsers
-         block autoplay with sound, so a band video is silent by definition.
+         The featured enterprise brand film. The on-site film lives beside the
+         inquiry form so each video supports a different user decision.
+         Both are silent, muted and looped - browsers block autoplay with sound,
+         so a band video is silent by definition.
 
          Performance contract:
          - No src until the section is within 200px of the viewport. The videos
            are ~1.7MB combined and must not touch first load (preload="none" +
            data-* src, attached by IntersectionObserver in app.js).
-         - They never play under prefers-reduced-motion. The poster frame stands
-           in, so the section still reads with motion off AND with JS off.
+         - The featured film may autoplay; the on-site film is user-started.
+         - They never attach under prefers-reduced-motion. The poster frame
+           stands in, so both locations still read with motion off AND with JS off.
          - width/height + aspect-ratio are set, so attaching a source cannot
            shift layout.
 
@@ -555,28 +558,18 @@
     <section class="reel-band" aria-labelledby="reel-title">
         <div class="reel-inner">
             <h2 class="reel-title" id="reel-title">See how we work</h2>
-            <p class="reel-lede">Two short films: how we run infrastructure and security operations, and how we look after the machines on your desk.</p>
+            <p class="reel-lede">A short film showing how we run infrastructure and security operations. For hands-on Philadelphia-area support, see the video beside the inquiry form.</p>
             <div class="reel-grid">
                 <figure class="reel-card">
-                    <video class="reel-video" muted loop playsinline preload="none"
+                    <video class="reel-video" muted loop playsinline controls preload="none"
                            poster="assets/reel-enterprise-poster.jpg"
                            width="1600" height="800"
                            data-src="assets/reel-enterprise.mp4"
+                           data-autoplay="true"
                            aria-label="Enterprise IT infrastructure and security operations"></video>
                     <figcaption>
                         <span class="reel-kicker">Enterprise</span>
                         <span class="reel-caption">Infrastructure and security operations, monitored around the clock.</span>
-                    </figcaption>
-                </figure>
-                <figure class="reel-card">
-                    <video class="reel-video" muted loop playsinline preload="none"
-                           poster="assets/reel-local-poster.jpg"
-                           width="1600" height="800"
-                           data-src="assets/reel-local.mp4"
-                           aria-label="Computer repair, data recovery and custom builds"></video>
-                    <figcaption>
-                        <span class="reel-kicker">On-site</span>
-                        <span class="reel-caption">Repairs, data recovery and custom builds, on your first call.</span>
                     </figcaption>
                 </figure>
             </div>
@@ -632,8 +625,9 @@
                     <img src="assets/logo.svg" alt="JL Tech Badge" class="portal-mini-logo">
                 </div>
 
-                <form class="portal-form" id="incident-ticket-form" novalidate>
-                    <div class="form-grid">
+                <div class="portal-body">
+                    <form class="portal-form" id="incident-ticket-form" novalidate>
+                        <div class="form-grid">
                         <div class="form-group col-6">
                             <label for="input-client-name">Full Name</label>
                             <input type="text" id="input-client-name" name="client_name" autocomplete="name" maxlength="120" required placeholder="John Doe">
@@ -709,15 +703,29 @@
                             <label for="input-website-url">Website</label>
                             <input type="text" id="input-website-url" name="website_url" tabindex="-1" autocomplete="off">
                         </div>
-                    </div>
-                    <div class="portal-form-error" id="portal-form-error" role="alert" hidden></div>
-                    <div class="portal-form-actions">
-                        <button type="submit" class="btn-submit-ticket" id="btn-submit-incident">
-                            <span class="btn-text">Submit Inquiry</span>
-                            <span class="btn-loader"></span>
-                        </button>
-                    </div>
-                </form>
+                        </div>
+                        <div class="portal-form-error" id="portal-form-error" role="alert" hidden></div>
+                        <div class="portal-form-actions">
+                            <button type="submit" class="btn-submit-ticket" id="btn-submit-incident">
+                                <span class="btn-text">Submit Inquiry</span>
+                                <span class="btn-loader"></span>
+                            </button>
+                        </div>
+                    </form>
+
+                    <aside class="portal-video-callout">
+                        <div class="portal-video-copy">
+                            <span class="reel-kicker">On-site support</span>
+                            <h3>Hands-on help when the work cannot wait.</h3>
+                            <p>Repairs, data recovery and custom builds for Philadelphia-area teams.</p>
+                        </div>
+                        <video class="reel-video reel-video-secondary" muted loop playsinline controls preload="none"
+                               poster="assets/reel-local-poster.jpg"
+                               width="1600" height="800"
+                               data-src="assets/reel-local.mp4"
+                               aria-label="Computer repair, data recovery and custom builds"></video>
+                    </aside>
+                </div>
 
                 <div class="portal-processing" id="portal-transmitting-screen" style="display:none">
                     <div class="processing-glow"></div>

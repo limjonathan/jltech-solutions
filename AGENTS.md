@@ -38,7 +38,8 @@ The AI backgrounds are optional once they exist - `build.py` only fails if a
 ```
   index.html      Visual home page: hero (single column + animated flow field), industries
                 stack, 9 services (+9 modals), AI section, engagement models, ops
-                dashboard, about, reel band (2 silent brand films), comparison band,
+                dashboard, about, reel band (featured enterprise film), comparison band,
+                inquiry form with on-site video callout,
                 inquiry form (engagement path + optional city/ZIP), footer
 style.css       Token layer + design system + responsive breakpoints
 app.js          Interactivity: nav, modals, ops log, telemetry, inquiry form
@@ -184,13 +185,14 @@ carrying that flag. Removing either half makes the panel flicker.
 **7. Scroll progress uses `fromTo`.** The bar ships at `transform: scaleX(0)` with
 `width: 100%`; a plain `to()` would animate 0 to 1 to 1 and never appear to move.
 
-**11. The reel band video is an enhancement and must stay one.** Both `<video>` elements
+**11. Reel videos are enhancements and must stay optional.** Both `<video>` elements
 ship `preload="none"` with their URL in `data-src`; `app.js` attaches
 `<source>` elements only within 200px of the viewport, and **skips attaching entirely
 under `prefers-reduced-motion: reduce`** so the poster stands in and the ~1.7MB is never
 downloaded. `width`/`height` + `aspect-ratio: 2 / 1` reserve the box so attaching cannot
-shift layout. Do not add `autoplay`, do not put a `src` in the HTML, and do not make the
-section's copy depend on the video having loaded. It also must not introduce a `scroll`
+shift layout. Do not put a `src` in the HTML, and do not make any copy depend on a video
+having loaded. Only the featured enterprise film is marked for automatic muted playback;
+the on-site film beside the inquiry form is user-started. It also must not introduce a `scroll`
 listener — it uses the same IntersectionObserver pattern as everything else.
 
 ## Critical invariants
