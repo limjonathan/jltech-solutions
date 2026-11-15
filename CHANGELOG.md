@@ -2,6 +2,17 @@
 
 All notable changes to the JL Tech Solutions site are documented here.
 
+## 2026-11-15 - Project showcase and case-study catalog
+
+- Added a dedicated `showcase.html` page with category filters and hash-addressable
+  case-study views.
+- Added all 48 unique project entries after merging duplicate local checkouts.
+- Added local project posters and workflow-style artifacts so every case study has a
+  visual presentation without exposing repositories, source code, credentials, or
+  private endpoints.
+- Added catalog generation, privacy validation, responsive layout, and accessibility
+  regression tests.
+
 ## 2026-11-14 - Separate reel videos by user intent
 
 - Kept the enterprise film as the single featured video in the reel band.

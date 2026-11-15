@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+<title id="title">SkillPacks project preview</title>
+<desc id="desc">A structured way to package reusable capabilities for AI-assisted work.</desc>
+<rect width="1200" height="720" fill="#f8fafc"/>
+<rect x="48" y="48" width="1104" height="624" rx="22" fill="#0f172a"/>
+<rect x="48" y="48" width="1104" height="90" rx="22" fill="#7c3aed"/>
+<circle cx="92" cy="93" r="10" fill="#dbeafe"/><circle cx="124" cy="93" r="10" fill="#bfdbfe"/><circle cx="156" cy="93" r="10" fill="#93c5fd"/>
+<text x="80" y="210" fill="#93c5fd" font-family="Arial,sans-serif" font-size="22" font-weight="700" letter-spacing="3">AI SYSTEMS</text>
+<text x="80" y="278" fill="#f8fafc" font-family="Arial,sans-serif" font-size="58" font-weight="700">SkillPacks</text>
+<text x="80" y="330" fill="#cbd5e1" font-family="Arial,sans-serif" font-size="24">A structured way to package reusable capabilities for AI-assisted wo</text>
+<rect x="80" y="400" width="760" height="16" rx="8" fill="#334155"/><rect x="80" y="438" width="530" height="16" rx="8" fill="#334155"/>
+<rect x="80" y="516" width="240" height="62" rx="12" fill="#7c3aed"/><text x="108" y="555" fill="white" font-family="Arial,sans-serif" font-size="20" font-weight="700">Capability design</text>
+<text x="80" y="628" fill="#64748b" font-family="monospace" font-size="18">JL TECH / PROJECT SHOWCASE</text>
+</svg>

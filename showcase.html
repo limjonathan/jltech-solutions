@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Selected projects and case studies by JL Tech Solutions.">
+    <title>Selected Work | JL Tech Solutions</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="showcase.css">
+</head>
+<body class="showcase-page">
+    <a class="skip-link" href="#showcase-content">Skip to project showcase</a>
+    <header class="showcase-header">
+        <a class="showcase-brand" href="index.html" aria-label="JL Tech Solutions home">
+            <img src="assets/logo-light.svg" alt="" width="42" height="42">
+            <span>JL TECH SOLUTIONS</span>
+        </a>
+        <a class="showcase-home-link" href="index.html">Back to home</a>
+    </header>
+
+    <main id="showcase-content" tabindex="-1">
+        <section class="showcase-hero" aria-labelledby="showcase-title">
+            <p class="eyebrow">The work behind the work</p>
+            <h1 id="showcase-title">Built for real operations.</h1>
+            <p class="showcase-lede">A living catalog of automation, business systems, websites, applications, AI workflows, and tools built to make complicated work easier to run.</p>
+        </section>
+
+        <section id="project-index" class="showcase-index" aria-labelledby="index-title">
+            <div class="showcase-section-heading">
+                <div>
+                    <p class="eyebrow">Selected work</p>
+                    <h2 id="index-title">Explore the build list.</h2>
+                </div>
+                <p id="project-count" class="showcase-count" aria-live="polite"></p>
+            </div>
+            <nav class="showcase-filters" aria-label="Filter projects by category">
+                <button type="button" class="showcase-filter is-active" data-category="all" aria-pressed="true">All work</button>
+                <button type="button" class="showcase-filter" data-category="Applications" aria-pressed="false">Applications</button>
+                <button type="button" class="showcase-filter" data-category="CRM" aria-pressed="false">CRM</button>
+                <button type="button" class="showcase-filter" data-category="Automation" aria-pressed="false">Automation</button>
+                <button type="button" class="showcase-filter" data-category="Websites" aria-pressed="false">Websites</button>
+                <button type="button" class="showcase-filter" data-category="Frontend" aria-pressed="false">Frontend</button>
+                <button type="button" class="showcase-filter" data-category="Backend" aria-pressed="false">Backend</button>
+                <button type="button" class="showcase-filter" data-category="AI systems" aria-pressed="false">AI systems</button>
+                <button type="button" class="showcase-filter" data-category="Tools" aria-pressed="false">Tools</button>
+                <button type="button" class="showcase-filter" data-category="Media" aria-pressed="false">Media</button>
+                <button type="button" class="showcase-filter" data-category="Security" aria-pressed="false">Security</button>
+            </nav>
+            <div id="showcase-grid" class="showcase-grid" aria-live="polite"></div>
+            <p id="showcase-error" class="showcase-message" hidden>Projects are temporarily unavailable. Please return to the home page.</p>
+        </section>
+
+        <section id="case-study-view" class="case-study" aria-labelledby="case-study-title" hidden></section>
+        <noscript>
+            <section class="showcase-message showcase-noscript">
+                <h2>Project showcase</h2>
+                <p>This catalog uses a small amount of JavaScript for filters and case-study navigation. The homepage remains available without it.</p>
+                <a class="text-link" href="index.html">Return to JL Tech Solutions</a>
+            </section>
+        </noscript>
+    </main>
+
+    <footer class="showcase-footer">
+        <p>JL Tech Solutions · Practical systems for the work that matters.</p>
+        <a href="index.html">Start a conversation</a>
+    </footer>
+    <script src="showcase.js?v=3" defer></script>
+</body>
+</html>

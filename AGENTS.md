@@ -21,6 +21,22 @@ npm start              # or: node server.js  -> http://localhost:8005
 PORT=3000 node server.js
 ```
 
+### Project showcase
+
+`showcase.html` is a static, public-safe portfolio surface. Its catalog contains
+outcome-focused case studies only: no repository URLs, source paths, credentials,
+private endpoints, or source tree copies. Every entry points to a local poster or
+workflow artifact under `showcase/assets/`.
+
+```bash
+node tools/build-showcase-catalog.js
+node tools/validate-showcase-catalog.js
+```
+
+Keep filters and case-study hashes readable with JavaScript enabled, preserve the
+`noscript` fallback, and verify at 390px, 768px, and 1440px. New artifacts must be
+safe presentation assets rather than copied project source.
+
 There is no test suite, linter, or bundler. Verify changes by loading the page in a
 browser (see "Verification" below).
 
