@@ -12,6 +12,9 @@ All notable changes to the JL Tech Solutions site are documented here.
   private endpoints.
 - Added catalog generation, privacy validation, responsive layout, and accessibility
   regression tests.
+- Added a static fallback for JavaScript-disabled visitors, rendered outcome and
+  build-summary sections, stricter artifact path validation, and safe handling of
+  invalid category filters.
 
 ## 2026-11-14 - Separate reel videos by user intent
 

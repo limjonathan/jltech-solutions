@@ -12,7 +12,8 @@
     ],
     "artifact": "showcase/assets/aleph-bet-express.svg",
     "artifactType": "poster",
-    "outcome": "A clear, outcome-focused experience for aleph bet express."
+    "outcome": "A clear, outcome-focused experience for aleph bet express.",
+    "buildSummary": "Built as a focused interface experience around learning ux and responsive interface."
   },
   {
     "slug": "alphafleet-landing",
@@ -27,7 +28,8 @@
     ],
     "artifact": "showcase/assets/alphafleet-landing.svg",
     "artifactType": "poster",
-    "outcome": "A clear, outcome-focused experience for alphafleet launch."
+    "outcome": "A clear, outcome-focused experience for alphafleet launch.",
+    "buildSummary": "Built as a focused interface experience around product positioning and conversion layout."
   },
   {
     "slug": "answer-esg",
@@ -42,7 +44,8 @@
     ],
     "artifact": "showcase/assets/answer-esg.svg",
     "artifactType": "workflow",
-    "outcome": "A clear, outcome-focused experience for esg answer desk."
+    "outcome": "A clear, outcome-focused experience for esg answer desk.",
+    "buildSummary": "Built as a focused workflow experience around document workflows and ai-assisted research."
   },
   {
     "slug": "paulus-portfolio",
@@ -57,7 +60,8 @@
     ],
     "artifact": "showcase/assets/paulus-portfolio.svg",
     "artifactType": "poster",
-    "outcome": "A clear, outcome-focused experience for paulus portfolio."
+    "outcome": "A clear, outcome-focused experience for paulus portfolio.",
+    "buildSummary": "Built as a focused interface experience around portfolio design and visual hierarchy."
   },
   {
     "slug": "bishi-bashi",
@@ -72,7 +76,8 @@
     ],
     "artifact": "showcase/assets/bishi-bashi.svg",
     "artifactType": "poster",
-    "outcome": "A clear, outcome-focused experience for bishi bashi play."
+    "outcome": "A clear, outcome-focused experience for bishi bashi play.",
+    "buildSummary": "Built as a focused interface experience around game loop and interaction design."
   },
   {
     "slug": "boardly",
@@ -87,7 +92,8 @@
     ],
     "artifact": "showcase/assets/boardly.svg",
     "artifactType": "poster",
-    "outcome": "A clear, outcome-focused experience for boardly workspace."
+    "outcome": "A clear, outcome-focused experience for boardly workspace.",
+    "buildSummary": "Built as a focused interface experience around workspace ux and information architecture."
   },
   {
     "slug": "carecircle",
@@ -102,7 +108,8 @@
     ],
     "artifact": "showcase/assets/carecircle.svg",
     "artifactType": "workflow",
-    "outcome": "A clear, outcome-focused experience for carecircle."
+    "outcome": "A clear, outcome-focused experience for carecircle.",
+    "buildSummary": "Built as a focused workflow experience around care coordination and accessible ui."
   },
   {
     "slug": "complybase",
@@ -117,7 +124,8 @@
     ],
     "artifact": "showcase/assets/complybase.svg",
     "artifactType": "workflow",
-    "outcome": "A clear, outcome-focused experience for complybase."
+    "outcome": "A clear, outcome-focused experience for complybase.",
+    "buildSummary": "Built as a focused workflow experience around compliance ux and evidence tracking."
   },
   {
     "slug": "courseware-as-code",
@@ -132,7 +140,8 @@
     ],
     "artifact": "showcase/assets/courseware-as-code.svg",
     "artifactType": "architecture",
-    "outcome": "A clear, outcome-focused experience for courseware studio."
+    "outcome": "A clear, outcome-focused experience for courseware studio.",
+    "buildSummary": "Built as a focused architecture experience around content systems and learning design."
   },
   {
     "slug": "deshportfolio",
@@ -147,7 +156,8 @@
     ],
     "artifact": "showcase/assets/deshportfolio.svg",
     "artifactType": "poster",
-    "outcome": "A clear, outcome-focused experience for desh portfolio."
+    "outcome": "A clear, outcome-focused experience for desh portfolio.",
+    "buildSummary": "Built as a focused interface experience around art direction and portfolio ux."
   },
   {
     "slug": "dylan-portfolio",
@@ -162,7 +172,8 @@
     ],
     "artifact": "showcase/assets/dylan-portfolio.svg",
     "artifactType": "poster",
-    "outcome": "A clear, outcome-focused experience for dylan hardy portfolio."
+    "outcome": "A clear, outcome-focused experience for dylan hardy portfolio.",
+    "buildSummary": "Built as a focused interface experience around case studies and visual storytelling."
   },
   {
     "slug": "dotdrift",
@@ -177,7 +188,8 @@
     ],
     "artifact": "showcase/assets/dotdrift.svg",
     "artifactType": "terminal",
-    "outcome": "A clear, outcome-focused experience for dotdrift."
+    "outcome": "A clear, outcome-focused experience for dotdrift.",
+    "buildSummary": "Built as a focused terminal experience around desktop utility and configuration ux."
   },
   {
     "slug": "emily-portfolio",
@@ -192,7 +204,8 @@
     ],
     "artifact": "showcase/assets/emily-portfolio.svg",
     "artifactType": "poster",
-    "outcome": "A clear, outcome-focused experience for emily lim portfolio."
+    "outcome": "A clear, outcome-focused experience for emily lim portfolio.",
+    "buildSummary": "Built as a focused interface experience around personal brand and responsive layout."
   },
   {
     "slug": "fieldops-central",
@@ -207,7 +220,8 @@
     ],
     "artifact": "showcase/assets/fieldops-central.svg",
     "artifactType": "poster",
-    "outcome": "A clear, outcome-focused experience for fieldops central."
+    "outcome": "A clear, outcome-focused experience for fieldops central.",
+    "buildSummary": "Built as a focused interface experience around crm workflows and operations dashboard."
   },
   {
     "slug": "fooocus-mcp",
@@ -222,7 +236,8 @@
     ],
     "artifact": "showcase/assets/fooocus-mcp.svg",
     "artifactType": "architecture",
-    "outcome": "A clear, outcome-focused experience for creative model bridge."
+    "outcome": "A clear, outcome-focused experience for creative model bridge.",
+    "buildSummary": "Built as a focused architecture experience around tool integration and ai workflows."
   },
   {
     "slug": "gig-tax",
@@ -237,7 +252,8 @@
     ],
     "artifact": "showcase/assets/gig-tax.svg",
     "artifactType": "workflow",
-    "outcome": "A clear, outcome-focused experience for gigtax."
+    "outcome": "A clear, outcome-focused experience for gigtax.",
+    "buildSummary": "Built as a focused workflow experience around financial planning and guided forms."
   },
   {
     "slug": "homeloop",
@@ -252,7 +268,8 @@
     ],
     "artifact": "showcase/assets/homeloop.svg",
     "artifactType": "poster",
-    "outcome": "A clear, outcome-focused experience for homeloop."
+    "outcome": "A clear, outcome-focused experience for homeloop.",
+    "buildSummary": "Built as a focused interface experience around household operations and task planning."
   },
   {
     "slug": "hyprwall-dl",
@@ -267,7 +284,8 @@
     ],
     "artifact": "showcase/assets/hyprwall-dl.svg",
     "artifactType": "terminal",
-    "outcome": "A clear, outcome-focused experience for wallcraft downloader."
+    "outcome": "A clear, outcome-focused experience for wallcraft downloader.",
+    "buildSummary": "Built as a focused terminal experience around desktop tooling and asset workflow."
   },
   {
     "slug": "icha-portfolio",
@@ -282,7 +300,8 @@
     ],
     "artifact": "showcase/assets/icha-portfolio.svg",
     "artifactType": "poster",
-    "outcome": "A clear, outcome-focused experience for icha frida portfolio."
+    "outcome": "A clear, outcome-focused experience for icha frida portfolio.",
+    "buildSummary": "Built as a focused interface experience around portfolio ux and visual identity."
   },
   {
     "slug": "jonathan-portfolio",
@@ -297,7 +316,8 @@
     ],
     "artifact": "showcase/assets/jonathan-portfolio.svg",
     "artifactType": "poster",
-    "outcome": "A clear, outcome-focused experience for jonathan lim portfolio."
+    "outcome": "A clear, outcome-focused experience for jonathan lim portfolio.",
+    "buildSummary": "Built as a focused interface experience around personal positioning and case-study flow."
   },
   {
     "slug": "jltech-solutions",
@@ -312,7 +332,8 @@
     ],
     "artifact": "showcase/assets/jltech-solutions.svg",
     "artifactType": "poster",
-    "outcome": "A clear, outcome-focused experience for jl tech solutions."
+    "outcome": "A clear, outcome-focused experience for jl tech solutions.",
+    "buildSummary": "Built as a focused interface experience around service design and conversion ux."
   },
   {
     "slug": "john-portfolio",
@@ -327,7 +348,8 @@
     ],
     "artifact": "showcase/assets/john-portfolio.svg",
     "artifactType": "poster",
-    "outcome": "A clear, outcome-focused experience for john portfolio."
+    "outcome": "A clear, outcome-focused experience for john portfolio.",
+    "buildSummary": "Built as a focused interface experience around portfolio design and content hierarchy."
   },
   {
     "slug": "mcp-audit",
@@ -342,7 +364,8 @@
     ],
     "artifact": "showcase/assets/mcp-audit.svg",
     "artifactType": "terminal",
-    "outcome": "A clear, outcome-focused experience for tooling audit desk."
+    "outcome": "A clear, outcome-focused experience for tooling audit desk.",
+    "buildSummary": "Built as a focused terminal experience around security review and workflow design."
   },
   {
     "slug": "memview",
@@ -357,7 +380,8 @@
     ],
     "artifact": "showcase/assets/memview.svg",
     "artifactType": "architecture",
-    "outcome": "A clear, outcome-focused experience for memory view."
+    "outcome": "A clear, outcome-focused experience for memory view.",
+    "buildSummary": "Built as a focused architecture experience around ai observability and data inspection."
   },
   {
     "slug": "nomu",
@@ -372,7 +396,8 @@
     ],
     "artifact": "showcase/assets/nomu.svg",
     "artifactType": "poster",
-    "outcome": "A clear, outcome-focused experience for nomu studio."
+    "outcome": "A clear, outcome-focused experience for nomu studio.",
+    "buildSummary": "Built as a focused interface experience around brand experience and landing page."
   },
   {
     "slug": "nursey",
@@ -387,7 +412,8 @@
     ],
     "artifact": "showcase/assets/nursey.svg",
     "artifactType": "workflow",
-    "outcome": "A clear, outcome-focused experience for nursey."
+    "outcome": "A clear, outcome-focused experience for nursey.",
+    "buildSummary": "Built as a focused workflow experience around care ux and routine planning."
   },
   {
     "slug": "opencode",
@@ -402,7 +428,8 @@
     ],
     "artifact": "showcase/assets/opencode.svg",
     "artifactType": "terminal",
-    "outcome": "A clear, outcome-focused experience for agent workbench."
+    "outcome": "A clear, outcome-focused experience for agent workbench.",
+    "buildSummary": "Built as a focused terminal experience around developer tooling and agent workflows."
   },
   {
     "slug": "street-eats-food-truck",
@@ -417,7 +444,8 @@
     ],
     "artifact": "showcase/assets/street-eats-food-truck.svg",
     "artifactType": "poster",
-    "outcome": "A clear, outcome-focused experience for street eats."
+    "outcome": "A clear, outcome-focused experience for street eats.",
+    "buildSummary": "Built as a focused interface experience around local business web and menu ux."
   },
   {
     "slug": "pdfforge",
@@ -432,7 +460,8 @@
     ],
     "artifact": "showcase/assets/pdfforge.svg",
     "artifactType": "terminal",
-    "outcome": "A clear, outcome-focused experience for pdf forge."
+    "outcome": "A clear, outcome-focused experience for pdf forge.",
+    "buildSummary": "Built as a focused terminal experience around document tooling and batch workflow."
   },
   {
     "slug": "pitchkit",
@@ -447,7 +476,8 @@
     ],
     "artifact": "showcase/assets/pitchkit.svg",
     "artifactType": "workflow",
-    "outcome": "A clear, outcome-focused experience for pitchkit."
+    "outcome": "A clear, outcome-focused experience for pitchkit.",
+    "buildSummary": "Built as a focused workflow experience around story structure and content workflow."
   },
   {
     "slug": "pmc-website",
@@ -462,7 +492,8 @@
     ],
     "artifact": "showcase/assets/pmc-website.svg",
     "artifactType": "poster",
-    "outcome": "A clear, outcome-focused experience for pmc web presence."
+    "outcome": "A clear, outcome-focused experience for pmc web presence.",
+    "buildSummary": "Built as a focused interface experience around service website and information architecture."
   },
   {
     "slug": "polyglot",
@@ -477,7 +508,8 @@
     ],
     "artifact": "showcase/assets/polyglot.svg",
     "artifactType": "poster",
-    "outcome": "A clear, outcome-focused experience for polyglot."
+    "outcome": "A clear, outcome-focused experience for polyglot.",
+    "buildSummary": "Built as a focused interface experience around language tooling and utility design."
   },
   {
     "slug": "probekeeper",
@@ -492,7 +524,8 @@
     ],
     "artifact": "showcase/assets/probekeeper.svg",
     "artifactType": "terminal",
-    "outcome": "A clear, outcome-focused experience for probekeeper."
+    "outcome": "A clear, outcome-focused experience for probekeeper.",
+    "buildSummary": "Built as a focused terminal experience around monitoring workflow and status history."
   },
   {
     "slug": "recoverly",
@@ -507,7 +540,8 @@
     ],
     "artifact": "showcase/assets/recoverly.svg",
     "artifactType": "workflow",
-    "outcome": "A clear, outcome-focused experience for recoverly."
+    "outcome": "A clear, outcome-focused experience for recoverly.",
+    "buildSummary": "Built as a focused workflow experience around guided support and recovery workflow."
   },
   {
     "slug": "regexscope",
@@ -522,7 +556,8 @@
     ],
     "artifact": "showcase/assets/regexscope.svg",
     "artifactType": "poster",
-    "outcome": "A clear, outcome-focused experience for regexscope."
+    "outcome": "A clear, outcome-focused experience for regexscope.",
+    "buildSummary": "Built as a focused interface experience around developer utility and visual parsing."
   },
   {
     "slug": "runtime-mcp",
@@ -537,7 +572,8 @@
     ],
     "artifact": "showcase/assets/runtime-mcp.svg",
     "artifactType": "architecture",
-    "outcome": "A clear, outcome-focused experience for runtime tool layer."
+    "outcome": "A clear, outcome-focused experience for runtime tool layer.",
+    "buildSummary": "Built as a focused architecture experience around tool orchestration and runtime design."
   },
   {
     "slug": "sachi",
@@ -552,7 +588,8 @@
     ],
     "artifact": "showcase/assets/sachi.svg",
     "artifactType": "poster",
-    "outcome": "A clear, outcome-focused experience for sachi."
+    "outcome": "A clear, outcome-focused experience for sachi.",
+    "buildSummary": "Built as a focused interface experience around personal tooling and workflow design."
   },
   {
     "slug": "skillpacks",
@@ -567,7 +604,8 @@
     ],
     "artifact": "showcase/assets/skillpacks.svg",
     "artifactType": "architecture",
-    "outcome": "A clear, outcome-focused experience for skillpacks."
+    "outcome": "A clear, outcome-focused experience for skillpacks.",
+    "buildSummary": "Built as a focused architecture experience around capability design and ai workflows."
   },
   {
     "slug": "skpkg",
@@ -582,7 +620,8 @@
     ],
     "artifact": "showcase/assets/skpkg.svg",
     "artifactType": "terminal",
-    "outcome": "A clear, outcome-focused experience for sk package."
+    "outcome": "A clear, outcome-focused experience for sk package.",
+    "buildSummary": "Built as a focused terminal experience around packaging workflow and developer tooling."
   },
   {
     "slug": "slabdesk",
@@ -597,7 +636,8 @@
     ],
     "artifact": "showcase/assets/slabdesk.svg",
     "artifactType": "poster",
-    "outcome": "A clear, outcome-focused experience for slabdesk."
+    "outcome": "A clear, outcome-focused experience for slabdesk.",
+    "buildSummary": "Built as a focused interface experience around workspace design and task coordination."
   },
   {
     "slug": "staffy",
@@ -612,7 +652,8 @@
     ],
     "artifact": "showcase/assets/staffy.svg",
     "artifactType": "workflow",
-    "outcome": "A clear, outcome-focused experience for staffy."
+    "outcome": "A clear, outcome-focused experience for staffy.",
+    "buildSummary": "Built as a focused workflow experience around staffing operations and planning ux."
   },
   {
     "slug": "static-fpv",
@@ -627,7 +668,8 @@
     ],
     "artifact": "showcase/assets/static-fpv.svg",
     "artifactType": "poster",
-    "outcome": "A clear, outcome-focused experience for static fpv."
+    "outcome": "A clear, outcome-focused experience for static fpv.",
+    "buildSummary": "Built as a focused media experience around media production and visual direction."
   },
   {
     "slug": "sunrisesite",
@@ -642,7 +684,8 @@
     ],
     "artifact": "showcase/assets/sunrisesite.svg",
     "artifactType": "poster",
-    "outcome": "A clear, outcome-focused experience for sunrise site."
+    "outcome": "A clear, outcome-focused experience for sunrise site.",
+    "buildSummary": "Built as a focused interface experience around brand web and conversion design."
   },
   {
     "slug": "superasianwok",
@@ -657,7 +700,8 @@
     ],
     "artifact": "showcase/assets/superasianwok.svg",
     "artifactType": "poster",
-    "outcome": "A clear, outcome-focused experience for super asian wok."
+    "outcome": "A clear, outcome-focused experience for super asian wok.",
+    "buildSummary": "Built as a focused interface experience around restaurant web and menu presentation."
   },
   {
     "slug": "tilmar-ops",
@@ -672,7 +716,8 @@
     ],
     "artifact": "showcase/assets/tilmar-ops.svg",
     "artifactType": "workflow",
-    "outcome": "A clear, outcome-focused experience for tilmar operations."
+    "outcome": "A clear, outcome-focused experience for tilmar operations.",
+    "buildSummary": "Built as a focused workflow experience around operations systems and business workflow."
   },
   {
     "slug": "tinyflags",
@@ -687,7 +732,8 @@
     ],
     "artifact": "showcase/assets/tinyflags.svg",
     "artifactType": "terminal",
-    "outcome": "A clear, outcome-focused experience for tiny flags."
+    "outcome": "A clear, outcome-focused experience for tiny flags.",
+    "buildSummary": "Built as a focused terminal experience around configuration tooling and status indicators."
   },
   {
     "slug": "toolbelt",
@@ -702,7 +748,8 @@
     ],
     "artifact": "showcase/assets/toolbelt.svg",
     "artifactType": "terminal",
-    "outcome": "A clear, outcome-focused experience for toolbelt."
+    "outcome": "A clear, outcome-focused experience for toolbelt.",
+    "buildSummary": "Built as a focused terminal experience around utility collection and workflow acceleration."
   },
   {
     "slug": "wiklite",
@@ -717,6 +764,7 @@
     ],
     "artifact": "showcase/assets/wiklite.svg",
     "artifactType": "poster",
-    "outcome": "A clear, outcome-focused experience for wiklite."
+    "outcome": "A clear, outcome-focused experience for wiklite.",
+    "buildSummary": "Built as a focused interface experience around knowledge ux and searchable notes."
   }
 ]

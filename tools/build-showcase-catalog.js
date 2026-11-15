@@ -91,7 +91,8 @@ const catalog = projects.map(([slug, title, category, summary, problem, capabili
     capabilities,
     artifact: `showcase/assets/${slug}.svg`,
     artifactType: artifactType === 'interface' || artifactType === 'media' ? 'poster' : artifactType,
-    outcome: `A clear, outcome-focused experience for ${title.toLowerCase()}.`
+    outcome: `A clear, outcome-focused experience for ${title.toLowerCase()}.`,
+    buildSummary: `Built as a focused ${artifactType} experience around ${capabilities.slice(0, 2).join(' and ').toLowerCase()}.`
 }));
 
 fs.writeFileSync(path.join(root, 'showcase', 'projects.json'), `${JSON.stringify(catalog, null, 2)}\n`);

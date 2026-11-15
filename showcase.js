@@ -76,6 +76,12 @@
             heading,
             create('p', null, project.summary)
         );
+        copy.append(
+            create('p', 'case-study-label', 'Outcome'),
+            create('p', null, project.outcome),
+            create('p', 'case-study-label', 'Build summary'),
+            create('p', null, project.buildSummary)
+        );
         const problemLabel = create('p', 'case-study-label', 'The problem');
         copy.append(problemLabel, create('p', null, project.problem));
         const capabilityLabel = create('p', 'case-study-label', 'Capabilities');
@@ -118,6 +124,8 @@
         })
         .then((catalog) => {
             projects = catalog;
+            const knownCategories = new Set(filters.map((filter) => filter.dataset.category));
+            if (!knownCategories.has(activeCategory)) activeCategory = 'all';
             renderIndex();
             syncView();
         })

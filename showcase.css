@@ -135,7 +135,8 @@
     gap: 16px;
 }
 
-.project-card {
+.project-card,
+.fallback-project {
     display: flex;
     min-width: 0;
     flex-direction: column;
@@ -144,6 +145,34 @@
     border-radius: var(--radius-md);
     background: var(--showcase-surface);
     transition: transform var(--dur-surface) var(--ease-out), box-shadow var(--dur-surface) var(--ease-out);
+}
+
+.fallback-project {
+    display: grid;
+    grid-template-columns: minmax(120px, .7fr) 1fr;
+    gap: 16px;
+    padding: 14px;
+}
+
+.fallback-project img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-sm);
+}
+
+.fallback-project h3,
+.fallback-project p {
+    margin: 0 0 8px;
+}
+
+.fallback-project h3 {
+    font-size: 1.05rem;
+}
+
+.fallback-project p {
+    color: var(--showcase-muted);
+    font-size: .78rem;
+    line-height: 1.45;
 }
 
 .project-card:hover {

@@ -32,3 +32,19 @@ test('showcase page has accessible structure and reduced-motion support', () => 
     assert.match(styles, /prefers-reduced-motion:\s*reduce/);
     assert.doesNotMatch(styles, /tabindex\s*:\s*[1-9]/);
 });
+
+test('showcase page keeps a readable static fallback for all projects', () => {
+    const page = fs.readFileSync(path.join(root, 'showcase.html'), 'utf8');
+    assert.equal((page.match(/class="fallback-project"/g) || []).length, 48);
+    assert.match(page, /Outcome:/);
+    assert.match(page, /Build summary:/);
+    assert.match(page, /id="fieldops-central"/);
+});
+
+test('case-study renderer includes outcome and build summary sections', () => {
+    const script = fs.readFileSync(path.join(root, 'showcase.js'), 'utf8');
+    assert.match(script, /'Outcome'/);
+    assert.match(script, /project\.outcome/);
+    assert.match(script, /'Build summary'/);
+    assert.match(script, /project\.buildSummary/);
+});

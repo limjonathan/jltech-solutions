@@ -30,6 +30,7 @@ workflow artifact under `showcase/assets/`.
 
 ```bash
 node tools/build-showcase-catalog.js
+node tools/build-showcase-fallback.js
 node tools/validate-showcase-catalog.js
 ```
 

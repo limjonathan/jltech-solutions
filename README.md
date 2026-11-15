@@ -50,7 +50,9 @@ Server runs at `http://localhost:8005` by default. Set `PORT` env var to overrid
 - **Service Portal** — Interactive ticket submission with terminal-style processing animation
 - **Selected Work** — 48 project case studies with safe local visual artifacts; use
   `node tools/build-showcase-catalog.js` to regenerate posters and
-  `node tools/validate-showcase-catalog.js` to validate the public catalog.
+  `node tools/build-showcase-fallback.js` to refresh the JavaScript-disabled
+  fallback, then `node tools/validate-showcase-catalog.js` to validate the
+  public catalog.
 
 ## Deployment
 
