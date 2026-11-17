@@ -71,6 +71,25 @@ test('additional screenshots must use safe local showcase asset paths', () => {
     }).find((error) => error.includes('screenshots[0]')), /safe local capture path/);
 });
 
+test('accepts an existing screenshot path and a safe public HTTPS demo URL', () => {
+    const project = {
+        slug: 'fixture',
+        title: 'Fixture',
+        category: 'Tools',
+        summary: 'Fixture summary.',
+        problem: 'Fixture problem.',
+        capabilities: ['Testing'],
+        artifact: 'showcase/assets/aleph-bet-express.png',
+        artifactType: 'screenshot',
+        outcome: 'Fixture outcome.',
+        buildSummary: 'Fixture build.',
+        screenshots: ['showcase/assets/aleph-bet-express.png'],
+        demoUrl: 'https://example.com/projects/fixture'
+    };
+
+    assert.deepEqual(validateProject(project), []);
+});
+
 test('demo URLs must be HTTPS public URLs', () => {
     const base = {
         slug: 'fixture',
@@ -88,4 +107,15 @@ test('demo URLs must be HTTPS public URLs', () => {
     assert.match(validateProject({ ...base, demoUrl: 'http://example.com' })[0], /HTTPS public URL/);
     assert.match(validateProject({ ...base, demoUrl: 'https://localhost:8005' })[0], /HTTPS public URL/);
     assert.match(validateProject({ ...base, demoUrl: 'https://192.168.1.10' })[0], /HTTPS public URL/);
+    for (const demoUrl of [
+        'https://[::ffff:127.0.0.1]/',
+        'https://[::ffff:c0a8:101]/',
+        'https://127.0.0.1./',
+        'https://localhost./',
+        'https://[::1]/',
+        'https://[fe80::1]/',
+        'https://[ff02::1]/'
+    ]) {
+        assert.match(validateProject({ ...base, demoUrl })[0], /HTTPS public URL/, demoUrl);
+    }
 });

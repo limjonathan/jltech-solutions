@@ -38,3 +38,39 @@ completed successfully
   so the optional fields are supported and validated but not populated.
 - The worktree contained pre-existing capture mappings and untracked capture assets; they
   were preserved and not regenerated or removed.
+
+## Fix round 1 — 2026-11-17
+
+### Changes
+
+- Hardened demo URL validation with `net.isIP()` and canonical hostname normalization,
+  including trailing-dot hostnames.
+- Normalized IPv4-mapped IPv6 addresses before applying IPv4 loopback, private,
+  link-local, multicast, unspecified, benchmark, documentation, and reserved-range
+  checks.
+- Added IPv6 checks for loopback, unspecified, unique-local, link-local, multicast,
+  documentation, benchmarking, Teredo/ORCHID, and reserved ranges.
+- Added positive coverage proving an existing screenshot path and safe public HTTPS URL
+  are accepted.
+- Added regression coverage for IPv4-mapped IPv6 and dotted/trailing-dot local endpoints.
+
+### Verification
+
+```text
+node --test tests/showcase-catalog.test.js
+7 tests, 7 passed, 0 failed
+
+node tools/build-showcase-catalog.js
+completed successfully
+
+node tools/validate-showcase-catalog.js
+Showcase catalog valid: 48 projects, 48 local artifacts.
+
+node --test tests/*.test.js
+15 tests, 15 passed, 0 failed
+```
+
+### Concerns
+
+- No catalog entries were populated with unverified screenshots or demo URLs.
+- Pre-existing unrelated worktree changes and untracked capture assets were left untouched.
