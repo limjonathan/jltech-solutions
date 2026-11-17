@@ -10,8 +10,8 @@
       "Responsive interface",
       "Progress flow"
     ],
-    "artifact": "showcase/assets/aleph-bet-express.svg",
-    "artifactType": "poster",
+    "artifact": "showcase/assets/aleph-bet-express.png",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for aleph bet express.",
     "buildSummary": "Built as a focused interface experience around learning ux and responsive interface."
   },
@@ -42,8 +42,8 @@
       "AI-assisted research",
       "Review interface"
     ],
-    "artifact": "showcase/assets/answer-esg.svg",
-    "artifactType": "workflow",
+    "artifact": "showcase/assets/answer-esg.png",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for esg answer desk.",
     "buildSummary": "Built as a focused workflow experience around document workflows and ai-assisted research."
   },
@@ -58,8 +58,8 @@
       "Visual hierarchy",
       "Editorial layout"
     ],
-    "artifact": "showcase/assets/paulus-portfolio.svg",
-    "artifactType": "poster",
+    "artifact": "showcase/assets/paulusalim-portfolio.png",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for paulus portfolio.",
     "buildSummary": "Built as a focused interface experience around portfolio design and visual hierarchy."
   },
@@ -74,8 +74,8 @@
       "Interaction design",
       "Browser experience"
     ],
-    "artifact": "showcase/assets/bishi-bashi.svg",
-    "artifactType": "poster",
+    "artifact": "showcase/assets/bishi-bashi.jpg",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for bishi bashi play.",
     "buildSummary": "Built as a focused interface experience around game loop and interaction design."
   },
@@ -90,8 +90,8 @@
       "Information architecture",
       "Product flows"
     ],
-    "artifact": "showcase/assets/boardly.svg",
-    "artifactType": "poster",
+    "artifact": "showcase/assets/boardly.png",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for boardly workspace.",
     "buildSummary": "Built as a focused interface experience around workspace ux and information architecture."
   },
@@ -106,8 +106,8 @@
       "Accessible UI",
       "Shared status"
     ],
-    "artifact": "showcase/assets/carecircle.svg",
-    "artifactType": "workflow",
+    "artifact": "showcase/assets/carecircle.png",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for carecircle.",
     "buildSummary": "Built as a focused workflow experience around care coordination and accessible ui."
   },
@@ -122,8 +122,8 @@
       "Evidence tracking",
       "Operational dashboard"
     ],
-    "artifact": "showcase/assets/complybase.svg",
-    "artifactType": "workflow",
+    "artifact": "showcase/assets/complybase.png",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for complybase.",
     "buildSummary": "Built as a focused workflow experience around compliance ux and evidence tracking."
   },
@@ -138,8 +138,8 @@
       "Learning design",
       "Reusable workflows"
     ],
-    "artifact": "showcase/assets/courseware-as-code.svg",
-    "artifactType": "architecture",
+    "artifact": "showcase/assets/courseware-as-code.png",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for courseware studio.",
     "buildSummary": "Built as a focused architecture experience around content systems and learning design."
   },
@@ -154,8 +154,8 @@
       "Portfolio UX",
       "Responsive composition"
     ],
-    "artifact": "showcase/assets/deshportfolio.svg",
-    "artifactType": "poster",
+    "artifact": "showcase/assets/deshportfolio.png",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for desh portfolio.",
     "buildSummary": "Built as a focused interface experience around art direction and portfolio ux."
   },
@@ -170,8 +170,8 @@
       "Visual storytelling",
       "Web design"
     ],
-    "artifact": "showcase/assets/dylan-portfolio.svg",
-    "artifactType": "poster",
+    "artifact": "showcase/assets/dylan-portfolio.png",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for dylan hardy portfolio.",
     "buildSummary": "Built as a focused interface experience around case studies and visual storytelling."
   },
@@ -186,8 +186,8 @@
       "Configuration UX",
       "Automation"
     ],
-    "artifact": "showcase/assets/dotdrift.svg",
-    "artifactType": "terminal",
+    "artifact": "showcase/assets/dotdrift.png",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for dotdrift.",
     "buildSummary": "Built as a focused terminal experience around desktop utility and configuration ux."
   },
@@ -202,8 +202,8 @@
       "Responsive layout",
       "Content design"
     ],
-    "artifact": "showcase/assets/emily-portfolio.svg",
-    "artifactType": "poster",
+    "artifact": "showcase/assets/emily-portfolio.png",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for emily lim portfolio.",
     "buildSummary": "Built as a focused interface experience around personal brand and responsive layout."
   },
@@ -218,8 +218,8 @@
       "Operations dashboard",
       "Status visibility"
     ],
-    "artifact": "showcase/assets/fieldops-central.svg",
-    "artifactType": "poster",
+    "artifact": "showcase/assets/fieldops.png",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for fieldops central.",
     "buildSummary": "Built as a focused interface experience around crm workflows and operations dashboard."
   },
@@ -234,8 +234,8 @@
       "AI workflows",
       "Request routing"
     ],
-    "artifact": "showcase/assets/fooocus-mcp.svg",
-    "artifactType": "architecture",
+    "artifact": "showcase/assets/fooocus-mcp.png",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for creative model bridge.",
     "buildSummary": "Built as a focused architecture experience around tool integration and ai workflows."
   },
@@ -250,8 +250,8 @@
       "Guided forms",
       "Decision support"
     ],
-    "artifact": "showcase/assets/gig-tax.svg",
-    "artifactType": "workflow",
+    "artifact": "showcase/assets/gigtax.png",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for gigtax.",
     "buildSummary": "Built as a focused workflow experience around financial planning and guided forms."
   },
@@ -266,8 +266,8 @@
       "Task planning",
       "Timeline UX"
     ],
-    "artifact": "showcase/assets/homeloop.svg",
-    "artifactType": "poster",
+    "artifact": "showcase/assets/homeloop.png",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for homeloop.",
     "buildSummary": "Built as a focused interface experience around household operations and task planning."
   },
@@ -282,8 +282,8 @@
       "Asset workflow",
       "Batch actions"
     ],
-    "artifact": "showcase/assets/hyprwall-dl.svg",
-    "artifactType": "terminal",
+    "artifact": "showcase/assets/hyprwall-dl.png",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for wallcraft downloader.",
     "buildSummary": "Built as a focused terminal experience around desktop tooling and asset workflow."
   },
@@ -298,8 +298,8 @@
       "Visual identity",
       "Responsive web"
     ],
-    "artifact": "showcase/assets/icha-portfolio.svg",
-    "artifactType": "poster",
+    "artifact": "showcase/assets/icha-portfolio.png",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for icha frida portfolio.",
     "buildSummary": "Built as a focused interface experience around portfolio ux and visual identity."
   },
@@ -314,8 +314,8 @@
       "Case-study flow",
       "Web design"
     ],
-    "artifact": "showcase/assets/jonathan-portfolio.svg",
-    "artifactType": "poster",
+    "artifact": "showcase/assets/jonathan-portfolio.png",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for jonathan lim portfolio.",
     "buildSummary": "Built as a focused interface experience around personal positioning and case-study flow."
   },
@@ -330,8 +330,8 @@
       "Conversion UX",
       "Trust signals"
     ],
-    "artifact": "showcase/assets/jltech-solutions.svg",
-    "artifactType": "poster",
+    "artifact": "showcase/assets/jltech-solutions.png",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for jl tech solutions.",
     "buildSummary": "Built as a focused interface experience around service design and conversion ux."
   },
@@ -346,8 +346,8 @@
       "Content hierarchy",
       "Responsive web"
     ],
-    "artifact": "showcase/assets/john-portfolio.svg",
-    "artifactType": "poster",
+    "artifact": "showcase/assets/john-portfolio.png",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for john portfolio.",
     "buildSummary": "Built as a focused interface experience around portfolio design and content hierarchy."
   },
@@ -362,8 +362,8 @@
       "Workflow design",
       "Risk visibility"
     ],
-    "artifact": "showcase/assets/mcp-audit.svg",
-    "artifactType": "terminal",
+    "artifact": "showcase/assets/mcp-audit.png",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for tooling audit desk.",
     "buildSummary": "Built as a focused terminal experience around security review and workflow design."
   },
@@ -378,8 +378,8 @@
       "Data inspection",
       "Visual tooling"
     ],
-    "artifact": "showcase/assets/memview.svg",
-    "artifactType": "architecture",
+    "artifact": "showcase/assets/memview.png",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for memory view.",
     "buildSummary": "Built as a focused architecture experience around ai observability and data inspection."
   },
@@ -394,8 +394,8 @@
       "Landing page",
       "Motion-ready layout"
     ],
-    "artifact": "showcase/assets/nomu.svg",
-    "artifactType": "poster",
+    "artifact": "showcase/assets/nomu.png",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for nomu studio.",
     "buildSummary": "Built as a focused interface experience around brand experience and landing page."
   },
@@ -410,8 +410,8 @@
       "Routine planning",
       "Mobile-first design"
     ],
-    "artifact": "showcase/assets/nursey.svg",
-    "artifactType": "workflow",
+    "artifact": "showcase/assets/nursey.png",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for nursey.",
     "buildSummary": "Built as a focused workflow experience around care ux and routine planning."
   },
@@ -426,8 +426,8 @@
       "Agent workflows",
       "Product systems"
     ],
-    "artifact": "showcase/assets/opencode.svg",
-    "artifactType": "terminal",
+    "artifact": "showcase/assets/opencode.png",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for agent workbench.",
     "buildSummary": "Built as a focused terminal experience around developer tooling and agent workflows."
   },
@@ -442,8 +442,8 @@
       "Menu UX",
       "Mobile conversion"
     ],
-    "artifact": "showcase/assets/street-eats-food-truck.svg",
-    "artifactType": "poster",
+    "artifact": "showcase/assets/street-eats.png",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for street eats.",
     "buildSummary": "Built as a focused interface experience around local business web and menu ux."
   },
@@ -458,8 +458,8 @@
       "Batch workflow",
       "Utility UX"
     ],
-    "artifact": "showcase/assets/pdfforge.svg",
-    "artifactType": "terminal",
+    "artifact": "showcase/assets/pdfforge.png",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for pdf forge.",
     "buildSummary": "Built as a focused terminal experience around document tooling and batch workflow."
   },
@@ -474,8 +474,8 @@
       "Content workflow",
       "Presentation UX"
     ],
-    "artifact": "showcase/assets/pitchkit.svg",
-    "artifactType": "workflow",
+    "artifact": "showcase/assets/pitchkit.png",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for pitchkit.",
     "buildSummary": "Built as a focused workflow experience around story structure and content workflow."
   },
@@ -490,8 +490,8 @@
       "Information architecture",
       "Responsive web"
     ],
-    "artifact": "showcase/assets/pmc-website.svg",
-    "artifactType": "poster",
+    "artifact": "showcase/assets/pmc-website.png",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for pmc web presence.",
     "buildSummary": "Built as a focused interface experience around service website and information architecture."
   },
@@ -506,8 +506,8 @@
       "Utility design",
       "Fast feedback"
     ],
-    "artifact": "showcase/assets/polyglot.svg",
-    "artifactType": "poster",
+    "artifact": "showcase/assets/polyglot.png",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for polyglot.",
     "buildSummary": "Built as a focused interface experience around language tooling and utility design."
   },
@@ -522,8 +522,8 @@
       "Status history",
       "Operational tooling"
     ],
-    "artifact": "showcase/assets/probekeeper.svg",
-    "artifactType": "terminal",
+    "artifact": "showcase/assets/probekeeper.png",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for probekeeper.",
     "buildSummary": "Built as a focused terminal experience around monitoring workflow and status history."
   },
@@ -538,8 +538,8 @@
       "Recovery workflow",
       "Trust-centered UX"
     ],
-    "artifact": "showcase/assets/recoverly.svg",
-    "artifactType": "workflow",
+    "artifact": "showcase/assets/recoverly.png",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for recoverly.",
     "buildSummary": "Built as a focused workflow experience around guided support and recovery workflow."
   },
@@ -554,8 +554,8 @@
       "Visual parsing",
       "Interactive feedback"
     ],
-    "artifact": "showcase/assets/regexscope.svg",
-    "artifactType": "poster",
+    "artifact": "showcase/assets/regexscope.png",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for regexscope.",
     "buildSummary": "Built as a focused interface experience around developer utility and visual parsing."
   },
@@ -570,8 +570,8 @@
       "Runtime design",
       "AI infrastructure"
     ],
-    "artifact": "showcase/assets/runtime-mcp.svg",
-    "artifactType": "architecture",
+    "artifact": "showcase/assets/runtime-mcp.png",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for runtime tool layer.",
     "buildSummary": "Built as a focused architecture experience around tool orchestration and runtime design."
   },
@@ -586,8 +586,8 @@
       "Workflow design",
       "Focused UX"
     ],
-    "artifact": "showcase/assets/sachi.svg",
-    "artifactType": "poster",
+    "artifact": "showcase/assets/sachi.png",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for sachi.",
     "buildSummary": "Built as a focused interface experience around personal tooling and workflow design."
   },
@@ -602,8 +602,8 @@
       "AI workflows",
       "Knowledge systems"
     ],
-    "artifact": "showcase/assets/skillpacks.svg",
-    "artifactType": "architecture",
+    "artifact": "showcase/assets/skillpacks.png",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for skillpacks.",
     "buildSummary": "Built as a focused architecture experience around capability design and ai workflows."
   },
@@ -618,8 +618,8 @@
       "Developer tooling",
       "Distribution"
     ],
-    "artifact": "showcase/assets/skpkg.svg",
-    "artifactType": "terminal",
+    "artifact": "showcase/assets/skpkg.png",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for sk package.",
     "buildSummary": "Built as a focused terminal experience around packaging workflow and developer tooling."
   },
@@ -634,8 +634,8 @@
       "Task coordination",
       "Dashboard UX"
     ],
-    "artifact": "showcase/assets/slabdesk.svg",
-    "artifactType": "poster",
+    "artifact": "showcase/assets/slabdesk.png",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for slabdesk.",
     "buildSummary": "Built as a focused interface experience around workspace design and task coordination."
   },
@@ -650,8 +650,8 @@
       "Planning UX",
       "Status workflows"
     ],
-    "artifact": "showcase/assets/staffy.svg",
-    "artifactType": "workflow",
+    "artifact": "showcase/assets/staffy.png",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for staffy.",
     "buildSummary": "Built as a focused workflow experience around staffing operations and planning ux."
   },
@@ -666,8 +666,8 @@
       "Visual direction",
       "Interactive showcase"
     ],
-    "artifact": "showcase/assets/static-fpv.svg",
-    "artifactType": "poster",
+    "artifact": "showcase/assets/static-fpv.png",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for static fpv.",
     "buildSummary": "Built as a focused media experience around media production and visual direction."
   },
@@ -682,8 +682,8 @@
       "Conversion design",
       "Responsive layout"
     ],
-    "artifact": "showcase/assets/sunrisesite.svg",
-    "artifactType": "poster",
+    "artifact": "showcase/assets/sunrise-site.png",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for sunrise site.",
     "buildSummary": "Built as a focused interface experience around brand web and conversion design."
   },
@@ -698,8 +698,8 @@
       "Menu presentation",
       "Local discovery"
     ],
-    "artifact": "showcase/assets/superasianwok.svg",
-    "artifactType": "poster",
+    "artifact": "showcase/assets/superasianwok.png",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for super asian wok.",
     "buildSummary": "Built as a focused interface experience around restaurant web and menu presentation."
   },
@@ -714,8 +714,8 @@
       "Business workflow",
       "Dashboard UX"
     ],
-    "artifact": "showcase/assets/tilmar-ops.svg",
-    "artifactType": "workflow",
+    "artifact": "showcase/assets/tilmar-ops.png",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for tilmar operations.",
     "buildSummary": "Built as a focused workflow experience around operations systems and business workflow."
   },
@@ -730,8 +730,8 @@
       "Status indicators",
       "Developer UX"
     ],
-    "artifact": "showcase/assets/tinyflags.svg",
-    "artifactType": "terminal",
+    "artifact": "showcase/assets/tinyflags.png",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for tiny flags.",
     "buildSummary": "Built as a focused terminal experience around configuration tooling and status indicators."
   },
@@ -746,8 +746,8 @@
       "Workflow acceleration",
       "Developer UX"
     ],
-    "artifact": "showcase/assets/toolbelt.svg",
-    "artifactType": "terminal",
+    "artifact": "showcase/assets/toolbelt.png",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for toolbelt.",
     "buildSummary": "Built as a focused terminal experience around utility collection and workflow acceleration."
   },
@@ -762,8 +762,8 @@
       "Searchable notes",
       "Content structure"
     ],
-    "artifact": "showcase/assets/wiklite.svg",
-    "artifactType": "poster",
+    "artifact": "showcase/assets/wiklite.png",
+    "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for wiklite.",
     "buildSummary": "Built as a focused interface experience around knowledge ux and searchable notes."
   }

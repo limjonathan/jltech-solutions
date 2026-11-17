@@ -5,6 +5,7 @@ const path = require('node:path');
 
 const root = path.resolve(__dirname, '..');
 const catalogPath = path.join(root, 'showcase', 'projects.json');
+const { validateProject } = require('../tools/validate-showcase-catalog.js');
 
 test('showcase catalog contains 48 unique project case studies', () => {
     assert.equal(fs.existsSync(catalogPath), true, 'showcase/projects.json is required');
@@ -34,4 +35,57 @@ test('catalog spans the capabilities promised by the showcase filters', () => {
     for (const category of ['Automation', 'CRM', 'Applications', 'Websites', 'Frontend', 'Backend', 'AI systems', 'Tools', 'Media', 'Security']) {
         assert.ok(categories.has(category), `missing category: ${category}`);
     }
+});
+
+test('projects without additional screenshots fall back to their primary artifact', () => {
+    const projects = JSON.parse(fs.readFileSync(catalogPath, 'utf8'));
+    const project = projects.find((entry) => !entry.screenshots);
+
+    assert.ok(project, 'catalog should contain a project without additional screenshots');
+    assert.deepEqual([project.artifact, ...(project.screenshots || [])], [project.artifact]);
+});
+
+test('additional screenshots must use safe local showcase asset paths', () => {
+    const project = {
+        slug: 'fixture',
+        title: 'Fixture',
+        category: 'Tools',
+        summary: 'Fixture summary.',
+        problem: 'Fixture problem.',
+        capabilities: ['Testing'],
+        artifact: 'showcase/assets/fixture.png',
+        artifactType: 'screenshot',
+        outcome: 'Fixture outcome.',
+        buildSummary: 'Fixture build.',
+        screenshots: ['showcase/assets/fixture-detail.png']
+    };
+
+    assert.deepEqual(validateProject(project), [
+        'fixture artifact does not exist inside showcase/assets',
+        'fixture screenshots[0] does not exist inside showcase/assets'
+    ]);
+    assert.match(validateProject({
+        ...project,
+        artifact: 'showcase/assets/aleph-bet-express.png',
+        screenshots: ['showcase/assets/../projects.json']
+    }).find((error) => error.includes('screenshots[0]')), /safe local capture path/);
+});
+
+test('demo URLs must be HTTPS public URLs', () => {
+    const base = {
+        slug: 'fixture',
+        title: 'Fixture',
+        category: 'Tools',
+        summary: 'Fixture summary.',
+        problem: 'Fixture problem.',
+        capabilities: ['Testing'],
+        artifact: 'showcase/assets/aleph-bet-express.png',
+        artifactType: 'screenshot',
+        outcome: 'Fixture outcome.',
+        buildSummary: 'Fixture build.'
+    };
+
+    assert.match(validateProject({ ...base, demoUrl: 'http://example.com' })[0], /HTTPS public URL/);
+    assert.match(validateProject({ ...base, demoUrl: 'https://localhost:8005' })[0], /HTTPS public URL/);
+    assert.match(validateProject({ ...base, demoUrl: 'https://192.168.1.10' })[0], /HTTPS public URL/);
 });

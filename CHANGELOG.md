@@ -2,6 +2,23 @@
 
 All notable changes to the JL Tech Solutions site are documented here.
 
+## 2026-11-17 - Extend showcase catalog media contract
+
+- Added optional additional screenshot and public demo URL fields to catalog generation.
+- Validated optional screenshot paths as existing local `showcase/assets` files and demo
+  URLs as HTTPS-only, non-private URLs.
+- Added regression coverage for primary-artifact fallback and unsafe optional media values.
+
+## 2026-11-17 - Replace showcase posters with real project captures
+
+- Replaced the generated showcase posters with verified screenshots from project web
+  interfaces, static sites, game/media output, and real terminal sessions.
+- Added safe capture mappings and PNG/JPEG artifact validation to the catalog tooling.
+- Added a redacted TilMar operations terminal capture without client documents or
+  credentials.
+- Kept AlphaFleet's existing poster as an explicit exception because no local source or
+  verifiable project UI is available.
+
 ## 2026-11-15 - Project showcase and case-study catalog
 
 - Added a dedicated `showcase.html` page with category filters and hash-addressable

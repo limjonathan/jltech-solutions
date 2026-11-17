@@ -3,6 +3,57 @@ const path = require('node:path');
 
 const root = path.resolve(__dirname, '..');
 const artifactDir = path.join(root, 'showcase', 'assets');
+const captureArtifacts = {
+    'aleph-bet-express': 'showcase/assets/aleph-bet-express.png',
+    'answer-esg': 'showcase/assets/answer-esg.png',
+    'bishi-bashi': 'showcase/assets/bishi-bashi.jpg',
+    'boardly': 'showcase/assets/boardly.png',
+    'carecircle': 'showcase/assets/carecircle.png',
+    'complybase': 'showcase/assets/complybase.png',
+    'courseware-as-code': 'showcase/assets/courseware-as-code.png',
+    'deshportfolio': 'showcase/assets/deshportfolio.png',
+    'dylan-portfolio': 'showcase/assets/dylan-portfolio.png',
+    'dotdrift': 'showcase/assets/dotdrift.png',
+    'emily-portfolio': 'showcase/assets/emily-portfolio.png',
+    'fieldops-central': 'showcase/assets/fieldops.png',
+    'fooocus-mcp': 'showcase/assets/fooocus-mcp.png',
+    'gig-tax': 'showcase/assets/gigtax.png',
+    'homeloop': 'showcase/assets/homeloop.png',
+    'hyprwall-dl': 'showcase/assets/hyprwall-dl.png',
+    'icha-portfolio': 'showcase/assets/icha-portfolio.png',
+    'jonathan-portfolio': 'showcase/assets/jonathan-portfolio.png',
+    'jltech-solutions': 'showcase/assets/jltech-solutions.png',
+    'john-portfolio': 'showcase/assets/john-portfolio.png',
+    'mcp-audit': 'showcase/assets/mcp-audit.png',
+    'memview': 'showcase/assets/memview.png',
+    'nomu': 'showcase/assets/nomu.png',
+    'nursey': 'showcase/assets/nursey.png',
+    'opencode': 'showcase/assets/opencode.png',
+    'paulus-portfolio': 'showcase/assets/paulusalim-portfolio.png',
+    'pdfforge': 'showcase/assets/pdfforge.png',
+    'pitchkit': 'showcase/assets/pitchkit.png',
+    'pmc-website': 'showcase/assets/pmc-website.png',
+    'polyglot': 'showcase/assets/polyglot.png',
+    'probekeeper': 'showcase/assets/probekeeper.png',
+    'recoverly': 'showcase/assets/recoverly.png',
+    'regexscope': 'showcase/assets/regexscope.png',
+    'runtime-mcp': 'showcase/assets/runtime-mcp.png',
+    'sachi': 'showcase/assets/sachi.png',
+    'skillpacks': 'showcase/assets/skillpacks.png',
+    'skpkg': 'showcase/assets/skpkg.png',
+    'slabdesk': 'showcase/assets/slabdesk.png',
+    'staffy': 'showcase/assets/staffy.png',
+    'static-fpv': 'showcase/assets/static-fpv.png',
+    'street-eats-food-truck': 'showcase/assets/street-eats.png',
+    'sunrisesite': 'showcase/assets/sunrise-site.png',
+    'superasianwok': 'showcase/assets/superasianwok.png',
+    'tilmar-ops': 'showcase/assets/tilmar-ops.png',
+    'tinyflags': 'showcase/assets/tinyflags.png',
+    'toolbelt': 'showcase/assets/toolbelt.png',
+    'wiklite': 'showcase/assets/wiklite.png'
+};
+const additionalScreenshots = {};
+const demoUrls = {};
 
 const projects = [
     ['aleph-bet-express', 'Aleph Bet Express', 'Applications', 'A focused learning experience that turns Hebrew practice into a repeatable daily habit.', 'Learners needed a clear, low-friction way to move from short exercises to steady progress.', ['Learning UX', 'Responsive interface', 'Progress flow'], 'interface'],
@@ -82,20 +133,29 @@ function poster(project) {
 }
 
 fs.mkdirSync(artifactDir, { recursive: true });
-const catalog = projects.map(([slug, title, category, summary, problem, capabilities, artifactType]) => ({
-    slug,
-    title,
-    category,
-    summary,
-    problem,
-    capabilities,
-    artifact: `showcase/assets/${slug}.svg`,
-    artifactType: artifactType === 'interface' || artifactType === 'media' ? 'poster' : artifactType,
-    outcome: `A clear, outcome-focused experience for ${title.toLowerCase()}.`,
-    buildSummary: `Built as a focused ${artifactType} experience around ${capabilities.slice(0, 2).join(' and ').toLowerCase()}.`
-}));
+const catalog = projects.map(([slug, title, category, summary, problem, capabilities, artifactType]) => {
+    const project = {
+        slug,
+        title,
+        category,
+        summary,
+        problem,
+        capabilities,
+        artifact: captureArtifacts[slug] || `showcase/assets/${slug}.svg`,
+        artifactType: captureArtifacts[slug] ? 'screenshot' : 'poster',
+        outcome: `A clear, outcome-focused experience for ${title.toLowerCase()}.`,
+        buildSummary: `Built as a focused ${artifactType} experience around ${capabilities.slice(0, 2).join(' and ').toLowerCase()}.`
+    };
+    return {
+        ...project,
+        ...(additionalScreenshots[slug] ? { screenshots: additionalScreenshots[slug] } : {}),
+        ...(demoUrls[slug] ? { demoUrl: demoUrls[slug] } : {})
+    };
+});
 
 fs.writeFileSync(path.join(root, 'showcase', 'projects.json'), `${JSON.stringify(catalog, null, 2)}\n`);
 for (const project of projects) {
-    fs.writeFileSync(path.join(artifactDir, `${project[0]}.svg`), poster(project));
+    if (!captureArtifacts[project[0]]) {
+        fs.writeFileSync(path.join(artifactDir, `${project[0]}.svg`), poster(project));
+    }
 }
