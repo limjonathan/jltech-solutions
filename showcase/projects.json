@@ -157,7 +157,11 @@
     "artifact": "showcase/assets/deshportfolio.png",
     "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for desh portfolio.",
-    "buildSummary": "Built as a focused interface experience around art direction and portfolio ux."
+    "buildSummary": "Built as a focused interface experience around art direction and portfolio ux.",
+    "screenshots": [
+      "showcase/assets/deshportfolio-02.png",
+      "showcase/assets/deshportfolio-03.png"
+    ]
   },
   {
     "slug": "dylan-portfolio",
@@ -173,7 +177,11 @@
     "artifact": "showcase/assets/dylan-portfolio.png",
     "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for dylan hardy portfolio.",
-    "buildSummary": "Built as a focused interface experience around case studies and visual storytelling."
+    "buildSummary": "Built as a focused interface experience around case studies and visual storytelling.",
+    "screenshots": [
+      "showcase/assets/dylan-portfolio-02.png",
+      "showcase/assets/dylan-portfolio-03.png"
+    ]
   },
   {
     "slug": "dotdrift",
@@ -205,7 +213,11 @@
     "artifact": "showcase/assets/emily-portfolio.png",
     "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for emily lim portfolio.",
-    "buildSummary": "Built as a focused interface experience around personal brand and responsive layout."
+    "buildSummary": "Built as a focused interface experience around personal brand and responsive layout.",
+    "screenshots": [
+      "showcase/assets/emily-portfolio-02.png",
+      "showcase/assets/emily-portfolio-03.png"
+    ]
   },
   {
     "slug": "fieldops-central",
@@ -301,7 +313,11 @@
     "artifact": "showcase/assets/icha-portfolio.png",
     "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for icha frida portfolio.",
-    "buildSummary": "Built as a focused interface experience around portfolio ux and visual identity."
+    "buildSummary": "Built as a focused interface experience around portfolio ux and visual identity.",
+    "screenshots": [
+      "showcase/assets/icha-portfolio-02.png",
+      "showcase/assets/icha-portfolio-03.png"
+    ]
   },
   {
     "slug": "jonathan-portfolio",
@@ -354,7 +370,11 @@
     "artifact": "showcase/assets/john-portfolio.png",
     "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for john portfolio.",
-    "buildSummary": "Built as a focused interface experience around portfolio design and content hierarchy."
+    "buildSummary": "Built as a focused interface experience around portfolio design and content hierarchy.",
+    "screenshots": [
+      "showcase/assets/john-portfolio-02.png",
+      "showcase/assets/john-portfolio-03.png"
+    ]
   },
   {
     "slug": "mcp-audit",

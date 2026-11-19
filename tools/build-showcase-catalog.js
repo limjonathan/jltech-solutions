@@ -57,6 +57,26 @@ const additionalScreenshots = {
         'showcase/assets/jltech-solutions-02.png',
         'showcase/assets/jltech-solutions-03.png',
         'showcase/assets/jltech-solutions-04.png'
+    ],
+    'deshportfolio': [
+        'showcase/assets/deshportfolio-02.png',
+        'showcase/assets/deshportfolio-03.png'
+    ],
+    'dylan-portfolio': [
+        'showcase/assets/dylan-portfolio-02.png',
+        'showcase/assets/dylan-portfolio-03.png'
+    ],
+    'emily-portfolio': [
+        'showcase/assets/emily-portfolio-02.png',
+        'showcase/assets/emily-portfolio-03.png'
+    ],
+    'icha-portfolio': [
+        'showcase/assets/icha-portfolio-02.png',
+        'showcase/assets/icha-portfolio-03.png'
+    ],
+    'john-portfolio': [
+        'showcase/assets/john-portfolio-02.png',
+        'showcase/assets/john-portfolio-03.png'
     ]
 };
 const demoUrls = {};

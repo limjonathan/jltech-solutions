@@ -2,6 +2,14 @@
 
 All notable changes to the JL Tech Solutions site are documented here.
 
+## 2026-11-18 - Add five-project portfolio capture batch
+
+- Added two verified 1440x900 Chromium captures for each of Desh, Dylan Hardy,
+  Emily Lim, Icha Frida, and John portfolios.
+- Registered the ten additional public-safe screenshots and regenerated the showcase
+  catalog and JavaScript-disabled fallback; no private pages, forms, credentials,
+  source views, or client documents were captured.
+
 ## 2026-11-18 - Add verified JL Tech showcase gallery captures
 
 - Added three real Chromium captures for the JL Tech Solutions case study: the homepage
