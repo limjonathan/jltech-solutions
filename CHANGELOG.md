@@ -2,6 +2,15 @@
 
 All notable changes to the JL Tech Solutions site are documented here.
 
+## 2026-11-19 - Verify clickable showcase fallback and gallery
+
+- Regenerated the JavaScript-disabled showcase fallback from the 48-project catalog.
+- Documented the Chromium capture workflow, clickable gallery behavior, responsive
+  verification commands, screenshot privacy rules, and the AlphaFleet poster exception.
+- Verified the gallery at 390px, 768px, and 1440px: project opening, thumbnail changes,
+  category-filtered previous/next navigation, Escape close/focus restoration, complete
+  screenshot loads, no horizontal overflow, and zero console/page errors.
+
 ## 2026-11-19 - Add remaining app showcase captures
 
 - Added verified 1440x900 Chromium captures for FieldOps Central, Toolbelt,

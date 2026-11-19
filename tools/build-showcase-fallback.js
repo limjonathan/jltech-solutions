@@ -3,7 +3,12 @@ const path = require('node:path');
 
 const root = path.resolve(__dirname, '..');
 const pagePath = path.join(root, 'showcase.html');
-const catalog = JSON.parse(fs.readFileSync(path.join(root, 'showcase', 'projects.json'), 'utf8'));
+const catalogPath = path.join(root, 'showcase', 'projects.json');
+const catalog = JSON.parse(fs.readFileSync(catalogPath, 'utf8'));
+
+if (!Array.isArray(catalog) || catalog.some((project) => !project || !project.slug || !project.artifact)) {
+    throw new Error(`Cannot generate showcase fallback from invalid catalog: ${catalogPath}`);
+}
 
 const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (character) => ({
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
