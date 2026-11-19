@@ -16,6 +16,18 @@ test('showcase index exposes the project grid, filters, and home entry point', (
     assert.match(home, /showcase\.html/);
 });
 
+test('catalog uses verified domain language for audited projects', () => {
+    const catalog = JSON.parse(fs.readFileSync(path.join(root, 'showcase', 'projects.json'), 'utf8'));
+    const bySlug = Object.fromEntries(catalog.map((project) => [project.slug, project]));
+    assert.match(bySlug['aleph-bet-express'].summary, /vehicle-transport/i);
+    assert.doesNotMatch(bySlug['aleph-bet-express'].summary, /Hebrew|learning/i);
+    assert.match(bySlug.toolbelt.summary, /field-service management/i);
+    assert.match(bySlug.homeloop.summary, /cleaning and lawn-care/i);
+    assert.match(bySlug.nursey.summary, /home-care agency/i);
+    assert.match(bySlug.slabdesk.summary, /stone fabricators/i);
+    assert.match(bySlug.staffy.summary, /recruiting CRM/i);
+});
+
 test('showcase page contains no repository or private endpoint links', () => {
     const source = [
         fs.readFileSync(path.join(root, 'showcase.html'), 'utf8'),

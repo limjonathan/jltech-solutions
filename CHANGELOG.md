@@ -2,6 +2,14 @@
 
 All notable changes to the JL Tech Solutions site are documented here.
 
+## 2026-11-19 - Correct verified showcase domain copy
+
+- Audited catalog claims against available project documentation before changing copy.
+- Corrected Aleph-Bet Express to describe nationwide vehicle transport, dealer/fleet
+  logistics, and quote workflows.
+- Corrected documented mismatches for AnswerESG, Courseware as Code, HomeLoop, Nursey,
+  SlabDesk, Staffy, and Toolbelt; unsupported projects were not guessed at.
+
 ## 2026-11-19 - Verify clickable showcase fallback and gallery
 
 - Regenerated the JavaScript-disabled showcase fallback from the 48-project catalog.
