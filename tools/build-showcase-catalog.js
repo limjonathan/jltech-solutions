@@ -8,7 +8,6 @@ const captureArtifacts = {
     'answer-esg': 'showcase/assets/answer-esg.png',
     'bishi-bashi': 'showcase/assets/bishi-bashi.jpg',
     'boardly': 'showcase/assets/boardly.png',
-    'carecircle': 'showcase/assets/carecircle.png',
     'complybase': 'showcase/assets/complybase.png',
     'courseware-as-code': 'showcase/assets/courseware-as-code.png',
     'deshportfolio': 'showcase/assets/deshportfolio.png',
@@ -53,6 +52,27 @@ const captureArtifacts = {
     'wiklite': 'showcase/assets/wiklite.png'
 };
 const additionalScreenshots = {
+    'fieldops-central': [
+        'showcase/assets/fieldops-02.png'
+    ],
+    'toolbelt': [
+        'showcase/assets/toolbelt-02.png'
+    ],
+    'answer-esg': [
+        'showcase/assets/answer-esg-02.png'
+    ],
+    'boardly': [
+        'showcase/assets/boardly-02.png'
+    ],
+    'homeloop': [
+        'showcase/assets/homeloop-02.png'
+    ],
+    'nursey': [
+        'showcase/assets/nursey-02.png'
+    ],
+    'slabdesk': [
+        'showcase/assets/slabdesk-02.png'
+    ],
     'jltech-solutions': [
         'showcase/assets/jltech-solutions-02.png',
         'showcase/assets/jltech-solutions-03.png',

@@ -2,6 +2,18 @@
 
 All notable changes to the JL Tech Solutions site are documented here.
 
+## 2026-11-19 - Add remaining app showcase captures
+
+- Added verified 1440x900 Chromium captures for FieldOps Central, Toolbelt,
+  AnswerESG, Boardly, HomeLoop, Nursey, Recoverly, SlabDesk, and Staffy using
+  public routes, documented demo data, or documented synthetic-safe states.
+- Registered safe additional screenshots, regenerated the showcase catalog and
+  JavaScript-disabled fallback, and documented the capture routes and privacy
+  decisions.
+- Kept CareCircle on its public-safe poster because its documented dev accounts
+  could not render locally without Supabase project configuration; no external
+  tenant or account was used.
+
 ## 2026-11-18 - Add synthetic app capture batch
 
 - Added verified 1440x900 Chromium captures for GigTax, ComplyBase, PitchKit, and

@@ -49,7 +49,10 @@
     "artifact": "showcase/assets/answer-esg.png",
     "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for esg answer desk.",
-    "buildSummary": "Built as a focused workflow experience around document workflows and ai-assisted research."
+    "buildSummary": "Built as a focused workflow experience around document workflows and ai-assisted research.",
+    "screenshots": [
+      "showcase/assets/answer-esg-02.png"
+    ]
   },
   {
     "slug": "paulus-portfolio",
@@ -97,7 +100,10 @@
     "artifact": "showcase/assets/boardly.png",
     "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for boardly workspace.",
-    "buildSummary": "Built as a focused interface experience around workspace ux and information architecture."
+    "buildSummary": "Built as a focused interface experience around workspace ux and information architecture.",
+    "screenshots": [
+      "showcase/assets/boardly-02.png"
+    ]
   },
   {
     "slug": "carecircle",
@@ -110,8 +116,8 @@
       "Accessible UI",
       "Shared status"
     ],
-    "artifact": "showcase/assets/carecircle.png",
-    "artifactType": "screenshot",
+    "artifact": "showcase/assets/carecircle.svg",
+    "artifactType": "poster",
     "outcome": "A clear, outcome-focused experience for carecircle.",
     "buildSummary": "Built as a focused workflow experience around care coordination and accessible ui."
   },
@@ -247,7 +253,10 @@
     "artifact": "showcase/assets/fieldops.png",
     "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for fieldops central.",
-    "buildSummary": "Built as a focused interface experience around crm workflows and operations dashboard."
+    "buildSummary": "Built as a focused interface experience around crm workflows and operations dashboard.",
+    "screenshots": [
+      "showcase/assets/fieldops-02.png"
+    ]
   },
   {
     "slug": "fooocus-mcp",
@@ -299,7 +308,10 @@
     "artifact": "showcase/assets/homeloop.png",
     "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for homeloop.",
-    "buildSummary": "Built as a focused interface experience around household operations and task planning."
+    "buildSummary": "Built as a focused interface experience around household operations and task planning.",
+    "screenshots": [
+      "showcase/assets/homeloop-02.png"
+    ]
   },
   {
     "slug": "hyprwall-dl",
@@ -460,7 +472,10 @@
     "artifact": "showcase/assets/nursey.png",
     "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for nursey.",
-    "buildSummary": "Built as a focused workflow experience around care ux and routine planning."
+    "buildSummary": "Built as a focused workflow experience around care ux and routine planning.",
+    "screenshots": [
+      "showcase/assets/nursey-02.png"
+    ]
   },
   {
     "slug": "opencode",
@@ -705,7 +720,10 @@
     "artifact": "showcase/assets/slabdesk.png",
     "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for slabdesk.",
-    "buildSummary": "Built as a focused interface experience around workspace design and task coordination."
+    "buildSummary": "Built as a focused interface experience around workspace design and task coordination.",
+    "screenshots": [
+      "showcase/assets/slabdesk-02.png"
+    ]
   },
   {
     "slug": "staffy",
@@ -825,7 +843,10 @@
     "artifact": "showcase/assets/toolbelt.png",
     "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for toolbelt.",
-    "buildSummary": "Built as a focused terminal experience around utility collection and workflow acceleration."
+    "buildSummary": "Built as a focused terminal experience around utility collection and workflow acceleration.",
+    "screenshots": [
+      "showcase/assets/toolbelt-02.png"
+    ]
   },
   {
     "slug": "wiklite",
