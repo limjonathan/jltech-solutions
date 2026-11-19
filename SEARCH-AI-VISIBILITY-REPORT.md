@@ -22,6 +22,15 @@ after Google processes the sitemap and crawl requests.
 The homepage and Philadelphia on-site support page were also submitted for priority
 crawling. The latter was still reported as unknown to Google at submission time.
 
+## Live recheck — 2026-11-19
+
+The deployed homepage, verification file, and sitemap each returned HTTP 200. The
+sitemap now exposes `2026-11-19` as the `lastmod` value for all six URLs. Search
+Console was rechecked and the sitemap was resubmitted after deployment; the console
+still displayed the prior “Couldn't fetch” row immediately afterward, while the
+property overview remained in “Processing data” status. The GBP post was publicly
+confirmed as published approximately 25 minutes after creation.
+
 ## Executive summary
 
 The site is publicly crawlable and has a sitemap, but this live spot check did **not**

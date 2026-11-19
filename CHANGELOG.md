@@ -38,6 +38,14 @@ All notable changes to the JL Tech Solutions site are documented here.
 - Updated all sitemap `lastmod` values to match the crawlable pages' current
   deployment date before Google processes the submitted sitemap.
 
+## 2026-11-19 - Recheck live search surfaces
+
+- Confirmed HTTP 200 for the homepage, Search Console verification file, and updated
+  sitemap.
+- Resubmitted the sitemap after deployment and verified the new GBP Philadelphia
+  update is publicly listed.
+- Recorded the remaining Search Console processing state in the visibility report.
+
 ## 2026-11-19 - Add AI-search answer sections
 
 - Added a crawlable homepage answer section clarifying audience, services, coverage,
