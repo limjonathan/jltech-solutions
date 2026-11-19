@@ -2,6 +2,81 @@
 
 All notable changes to the JL Tech Solutions site are documented here.
 
+## 2026-11-19 - Verify clickable showcase fallback and gallery
+
+- Regenerated the JavaScript-disabled showcase fallback from the 48-project catalog.
+- Documented the Chromium capture workflow, clickable gallery behavior, responsive
+  verification commands, screenshot privacy rules, and the AlphaFleet poster exception.
+- Verified the gallery at 390px, 768px, and 1440px: project opening, thumbnail changes,
+  category-filtered previous/next navigation, Escape close/focus restoration, complete
+  screenshot loads, no horizontal overflow, and zero console/page errors.
+
+## 2026-11-19 - Add remaining app showcase captures
+
+- Added verified 1440x900 Chromium captures for FieldOps Central, Toolbelt,
+  AnswerESG, Boardly, HomeLoop, Nursey, Recoverly, SlabDesk, and Staffy using
+  public routes, documented demo data, or documented synthetic-safe states.
+- Registered safe additional screenshots, regenerated the showcase catalog and
+  JavaScript-disabled fallback, and documented the capture routes and privacy
+  decisions.
+- Kept CareCircle on its public-safe poster because its documented dev accounts
+  could not render locally without Supabase project configuration; no external
+  tenant or account was used.
+
+## 2026-11-18 - Add synthetic app capture batch
+
+- Added verified 1440x900 Chromium captures for GigTax, ComplyBase, PitchKit, and
+  WikLite using documented routes and synthetic/demo data only.
+- Registered the additional screenshots, regenerated the showcase catalog and
+  JavaScript-disabled fallback, and documented capture commands, privacy decisions,
+  and skipped states.
+
+## 2026-11-18 - Add five-project portfolio capture batch
+
+- Added two verified 1440x900 Chromium captures for each of Desh, Dylan Hardy,
+  Emily Lim, Icha Frida, and John portfolios.
+- Registered the ten additional public-safe screenshots and regenerated the showcase
+  catalog and JavaScript-disabled fallback; no private pages, forms, credentials,
+  source views, or client documents were captured.
+
+## 2026-11-18 - Add verified JL Tech showcase gallery captures
+
+- Added three real Chromium captures for the JL Tech Solutions case study: the homepage
+  hero, the services section, and the opened Managed IT Services detail modal.
+- Registered the captures through `tools/build-showcase-catalog.js`; no private pages,
+  forms, credentials, source views, or unverified artwork were captured.
+
+## 2026-11-17 - Extend showcase catalog media contract
+
+- Added optional additional screenshot and public demo URL fields to catalog generation.
+- Validated optional screenshot paths as existing local `showcase/assets` files and demo
+  URLs as HTTPS-only, non-private URLs.
+- Added regression coverage for primary-artifact fallback and unsafe optional media values.
+
+## 2026-11-17 - Replace showcase posters with real project captures
+
+- Replaced the generated showcase posters with verified screenshots from project web
+  interfaces, static sites, game/media output, and real terminal sessions.
+- Added safe capture mappings and PNG/JPEG artifact validation to the catalog tooling.
+- Added a redacted TilMar operations terminal capture without client documents or
+  credentials.
+- Kept AlphaFleet's existing poster as an explicit exception because no local source or
+  verifiable project UI is available.
+
+## 2026-11-15 - Project showcase and case-study catalog
+
+- Added a dedicated `showcase.html` page with category filters and hash-addressable
+  case-study views.
+- Added all 48 unique project entries after merging duplicate local checkouts.
+- Added local project posters and workflow-style artifacts so every case study has a
+  visual presentation without exposing repositories, source code, credentials, or
+  private endpoints.
+- Added catalog generation, privacy validation, responsive layout, and accessibility
+  regression tests.
+- Added a static fallback for JavaScript-disabled visitors, rendered outcome and
+  build-summary sections, stricter artifact path validation, and safe handling of
+  invalid category filters.
+
 ## 2026-11-14 - Separate reel videos by user intent
 
 - Kept the enterprise film as the single featured video in the reel band.
@@ -554,6 +629,13 @@ highlighted while the real value was Standard. Reset now re-syncs the severity c
 - `CHANGELOG.md` (this file).
 - `.gitignore` entries for browser-audit artifacts, AI index outputs and the unused
   `assets/logo.jpg`.
+## 2026-11-18
+
+- Added verified 1440×900 Chromium hero and menu/services/section captures for Street Eats,
+  PMC, Sunrise, Super Asian Wok, and NoMu to the public showcase catalog.
+- Added verified 1440×900 Chromium captures for Aleph Bet Express, Courseware as Code,
+  pdfforge, and RegexScope, including their documented route and interaction states.
+
 ## 2026-11-13
 
 - Corrected homepage structured data to use `LocalBusiness`, aligned social metadata, and linked service providers to the shared business entity.

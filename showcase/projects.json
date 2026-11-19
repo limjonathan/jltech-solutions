@@ -1,0 +1,873 @@
+[
+  {
+    "slug": "aleph-bet-express",
+    "title": "Aleph Bet Express",
+    "category": "Applications",
+    "summary": "A focused learning experience that turns Hebrew practice into a repeatable daily habit.",
+    "problem": "Learners needed a clear, low-friction way to move from short exercises to steady progress.",
+    "capabilities": [
+      "Learning UX",
+      "Responsive interface",
+      "Progress flow"
+    ],
+    "artifact": "showcase/assets/aleph-bet-express.png",
+    "artifactType": "screenshot",
+    "outcome": "A clear, outcome-focused experience for aleph bet express.",
+    "buildSummary": "Built as a focused interface experience around learning ux and responsive interface.",
+    "screenshots": [
+      "showcase/assets/aleph-bet-express-02.png",
+      "showcase/assets/aleph-bet-express-03.png"
+    ]
+  },
+  {
+    "slug": "alphafleet-landing",
+    "title": "AlphaFleet Launch",
+    "category": "Websites",
+    "summary": "A high-conviction landing experience for a modern trading product.",
+    "problem": "A complex financial product needed a concise, credible first impression.",
+    "capabilities": [
+      "Product positioning",
+      "Conversion layout",
+      "Responsive web"
+    ],
+    "artifact": "showcase/assets/alphafleet-landing.svg",
+    "artifactType": "poster",
+    "outcome": "A clear, outcome-focused experience for alphafleet launch.",
+    "buildSummary": "Built as a focused interface experience around product positioning and conversion layout."
+  },
+  {
+    "slug": "answer-esg",
+    "title": "ESG Answer Desk",
+    "category": "AI systems",
+    "summary": "A research workspace that helps teams find and explain ESG answers faster.",
+    "problem": "Analysts needed structured answers without losing the context behind the evidence.",
+    "capabilities": [
+      "Document workflows",
+      "AI-assisted research",
+      "Review interface"
+    ],
+    "artifact": "showcase/assets/answer-esg.png",
+    "artifactType": "screenshot",
+    "outcome": "A clear, outcome-focused experience for esg answer desk.",
+    "buildSummary": "Built as a focused workflow experience around document workflows and ai-assisted research.",
+    "screenshots": [
+      "showcase/assets/answer-esg-02.png"
+    ]
+  },
+  {
+    "slug": "paulus-portfolio",
+    "title": "Paulus Portfolio",
+    "category": "Frontend",
+    "summary": "A personal portfolio that makes a creative body of work easy to browse and remember.",
+    "problem": "The work needed a stronger narrative than a collection of disconnected links.",
+    "capabilities": [
+      "Portfolio design",
+      "Visual hierarchy",
+      "Editorial layout"
+    ],
+    "artifact": "showcase/assets/paulusalim-portfolio.png",
+    "artifactType": "screenshot",
+    "outcome": "A clear, outcome-focused experience for paulus portfolio.",
+    "buildSummary": "Built as a focused interface experience around portfolio design and visual hierarchy."
+  },
+  {
+    "slug": "bishi-bashi",
+    "title": "Bishi Bashi Play",
+    "category": "Media",
+    "summary": "A playful browser experience built around fast reactions and immediate feedback.",
+    "problem": "The concept needed a lightweight, accessible way to feel fun in the first few seconds.",
+    "capabilities": [
+      "Game loop",
+      "Interaction design",
+      "Browser experience"
+    ],
+    "artifact": "showcase/assets/bishi-bashi.jpg",
+    "artifactType": "screenshot",
+    "outcome": "A clear, outcome-focused experience for bishi bashi play.",
+    "buildSummary": "Built as a focused interface experience around game loop and interaction design."
+  },
+  {
+    "slug": "boardly",
+    "title": "Boardly Workspace",
+    "category": "Applications",
+    "summary": "A focused workspace for organizing decisions, projects, and the work around them.",
+    "problem": "Teams needed one calm place to turn scattered notes into visible next steps.",
+    "capabilities": [
+      "Workspace UX",
+      "Information architecture",
+      "Product flows"
+    ],
+    "artifact": "showcase/assets/boardly.png",
+    "artifactType": "screenshot",
+    "outcome": "A clear, outcome-focused experience for boardly workspace.",
+    "buildSummary": "Built as a focused interface experience around workspace ux and information architecture.",
+    "screenshots": [
+      "showcase/assets/boardly-02.png"
+    ]
+  },
+  {
+    "slug": "carecircle",
+    "title": "CareCircle",
+    "category": "Applications",
+    "summary": "A support-oriented experience for coordinating care, people, and important follow-ups.",
+    "problem": "Care work needed clearer shared context and fewer handoff gaps.",
+    "capabilities": [
+      "Care coordination",
+      "Accessible UI",
+      "Shared status"
+    ],
+    "artifact": "showcase/assets/carecircle.svg",
+    "artifactType": "poster",
+    "outcome": "A clear, outcome-focused experience for carecircle.",
+    "buildSummary": "Built as a focused workflow experience around care coordination and accessible ui."
+  },
+  {
+    "slug": "complybase",
+    "title": "ComplyBase",
+    "category": "Applications",
+    "summary": "A compliance workspace that turns recurring evidence work into an organized operating rhythm.",
+    "problem": "Compliance teams needed visibility into what was known, missing, and next.",
+    "capabilities": [
+      "Compliance UX",
+      "Evidence tracking",
+      "Operational dashboard"
+    ],
+    "artifact": "showcase/assets/complybase.png",
+    "artifactType": "screenshot",
+    "outcome": "A clear, outcome-focused experience for complybase.",
+    "buildSummary": "Built as a focused workflow experience around compliance ux and evidence tracking.",
+    "screenshots": [
+      "showcase/assets/complybase-02.png",
+      "showcase/assets/complybase-03.png",
+      "showcase/assets/complybase-04.png",
+      "showcase/assets/complybase-05.png"
+    ]
+  },
+  {
+    "slug": "courseware-as-code",
+    "title": "Courseware Studio",
+    "category": "Applications",
+    "summary": "A structured way to turn technical knowledge into reusable learning material.",
+    "problem": "Course authors needed repeatable content patterns instead of manual page assembly.",
+    "capabilities": [
+      "Content systems",
+      "Learning design",
+      "Reusable workflows"
+    ],
+    "artifact": "showcase/assets/courseware-as-code.png",
+    "artifactType": "screenshot",
+    "outcome": "A clear, outcome-focused experience for courseware studio.",
+    "buildSummary": "Built as a focused architecture experience around content systems and learning design.",
+    "screenshots": [
+      "showcase/assets/courseware-as-code-02.png",
+      "showcase/assets/courseware-as-code-03.png"
+    ]
+  },
+  {
+    "slug": "deshportfolio",
+    "title": "Desh Portfolio",
+    "category": "Websites",
+    "summary": "A personal site with a distinctive visual voice and a clear path through selected work.",
+    "problem": "The portfolio needed to feel authored rather than templated.",
+    "capabilities": [
+      "Art direction",
+      "Portfolio UX",
+      "Responsive composition"
+    ],
+    "artifact": "showcase/assets/deshportfolio.png",
+    "artifactType": "screenshot",
+    "outcome": "A clear, outcome-focused experience for desh portfolio.",
+    "buildSummary": "Built as a focused interface experience around art direction and portfolio ux.",
+    "screenshots": [
+      "showcase/assets/deshportfolio-02.png",
+      "showcase/assets/deshportfolio-03.png"
+    ]
+  },
+  {
+    "slug": "dylan-portfolio",
+    "title": "Dylan Hardy Portfolio",
+    "category": "Websites",
+    "summary": "A polished portfolio experience that gives projects room to speak for themselves.",
+    "problem": "The work needed a simple structure that still felt considered and memorable.",
+    "capabilities": [
+      "Case studies",
+      "Visual storytelling",
+      "Web design"
+    ],
+    "artifact": "showcase/assets/dylan-portfolio.png",
+    "artifactType": "screenshot",
+    "outcome": "A clear, outcome-focused experience for dylan hardy portfolio.",
+    "buildSummary": "Built as a focused interface experience around case studies and visual storytelling.",
+    "screenshots": [
+      "showcase/assets/dylan-portfolio-02.png",
+      "showcase/assets/dylan-portfolio-03.png"
+    ]
+  },
+  {
+    "slug": "dotdrift",
+    "title": "DotDrift",
+    "category": "Automation",
+    "summary": "A compact desktop utility for making visual configuration work easier to manage.",
+    "problem": "A repetitive setup task needed a small tool with a clear, dependable workflow.",
+    "capabilities": [
+      "Desktop utility",
+      "Configuration UX",
+      "Automation"
+    ],
+    "artifact": "showcase/assets/dotdrift.png",
+    "artifactType": "screenshot",
+    "outcome": "A clear, outcome-focused experience for dotdrift.",
+    "buildSummary": "Built as a focused terminal experience around desktop utility and configuration ux."
+  },
+  {
+    "slug": "emily-portfolio",
+    "title": "Emily Lim Portfolio",
+    "category": "Websites",
+    "summary": "A warm, navigable portfolio for presenting a person and their work with confidence.",
+    "problem": "The site needed to balance personality with fast, obvious navigation.",
+    "capabilities": [
+      "Personal brand",
+      "Responsive layout",
+      "Content design"
+    ],
+    "artifact": "showcase/assets/emily-portfolio.png",
+    "artifactType": "screenshot",
+    "outcome": "A clear, outcome-focused experience for emily lim portfolio.",
+    "buildSummary": "Built as a focused interface experience around personal brand and responsive layout.",
+    "screenshots": [
+      "showcase/assets/emily-portfolio-02.png",
+      "showcase/assets/emily-portfolio-03.png"
+    ]
+  },
+  {
+    "slug": "fieldops-central",
+    "title": "FieldOps Central",
+    "category": "CRM",
+    "summary": "Operations software for turning service requests into clear, assignable work.",
+    "problem": "Field teams needed one place to see intake, ownership, progress, and follow-up.",
+    "capabilities": [
+      "CRM workflows",
+      "Operations dashboard",
+      "Status visibility"
+    ],
+    "artifact": "showcase/assets/fieldops.png",
+    "artifactType": "screenshot",
+    "outcome": "A clear, outcome-focused experience for fieldops central.",
+    "buildSummary": "Built as a focused interface experience around crm workflows and operations dashboard.",
+    "screenshots": [
+      "showcase/assets/fieldops-02.png"
+    ]
+  },
+  {
+    "slug": "fooocus-mcp",
+    "title": "Creative Model Bridge",
+    "category": "AI systems",
+    "summary": "A reliable bridge for turning creative model capabilities into repeatable tool actions.",
+    "problem": "Creative workflows needed a safer way to connect models with useful operations.",
+    "capabilities": [
+      "Tool integration",
+      "AI workflows",
+      "Request routing"
+    ],
+    "artifact": "showcase/assets/fooocus-mcp.png",
+    "artifactType": "screenshot",
+    "outcome": "A clear, outcome-focused experience for creative model bridge.",
+    "buildSummary": "Built as a focused architecture experience around tool integration and ai workflows."
+  },
+  {
+    "slug": "gig-tax",
+    "title": "GigTax",
+    "category": "Applications",
+    "summary": "A practical planning experience for independent workers navigating tax decisions.",
+    "problem": "Independent earners needed a clearer starting point than spreadsheets and guesswork.",
+    "capabilities": [
+      "Financial planning",
+      "Guided forms",
+      "Decision support"
+    ],
+    "artifact": "showcase/assets/gigtax.png",
+    "artifactType": "screenshot",
+    "outcome": "A clear, outcome-focused experience for gigtax.",
+    "buildSummary": "Built as a focused workflow experience around financial planning and guided forms.",
+    "screenshots": [
+      "showcase/assets/gig-tax-02.png",
+      "showcase/assets/gig-tax-03.png"
+    ]
+  },
+  {
+    "slug": "homeloop",
+    "title": "HomeLoop",
+    "category": "Applications",
+    "summary": "A home-maintenance workspace that turns scattered upkeep into a manageable loop.",
+    "problem": "Homeowners needed reminders, history, and next actions in one simple view.",
+    "capabilities": [
+      "Household operations",
+      "Task planning",
+      "Timeline UX"
+    ],
+    "artifact": "showcase/assets/homeloop.png",
+    "artifactType": "screenshot",
+    "outcome": "A clear, outcome-focused experience for homeloop.",
+    "buildSummary": "Built as a focused interface experience around household operations and task planning.",
+    "screenshots": [
+      "showcase/assets/homeloop-02.png"
+    ]
+  },
+  {
+    "slug": "hyprwall-dl",
+    "title": "Wallcraft Downloader",
+    "category": "Automation",
+    "summary": "A small utility for collecting and organizing high-quality desktop backgrounds.",
+    "problem": "The process needed to be quick, predictable, and easy to repeat.",
+    "capabilities": [
+      "Desktop tooling",
+      "Asset workflow",
+      "Batch actions"
+    ],
+    "artifact": "showcase/assets/hyprwall-dl.png",
+    "artifactType": "screenshot",
+    "outcome": "A clear, outcome-focused experience for wallcraft downloader.",
+    "buildSummary": "Built as a focused terminal experience around desktop tooling and asset workflow."
+  },
+  {
+    "slug": "icha-portfolio",
+    "title": "Icha Frida Portfolio",
+    "category": "Websites",
+    "summary": "A personality-led portfolio with a clear visual system for selected work.",
+    "problem": "The work needed an online home that felt as specific as the person behind it.",
+    "capabilities": [
+      "Portfolio UX",
+      "Visual identity",
+      "Responsive web"
+    ],
+    "artifact": "showcase/assets/icha-portfolio.png",
+    "artifactType": "screenshot",
+    "outcome": "A clear, outcome-focused experience for icha frida portfolio.",
+    "buildSummary": "Built as a focused interface experience around portfolio ux and visual identity.",
+    "screenshots": [
+      "showcase/assets/icha-portfolio-02.png",
+      "showcase/assets/icha-portfolio-03.png"
+    ]
+  },
+  {
+    "slug": "jonathan-portfolio",
+    "title": "Jonathan Lim Portfolio",
+    "category": "Websites",
+    "summary": "A personal showcase for connecting technical capability with finished outcomes.",
+    "problem": "The experience needed to explain breadth without becoming a list of tools.",
+    "capabilities": [
+      "Personal positioning",
+      "Case-study flow",
+      "Web design"
+    ],
+    "artifact": "showcase/assets/jonathan-portfolio.png",
+    "artifactType": "screenshot",
+    "outcome": "A clear, outcome-focused experience for jonathan lim portfolio.",
+    "buildSummary": "Built as a focused interface experience around personal positioning and case-study flow."
+  },
+  {
+    "slug": "jltech-solutions",
+    "title": "JL Tech Solutions",
+    "category": "Websites",
+    "summary": "A full-spectrum IT site that turns technical capability into a practical path to action.",
+    "problem": "Businesses needed a credible way to understand services, risk, and next steps.",
+    "capabilities": [
+      "Service design",
+      "Conversion UX",
+      "Trust signals"
+    ],
+    "artifact": "showcase/assets/jltech-solutions.png",
+    "artifactType": "screenshot",
+    "outcome": "A clear, outcome-focused experience for jl tech solutions.",
+    "buildSummary": "Built as a focused interface experience around service design and conversion ux.",
+    "screenshots": [
+      "showcase/assets/jltech-solutions-02.png",
+      "showcase/assets/jltech-solutions-03.png",
+      "showcase/assets/jltech-solutions-04.png"
+    ]
+  },
+  {
+    "slug": "john-portfolio",
+    "title": "John Portfolio",
+    "category": "Websites",
+    "summary": "A concise portfolio experience that makes selected work easy to discover.",
+    "problem": "The site needed a clean presentation layer for a varied body of work.",
+    "capabilities": [
+      "Portfolio design",
+      "Content hierarchy",
+      "Responsive web"
+    ],
+    "artifact": "showcase/assets/john-portfolio.png",
+    "artifactType": "screenshot",
+    "outcome": "A clear, outcome-focused experience for john portfolio.",
+    "buildSummary": "Built as a focused interface experience around portfolio design and content hierarchy.",
+    "screenshots": [
+      "showcase/assets/john-portfolio-02.png",
+      "showcase/assets/john-portfolio-03.png"
+    ]
+  },
+  {
+    "slug": "mcp-audit",
+    "title": "Tooling Audit Desk",
+    "category": "Security",
+    "summary": "A security-oriented workflow for inspecting tool integrations and their operational edges.",
+    "problem": "Teams needed a repeatable way to surface risk before tools reached production.",
+    "capabilities": [
+      "Security review",
+      "Workflow design",
+      "Risk visibility"
+    ],
+    "artifact": "showcase/assets/mcp-audit.png",
+    "artifactType": "screenshot",
+    "outcome": "A clear, outcome-focused experience for tooling audit desk.",
+    "buildSummary": "Built as a focused terminal experience around security review and workflow design."
+  },
+  {
+    "slug": "memview",
+    "title": "Memory View",
+    "category": "AI systems",
+    "summary": "A visual inspection layer for understanding what an AI workflow remembers and retrieves.",
+    "problem": "People needed a more legible way to reason about context and recall.",
+    "capabilities": [
+      "AI observability",
+      "Data inspection",
+      "Visual tooling"
+    ],
+    "artifact": "showcase/assets/memview.png",
+    "artifactType": "screenshot",
+    "outcome": "A clear, outcome-focused experience for memory view.",
+    "buildSummary": "Built as a focused architecture experience around ai observability and data inspection."
+  },
+  {
+    "slug": "nomu",
+    "title": "NoMu Studio",
+    "category": "Websites",
+    "summary": "A product-facing site with a strong point of view and a focused path to engagement.",
+    "problem": "The brand needed a digital space that felt deliberate from the first interaction.",
+    "capabilities": [
+      "Brand experience",
+      "Landing page",
+      "Motion-ready layout"
+    ],
+    "artifact": "showcase/assets/nomu.png",
+    "artifactType": "screenshot",
+    "outcome": "A clear, outcome-focused experience for nomu studio.",
+    "buildSummary": "Built as a focused interface experience around brand experience and landing page.",
+    "screenshots": [
+      "showcase/assets/nomu-02.png",
+      "showcase/assets/nomu-03.png"
+    ]
+  },
+  {
+    "slug": "nursey",
+    "title": "Nursey",
+    "category": "Applications",
+    "summary": "A gentle, practical experience for organizing care information and everyday routines.",
+    "problem": "Caregivers needed information to feel calm, visible, and manageable.",
+    "capabilities": [
+      "Care UX",
+      "Routine planning",
+      "Mobile-first design"
+    ],
+    "artifact": "showcase/assets/nursey.png",
+    "artifactType": "screenshot",
+    "outcome": "A clear, outcome-focused experience for nursey.",
+    "buildSummary": "Built as a focused workflow experience around care ux and routine planning.",
+    "screenshots": [
+      "showcase/assets/nursey-02.png"
+    ]
+  },
+  {
+    "slug": "opencode",
+    "title": "Agent Workbench",
+    "category": "Tools",
+    "summary": "A developer tool experience for making AI-assisted work more inspectable and useful.",
+    "problem": "Complex agent workflows needed clearer tools, states, and feedback.",
+    "capabilities": [
+      "Developer tooling",
+      "Agent workflows",
+      "Product systems"
+    ],
+    "artifact": "showcase/assets/opencode.png",
+    "artifactType": "screenshot",
+    "outcome": "A clear, outcome-focused experience for agent workbench.",
+    "buildSummary": "Built as a focused terminal experience around developer tooling and agent workflows."
+  },
+  {
+    "slug": "street-eats-food-truck",
+    "title": "Street Eats",
+    "category": "Websites",
+    "summary": "A vivid food-truck presence that makes the menu, mood, and next visit obvious.",
+    "problem": "A mobile audience needed fast answers without sacrificing personality.",
+    "capabilities": [
+      "Local business web",
+      "Menu UX",
+      "Mobile conversion"
+    ],
+    "artifact": "showcase/assets/street-eats.png",
+    "artifactType": "screenshot",
+    "outcome": "A clear, outcome-focused experience for street eats.",
+    "buildSummary": "Built as a focused interface experience around local business web and menu ux.",
+    "screenshots": [
+      "showcase/assets/street-eats-food-truck-02.png",
+      "showcase/assets/street-eats-food-truck-03.png"
+    ]
+  },
+  {
+    "slug": "pdfforge",
+    "title": "PDF Forge",
+    "category": "Tools",
+    "summary": "A utility workflow for turning document tasks into a predictable sequence of actions.",
+    "problem": "Document work needed fewer manual steps and clearer outcomes.",
+    "capabilities": [
+      "Document tooling",
+      "Batch workflow",
+      "Utility UX"
+    ],
+    "artifact": "showcase/assets/pdfforge.png",
+    "artifactType": "screenshot",
+    "outcome": "A clear, outcome-focused experience for pdf forge.",
+    "buildSummary": "Built as a focused terminal experience around document tooling and batch workflow.",
+    "screenshots": [
+      "showcase/assets/pdfforge-02.png",
+      "showcase/assets/pdfforge-03.png"
+    ]
+  },
+  {
+    "slug": "pitchkit",
+    "title": "PitchKit",
+    "category": "Applications",
+    "summary": "A presentation-planning workspace for shaping an idea into a persuasive story.",
+    "problem": "People needed help moving from raw material to a coherent pitch.",
+    "capabilities": [
+      "Story structure",
+      "Content workflow",
+      "Presentation UX"
+    ],
+    "artifact": "showcase/assets/pitchkit.png",
+    "artifactType": "screenshot",
+    "outcome": "A clear, outcome-focused experience for pitchkit.",
+    "buildSummary": "Built as a focused workflow experience around story structure and content workflow.",
+    "screenshots": [
+      "showcase/assets/pitchkit-02.png",
+      "showcase/assets/pitchkit-03.png",
+      "showcase/assets/pitchkit-04.png"
+    ]
+  },
+  {
+    "slug": "pmc-website",
+    "title": "PMC Web Presence",
+    "category": "Websites",
+    "summary": "A service-oriented web presence that gives a professional organization a clearer digital front door.",
+    "problem": "Visitors needed to understand the organization and find the right next action quickly.",
+    "capabilities": [
+      "Service website",
+      "Information architecture",
+      "Responsive web"
+    ],
+    "artifact": "showcase/assets/pmc-website.png",
+    "artifactType": "screenshot",
+    "outcome": "A clear, outcome-focused experience for pmc web presence.",
+    "buildSummary": "Built as a focused interface experience around service website and information architecture.",
+    "screenshots": [
+      "showcase/assets/pmc-website-02.png",
+      "showcase/assets/pmc-website-03.png"
+    ]
+  },
+  {
+    "slug": "polyglot",
+    "title": "Polyglot",
+    "category": "Tools",
+    "summary": "A language utility that makes working across words, meanings, and formats less tedious.",
+    "problem": "Language tasks needed a faster path from input to useful output.",
+    "capabilities": [
+      "Language tooling",
+      "Utility design",
+      "Fast feedback"
+    ],
+    "artifact": "showcase/assets/polyglot.png",
+    "artifactType": "screenshot",
+    "outcome": "A clear, outcome-focused experience for polyglot.",
+    "buildSummary": "Built as a focused interface experience around language tooling and utility design."
+  },
+  {
+    "slug": "probekeeper",
+    "title": "ProbeKeeper",
+    "category": "Automation",
+    "summary": "A practical monitoring utility for keeping track of recurring checks and their outcomes.",
+    "problem": "Operational checks needed history and visibility instead of disappearing into logs.",
+    "capabilities": [
+      "Monitoring workflow",
+      "Status history",
+      "Operational tooling"
+    ],
+    "artifact": "showcase/assets/probekeeper.png",
+    "artifactType": "screenshot",
+    "outcome": "A clear, outcome-focused experience for probekeeper.",
+    "buildSummary": "Built as a focused terminal experience around monitoring workflow and status history."
+  },
+  {
+    "slug": "recoverly",
+    "title": "Recoverly",
+    "category": "Applications",
+    "summary": "A recovery-oriented experience for guiding people through stressful technical problems.",
+    "problem": "Users needed clear next steps when data or devices felt at risk.",
+    "capabilities": [
+      "Guided support",
+      "Recovery workflow",
+      "Trust-centered UX"
+    ],
+    "artifact": "showcase/assets/recoverly.png",
+    "artifactType": "screenshot",
+    "outcome": "A clear, outcome-focused experience for recoverly.",
+    "buildSummary": "Built as a focused workflow experience around guided support and recovery workflow."
+  },
+  {
+    "slug": "regexscope",
+    "title": "RegexScope",
+    "category": "Tools",
+    "summary": "A visual utility for understanding, testing, and refining regular expressions.",
+    "problem": "Pattern work needed immediate feedback and less trial-and-error.",
+    "capabilities": [
+      "Developer utility",
+      "Visual parsing",
+      "Interactive feedback"
+    ],
+    "artifact": "showcase/assets/regexscope.png",
+    "artifactType": "screenshot",
+    "outcome": "A clear, outcome-focused experience for regexscope.",
+    "buildSummary": "Built as a focused interface experience around developer utility and visual parsing.",
+    "screenshots": [
+      "showcase/assets/regexscope-02.png",
+      "showcase/assets/regexscope-03.png"
+    ]
+  },
+  {
+    "slug": "runtime-mcp",
+    "title": "Runtime Tool Layer",
+    "category": "Backend",
+    "summary": "Infrastructure for giving agents reliable access to the tools they need.",
+    "problem": "Agent systems needed a dependable boundary between intent and execution.",
+    "capabilities": [
+      "Tool orchestration",
+      "Runtime design",
+      "AI infrastructure"
+    ],
+    "artifact": "showcase/assets/runtime-mcp.png",
+    "artifactType": "screenshot",
+    "outcome": "A clear, outcome-focused experience for runtime tool layer.",
+    "buildSummary": "Built as a focused architecture experience around tool orchestration and runtime design."
+  },
+  {
+    "slug": "sachi",
+    "title": "Sachi",
+    "category": "Tools",
+    "summary": "A small personal utility designed around a focused, repeatable daily workflow.",
+    "problem": "A recurring task deserved a dedicated interface instead of scattered reminders.",
+    "capabilities": [
+      "Personal tooling",
+      "Workflow design",
+      "Focused UX"
+    ],
+    "artifact": "showcase/assets/sachi.png",
+    "artifactType": "screenshot",
+    "outcome": "A clear, outcome-focused experience for sachi.",
+    "buildSummary": "Built as a focused interface experience around personal tooling and workflow design."
+  },
+  {
+    "slug": "skillpacks",
+    "title": "SkillPacks",
+    "category": "AI systems",
+    "summary": "A structured way to package reusable capabilities for AI-assisted work.",
+    "problem": "Reusable agent behavior needed organization, naming, and safe reuse.",
+    "capabilities": [
+      "Capability design",
+      "AI workflows",
+      "Knowledge systems"
+    ],
+    "artifact": "showcase/assets/skillpacks.png",
+    "artifactType": "screenshot",
+    "outcome": "A clear, outcome-focused experience for skillpacks.",
+    "buildSummary": "Built as a focused architecture experience around capability design and ai workflows."
+  },
+  {
+    "slug": "skpkg",
+    "title": "SK Package",
+    "category": "Tools",
+    "summary": "A packaging workflow for organizing and distributing reusable technical capabilities.",
+    "problem": "Reusable assets needed a consistent path from creation to use.",
+    "capabilities": [
+      "Packaging workflow",
+      "Developer tooling",
+      "Distribution"
+    ],
+    "artifact": "showcase/assets/skpkg.png",
+    "artifactType": "screenshot",
+    "outcome": "A clear, outcome-focused experience for sk package.",
+    "buildSummary": "Built as a focused terminal experience around packaging workflow and developer tooling."
+  },
+  {
+    "slug": "slabdesk",
+    "title": "SlabDesk",
+    "category": "Applications",
+    "summary": "A calm desk for coordinating work, notes, and operational follow-through.",
+    "problem": "People needed a practical control surface without the noise of a giant suite.",
+    "capabilities": [
+      "Workspace design",
+      "Task coordination",
+      "Dashboard UX"
+    ],
+    "artifact": "showcase/assets/slabdesk.png",
+    "artifactType": "screenshot",
+    "outcome": "A clear, outcome-focused experience for slabdesk.",
+    "buildSummary": "Built as a focused interface experience around workspace design and task coordination.",
+    "screenshots": [
+      "showcase/assets/slabdesk-02.png"
+    ]
+  },
+  {
+    "slug": "staffy",
+    "title": "Staffy",
+    "category": "Applications",
+    "summary": "A staffing workflow that makes people, roles, and coverage easier to coordinate.",
+    "problem": "Scheduling and staffing decisions needed shared visibility.",
+    "capabilities": [
+      "Staffing operations",
+      "Planning UX",
+      "Status workflows"
+    ],
+    "artifact": "showcase/assets/staffy.png",
+    "artifactType": "screenshot",
+    "outcome": "A clear, outcome-focused experience for staffy.",
+    "buildSummary": "Built as a focused workflow experience around staffing operations and planning ux."
+  },
+  {
+    "slug": "static-fpv",
+    "title": "Static FPV",
+    "category": "Media",
+    "summary": "A visual media experiment built around motion, perspective, and a strong point of view.",
+    "problem": "The concept needed a memorable way to communicate an atmosphere, not just information.",
+    "capabilities": [
+      "Media production",
+      "Visual direction",
+      "Interactive showcase"
+    ],
+    "artifact": "showcase/assets/static-fpv.png",
+    "artifactType": "screenshot",
+    "outcome": "A clear, outcome-focused experience for static fpv.",
+    "buildSummary": "Built as a focused media experience around media production and visual direction."
+  },
+  {
+    "slug": "sunrisesite",
+    "title": "Sunrise Site",
+    "category": "Websites",
+    "summary": "A bright, approachable web presence designed to make a service feel easy to start.",
+    "problem": "The experience needed to move visitors from interest to confidence quickly.",
+    "capabilities": [
+      "Brand web",
+      "Conversion design",
+      "Responsive layout"
+    ],
+    "artifact": "showcase/assets/sunrise-site.png",
+    "artifactType": "screenshot",
+    "outcome": "A clear, outcome-focused experience for sunrise site.",
+    "buildSummary": "Built as a focused interface experience around brand web and conversion design.",
+    "screenshots": [
+      "showcase/assets/sunrisesite-02.png",
+      "showcase/assets/sunrisesite-03.png"
+    ]
+  },
+  {
+    "slug": "superasianwok",
+    "title": "Super Asian Wok",
+    "category": "Websites",
+    "summary": "A food-business site that puts appetite, menu clarity, and location information first.",
+    "problem": "Visitors needed to decide what to order and where to go with minimal friction.",
+    "capabilities": [
+      "Restaurant web",
+      "Menu presentation",
+      "Local discovery"
+    ],
+    "artifact": "showcase/assets/superasianwok.png",
+    "artifactType": "screenshot",
+    "outcome": "A clear, outcome-focused experience for super asian wok.",
+    "buildSummary": "Built as a focused interface experience around restaurant web and menu presentation.",
+    "screenshots": [
+      "showcase/assets/superasianwok-02.png",
+      "showcase/assets/superasianwok-03.png"
+    ]
+  },
+  {
+    "slug": "tilmar-ops",
+    "title": "TilMar Operations",
+    "category": "Applications",
+    "summary": "An operations surface for turning business activity into visible, manageable work.",
+    "problem": "The team needed a shared view of movement, ownership, and follow-up.",
+    "capabilities": [
+      "Operations systems",
+      "Business workflow",
+      "Dashboard UX"
+    ],
+    "artifact": "showcase/assets/tilmar-ops.png",
+    "artifactType": "screenshot",
+    "outcome": "A clear, outcome-focused experience for tilmar operations.",
+    "buildSummary": "Built as a focused workflow experience around operations systems and business workflow."
+  },
+  {
+    "slug": "tinyflags",
+    "title": "Tiny Flags",
+    "category": "Automation",
+    "summary": "A tiny utility for making small but important configuration states visible.",
+    "problem": "Small configuration differences needed to be obvious before they caused larger issues.",
+    "capabilities": [
+      "Configuration tooling",
+      "Status indicators",
+      "Developer UX"
+    ],
+    "artifact": "showcase/assets/tinyflags.png",
+    "artifactType": "screenshot",
+    "outcome": "A clear, outcome-focused experience for tiny flags.",
+    "buildSummary": "Built as a focused terminal experience around configuration tooling and status indicators."
+  },
+  {
+    "slug": "toolbelt",
+    "title": "Toolbelt",
+    "category": "Tools",
+    "summary": "A practical collection of focused utilities for getting technical work over the line.",
+    "problem": "Frequently repeated tasks needed a single, understandable home.",
+    "capabilities": [
+      "Utility collection",
+      "Workflow acceleration",
+      "Developer UX"
+    ],
+    "artifact": "showcase/assets/toolbelt.png",
+    "artifactType": "screenshot",
+    "outcome": "A clear, outcome-focused experience for toolbelt.",
+    "buildSummary": "Built as a focused terminal experience around utility collection and workflow acceleration.",
+    "screenshots": [
+      "showcase/assets/toolbelt-02.png"
+    ]
+  },
+  {
+    "slug": "wiklite",
+    "title": "WikLite",
+    "category": "Applications",
+    "summary": "A lightweight knowledge space for capturing useful information without ceremony.",
+    "problem": "Teams needed searchable context that stayed quick to maintain.",
+    "capabilities": [
+      "Knowledge UX",
+      "Searchable notes",
+      "Content structure"
+    ],
+    "artifact": "showcase/assets/wiklite.png",
+    "artifactType": "screenshot",
+    "outcome": "A clear, outcome-focused experience for wiklite.",
+    "buildSummary": "Built as a focused interface experience around knowledge ux and searchable notes.",
+    "screenshots": [
+      "showcase/assets/wiklite-02.png",
+      "showcase/assets/wiklite-03.png",
+      "showcase/assets/wiklite-04.png",
+      "showcase/assets/wiklite-05.png"
+    ]
+  }
+]

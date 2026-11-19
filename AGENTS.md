@@ -21,6 +21,39 @@ npm start              # or: node server.js  -> http://localhost:8005
 PORT=3000 node server.js
 ```
 
+### Project showcase
+
+`showcase.html` is a static, public-safe portfolio surface. Its catalog contains
+outcome-focused case studies only: no repository URLs, source paths, credentials,
+private endpoints, or source tree copies. Every entry points to a local project UI
+screenshot or safe workflow capture under `showcase/assets/`. AlphaFleet is the sole
+documented exception: its local project source is unavailable, so it retains the
+previously shipped poster until a verifiable project UI can be obtained.
+
+```bash
+node tools/build-showcase-catalog.js
+node tools/build-showcase-fallback.js
+node tools/validate-showcase-catalog.js
+```
+
+Capture files use stable catalog slugs where practical and may be PNG or JPEG. Do not
+publish client documents, credential screens, repository views, or private endpoints.
+
+Capture workflow: use a real Chromium session at 1440x900 against a public route, a
+documented demo route, or a synthetic-safe local state; save only the resulting UI
+captures under `showcase/assets/`; add the mapping and optional screenshots in
+`tools/build-showcase-catalog.js`; then rerun the catalog, fallback, and validation
+commands above. The gallery is hash-addressable and clickable: thumbnails change the
+active screenshot, Previous/Next stays within the selected category, and Escape closes
+the case study and restores focus to its trigger. Verify those interactions and image
+loads at 390px, 768px, and 1440px with zero console/page errors and no horizontal
+overflow. AlphaFleet remains the sole exception: it has no available local project UI,
+so its existing poster is retained; never substitute an unverified or private capture.
+
+Keep filters and case-study hashes readable with JavaScript enabled, preserve the
+`noscript` fallback, and verify at 390px, 768px, and 1440px. New artifacts must be
+safe presentation assets rather than copied project source.
+
 There is no test suite, linter, or bundler. Verify changes by loading the page in a
 browser (see "Verification" below).
 
