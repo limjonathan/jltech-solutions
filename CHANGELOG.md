@@ -2,6 +2,13 @@
 
 All notable changes to the JL Tech Solutions site are documented here.
 
+## 2026-11-19 - Audit public search and AI visibility
+
+- Added `SEARCH-AI-VISIBILITY-REPORT.md` with live Google, Google AI Mode, Bing,
+  public index-query, sitemap, and official-site citation observations.
+- Recorded personalization and owner-session limitations; no production files were
+  changed.
+
 ## 2026-11-19 - Add AI-search answer sections
 
 - Added a crawlable homepage answer section clarifying audience, services, coverage,
