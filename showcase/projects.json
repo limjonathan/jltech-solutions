@@ -333,7 +333,12 @@
     "artifact": "showcase/assets/jltech-solutions.png",
     "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for jl tech solutions.",
-    "buildSummary": "Built as a focused interface experience around service design and conversion ux."
+    "buildSummary": "Built as a focused interface experience around service design and conversion ux.",
+    "screenshots": [
+      "showcase/assets/jltech-solutions-02.png",
+      "showcase/assets/jltech-solutions-03.png",
+      "showcase/assets/jltech-solutions-04.png"
+    ]
   },
   {
     "slug": "john-portfolio",

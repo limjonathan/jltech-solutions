@@ -2,6 +2,13 @@
 
 All notable changes to the JL Tech Solutions site are documented here.
 
+## 2026-11-18 - Add verified JL Tech showcase gallery captures
+
+- Added three real Chromium captures for the JL Tech Solutions case study: the homepage
+  hero, the services section, and the opened Managed IT Services detail modal.
+- Registered the captures through `tools/build-showcase-catalog.js`; no private pages,
+  forms, credentials, source views, or unverified artwork were captured.
+
 ## 2026-11-17 - Extend showcase catalog media contract
 
 - Added optional additional screenshot and public demo URL fields to catalog generation.

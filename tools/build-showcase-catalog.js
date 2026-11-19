@@ -52,7 +52,13 @@ const captureArtifacts = {
     'toolbelt': 'showcase/assets/toolbelt.png',
     'wiklite': 'showcase/assets/wiklite.png'
 };
-const additionalScreenshots = {};
+const additionalScreenshots = {
+    'jltech-solutions': [
+        'showcase/assets/jltech-solutions-02.png',
+        'showcase/assets/jltech-solutions-03.png',
+        'showcase/assets/jltech-solutions-04.png'
+    ]
+};
 const demoUrls = {};
 
 const projects = [
