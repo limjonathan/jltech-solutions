@@ -46,6 +46,14 @@ All notable changes to the JL Tech Solutions site are documented here.
   update is publicly listed.
 - Recorded the remaining Search Console processing state in the visibility report.
 
+## 2026-11-19 - Prepare local citation submissions
+
+- Added `LOCAL-CITATIONS.md` with consistent service-area business data, official
+  submission paths, and the current duplicate-check/submission status.
+- Started the Yelp add-business flow; the official flow accepted the business name,
+  phone, website, categories, Philadelphia service location, and hidden-address
+  setting before an interactive security check blocked signup.
+
 ## 2026-11-19 - Add AI-search answer sections
 
 - Added a crawlable homepage answer section clarifying audience, services, coverage,
