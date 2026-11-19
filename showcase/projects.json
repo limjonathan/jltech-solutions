@@ -1,19 +1,19 @@
 [
   {
     "slug": "aleph-bet-express",
-    "title": "Aleph Bet Express",
-    "category": "Applications",
-    "summary": "A focused learning experience that turns Hebrew practice into a repeatable daily habit.",
-    "problem": "Learners needed a clear, low-friction way to move from short exercises to steady progress.",
+    "title": "Aleph-Bet Express LLC",
+    "category": "Websites",
+    "summary": "A nationwide vehicle-transport website for moving cars with clear service and quote paths.",
+    "problem": "Vehicle owners and dealer fleets needed a credible way to understand transport options and request service.",
     "capabilities": [
-      "Learning UX",
-      "Responsive interface",
-      "Progress flow"
+      "Auto transport",
+      "Dealer and fleet logistics",
+      "Quote workflow"
     ],
     "artifact": "showcase/assets/aleph-bet-express.png",
     "artifactType": "screenshot",
-    "outcome": "A clear, outcome-focused experience for aleph bet express.",
-    "buildSummary": "Built as a focused interface experience around learning ux and responsive interface.",
+    "outcome": "A clearer public path for nationwide vehicle transport, dealer fleet logistics, and quote requests.",
+    "buildSummary": "Built as a zero-build static marketing site with responsive service sections, animated route visuals, and a client-side quote flow.",
     "screenshots": [
       "showcase/assets/aleph-bet-express-02.png",
       "showcase/assets/aleph-bet-express-03.png"
@@ -37,19 +37,19 @@
   },
   {
     "slug": "answer-esg",
-    "title": "ESG Answer Desk",
-    "category": "AI systems",
-    "summary": "A research workspace that helps teams find and explain ESG answers faster.",
-    "problem": "Analysts needed structured answers without losing the context behind the evidence.",
+    "title": "AnswerESG",
+    "category": "Applications",
+    "summary": "A VSME-native ESG and carbon-reporting workspace for answering customer, bank, and tender questionnaires.",
+    "problem": "Small businesses needed to measure activity once and reuse defensible ESG evidence across requests.",
     "capabilities": [
-      "Document workflows",
-      "AI-assisted research",
-      "Review interface"
+      "Carbon accounting",
+      "ESG questionnaire workflows",
+      "Evidence-backed reporting"
     ],
     "artifact": "showcase/assets/answer-esg.png",
     "artifactType": "screenshot",
-    "outcome": "A clear, outcome-focused experience for esg answer desk.",
-    "buildSummary": "Built as a focused workflow experience around document workflows and ai-assisted research.",
+    "outcome": "A structured ESG workspace for reusable activity data, questionnaire answers, and reporting context.",
+    "buildSummary": "Built around VSME datapoints, emissions calculations, evidence provenance, and questionnaire-ready reporting.",
     "screenshots": [
       "showcase/assets/answer-esg-02.png"
     ]
@@ -58,17 +58,17 @@
     "slug": "paulus-portfolio",
     "title": "Paulus Portfolio",
     "category": "Frontend",
-    "summary": "A personal portfolio that makes a creative body of work easy to browse and remember.",
-    "problem": "The work needed a stronger narrative than a collection of disconnected links.",
+    "summary": "A premium tactical cyber and clinical-informatics personal website.",
+    "problem": "A multidisciplinary professional profile needed a focused presentation for technical, security, and clinical-informatics work.",
     "capabilities": [
-      "Portfolio design",
-      "Visual hierarchy",
-      "Editorial layout"
+      "Professional positioning",
+      "Cyber and clinical informatics",
+      "Responsive portfolio web"
     ],
     "artifact": "showcase/assets/paulusalim-portfolio.png",
     "artifactType": "screenshot",
-    "outcome": "A clear, outcome-focused experience for paulus portfolio.",
-    "buildSummary": "Built as a focused interface experience around portfolio design and visual hierarchy."
+    "outcome": "A distinctive professional presentation for cyber and clinical-informatics work.",
+    "buildSummary": "Built as a responsive personal website combining tactical cyber direction with clinical-informatics positioning."
   },
   {
     "slug": "bishi-bashi",
@@ -88,19 +88,19 @@
   },
   {
     "slug": "boardly",
-    "title": "Boardly Workspace",
+    "title": "Boardly",
     "category": "Applications",
-    "summary": "A focused workspace for organizing decisions, projects, and the work around them.",
-    "problem": "Teams needed one calm place to turn scattered notes into visible next steps.",
+    "summary": "A restaurant menu-board platform for designing menus, scheduling dayparts, and pairing TV screens as players.",
+    "problem": "Restaurants needed one system to manage menu content, screen playback, scheduling, and per-screen billing.",
     "capabilities": [
-      "Workspace UX",
-      "Information architecture",
-      "Product flows"
+      "Menu designer",
+      "TV player pairing",
+      "Daypart scheduling"
     ],
     "artifact": "showcase/assets/boardly.png",
     "artifactType": "screenshot",
-    "outcome": "A clear, outcome-focused experience for boardly workspace.",
-    "buildSummary": "Built as a focused interface experience around workspace ux and information architecture.",
+    "outcome": "A focused restaurant operations surface for keeping menu content and screens coordinated.",
+    "buildSummary": "Built around menu design, player pairing, daypart scheduling, and per-screen billing workflows.",
     "screenshots": [
       "showcase/assets/boardly-02.png"
     ]
@@ -109,17 +109,17 @@
     "slug": "carecircle",
     "title": "CareCircle",
     "category": "Applications",
-    "summary": "A support-oriented experience for coordinating care, people, and important follow-ups.",
-    "problem": "Care work needed clearer shared context and fewer handoff gaps.",
+    "summary": "An elder-care coordination platform for medication reminders, family visibility, and caregiver support.",
+    "problem": "Families needed shared medication status, photo confirmation, escalation, and caregiver coordination in one place.",
     "capabilities": [
-      "Care coordination",
-      "Accessible UI",
-      "Shared status"
+      "Medication workflows",
+      "Family dashboards",
+      "Caregiver coordination"
     ],
     "artifact": "showcase/assets/carecircle.svg",
     "artifactType": "poster",
-    "outcome": "A clear, outcome-focused experience for carecircle.",
-    "buildSummary": "Built as a focused workflow experience around care coordination and accessible ui."
+    "outcome": "A shared care view for medication status, family visibility, escalation, and caregiver coordination.",
+    "buildSummary": "Built around medication reminders, photo confirmation, family dashboards, and caregiver support workflows."
   },
   {
     "slug": "complybase",
@@ -145,19 +145,19 @@
   },
   {
     "slug": "courseware-as-code",
-    "title": "Courseware Studio",
-    "category": "Applications",
-    "summary": "A structured way to turn technical knowledge into reusable learning material.",
-    "problem": "Course authors needed repeatable content patterns instead of manual page assembly.",
+    "title": "Courseware as Code",
+    "category": "Tools",
+    "summary": "A Markdown-to-static-course tool with inline quizzes, FSRS spaced repetition, and local-only learner progress.",
+    "problem": "Educators and internal trainers needed teaching interactivity without an LMS, accounts, or telemetry.",
     "capabilities": [
-      "Content systems",
-      "Learning design",
-      "Reusable workflows"
+      "Markdown authoring",
+      "Instant-feedback quizzes",
+      "Spaced repetition"
     ],
     "artifact": "showcase/assets/courseware-as-code.png",
     "artifactType": "screenshot",
-    "outcome": "A clear, outcome-focused experience for courseware studio.",
-    "buildSummary": "Built as a focused architecture experience around content systems and learning design.",
+    "outcome": "A self-hostable course format that adds teaching and review workflows to ordinary Markdown.",
+    "buildSummary": "Built as a static course generator with client-side quizzes, FSRS review scheduling, and browser-local progress.",
     "screenshots": [
       "showcase/assets/courseware-as-code-02.png",
       "showcase/assets/courseware-as-code-03.png"
@@ -243,17 +243,17 @@
     "slug": "fieldops-central",
     "title": "FieldOps Central",
     "category": "CRM",
-    "summary": "Operations software for turning service requests into clear, assignable work.",
-    "problem": "Field teams needed one place to see intake, ownership, progress, and follow-up.",
+    "summary": "A healthcare IT field-operations workspace for technician activities, site work, inventory, and manager reporting.",
+    "problem": "Healthcare field teams needed linked activity, site, inventory, and reporting workflows.",
     "capabilities": [
-      "CRM workflows",
-      "Operations dashboard",
-      "Status visibility"
+      "Technician workflows",
+      "Site and inventory records",
+      "Manager reporting"
     ],
     "artifact": "showcase/assets/fieldops.png",
     "artifactType": "screenshot",
-    "outcome": "A clear, outcome-focused experience for fieldops central.",
-    "buildSummary": "Built as a focused interface experience around crm workflows and operations dashboard.",
+    "outcome": "A linked field-operations workspace for technician activity, site context, inventory, and manager review.",
+    "buildSummary": "Built as a healthcare IT PWA with technician and manager workspaces, fictional demo data, and offline activity support.",
     "screenshots": [
       "showcase/assets/fieldops-02.png"
     ]
@@ -298,17 +298,17 @@
     "slug": "homeloop",
     "title": "HomeLoop",
     "category": "Applications",
-    "summary": "A home-maintenance workspace that turns scattered upkeep into a manageable loop.",
-    "problem": "Homeowners needed reminders, history, and next actions in one simple view.",
+    "summary": "A recurring cleaning and lawn-care subscription marketplace for one metro area.",
+    "problem": "Home-service customers needed simple recurring plans while small providers needed scheduled, paid work.",
     "capabilities": [
-      "Household operations",
-      "Task planning",
-      "Timeline UX"
+      "Service subscriptions",
+      "Provider dispatch",
+      "Stripe billing workflows"
     ],
     "artifact": "showcase/assets/homeloop.png",
     "artifactType": "screenshot",
-    "outcome": "A clear, outcome-focused experience for homeloop.",
-    "buildSummary": "Built as a focused interface experience around household operations and task planning.",
+    "outcome": "A focused marketplace model connecting recurring home-service subscriptions with provider dispatch.",
+    "buildSummary": "Built around service zones, subscriptions, recurring visits, provider lifecycle, payments, and payouts.",
     "screenshots": [
       "showcase/assets/homeloop-02.png"
     ]
@@ -333,17 +333,17 @@
     "slug": "icha-portfolio",
     "title": "Icha Frida Portfolio",
     "category": "Websites",
-    "summary": "A personality-led portfolio with a clear visual system for selected work.",
-    "problem": "The work needed an online home that felt as specific as the person behind it.",
+    "summary": "A clinical portfolio presenting Icha Frida’s nursing education, patient-care experience, and professional values.",
+    "problem": "An aspiring nurse needed a credible way to present clinical rotations, skills, education, and care philosophy.",
     "capabilities": [
-      "Portfolio UX",
-      "Visual identity",
-      "Responsive web"
+      "Clinical portfolio UX",
+      "Skills and timeline presentation",
+      "Accessible responsive web"
     ],
     "artifact": "showcase/assets/icha-portfolio.png",
     "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for icha frida portfolio.",
-    "buildSummary": "Built as a focused interface experience around portfolio ux and visual identity.",
+    "buildSummary": "Built as a focused interface experience around clinical portfolio ux and skills and timeline presentation.",
     "screenshots": [
       "showcase/assets/icha-portfolio-02.png",
       "showcase/assets/icha-portfolio-03.png"
@@ -362,14 +362,14 @@
     ],
     "artifact": "showcase/assets/jonathan-portfolio.png",
     "artifactType": "screenshot",
-    "outcome": "A clear, outcome-focused experience for jonathan lim portfolio.",
-    "buildSummary": "Built as a focused interface experience around personal positioning and case-study flow."
+    "outcome": "A professional portfolio that connects IT operations capability with finished work and service context.",
+    "buildSummary": "Built around a NOC terminal presentation, service portal, technical work, and a professional timeline."
   },
   {
     "slug": "jltech-solutions",
     "title": "JL Tech Solutions",
     "category": "Websites",
-    "summary": "A full-spectrum IT site that turns technical capability into a practical path to action.",
+    "summary": "A full-spectrum IT and SecOps site that turns technical capability into a practical path to action.",
     "problem": "Businesses needed a credible way to understand services, risk, and next steps.",
     "capabilities": [
       "Service design",
@@ -378,8 +378,8 @@
     ],
     "artifact": "showcase/assets/jltech-solutions.png",
     "artifactType": "screenshot",
-    "outcome": "A clear, outcome-focused experience for jl tech solutions.",
-    "buildSummary": "Built as a focused interface experience around service design and conversion ux.",
+    "outcome": "A public-facing IT and SecOps site that gives businesses a clear route from risk to engagement.",
+    "buildSummary": "Built as a static corporate site with service pages, NOC-style dashboard storytelling, inquiry flows, and a ticket portal.",
     "screenshots": [
       "showcase/assets/jltech-solutions-02.png",
       "showcase/assets/jltech-solutions-03.png",
@@ -462,17 +462,17 @@
     "slug": "nursey",
     "title": "Nursey",
     "category": "Applications",
-    "summary": "A gentle, practical experience for organizing care information and everyday routines.",
-    "problem": "Caregivers needed information to feel calm, visible, and manageable.",
+    "summary": "A private-duty home-care agency platform for clients, caregivers, scheduling, EVV, billing, and payroll.",
+    "problem": "Home-care agencies needed one tenant-safe workflow from care visits through verified billing.",
     "capabilities": [
-      "Care UX",
-      "Routine planning",
-      "Mobile-first design"
+      "Caregiver scheduling",
+      "EVV-ready point of care",
+      "Billing and payroll"
     ],
     "artifact": "showcase/assets/nursey.png",
     "artifactType": "screenshot",
-    "outcome": "A clear, outcome-focused experience for nursey.",
-    "buildSummary": "Built as a focused workflow experience around care ux and routine planning.",
+    "outcome": "A care-agency workflow covering client and caregiver operations through EVV-ready billing inputs.",
+    "buildSummary": "Built as a HIPAA-conscious multi-tenant home-care platform with scheduling, point-of-care notes, immutable EVV records, and billing.",
     "screenshots": [
       "showcase/assets/nursey-02.png"
     ]
@@ -517,17 +517,17 @@
     "slug": "pdfforge",
     "title": "PDF Forge",
     "category": "Tools",
-    "summary": "A utility workflow for turning document tasks into a predictable sequence of actions.",
-    "problem": "Document work needed fewer manual steps and clearer outcomes.",
+    "summary": "A privacy-first browser PDF toolbox for merging, splitting, compressing, converting, and OCR.",
+    "problem": "People needed common PDF operations without uploading documents to a server.",
     "capabilities": [
-      "Document tooling",
-      "Batch workflow",
-      "Utility UX"
+      "Client-side PDF tools",
+      "WebAssembly processing",
+      "Privacy-first workflows"
     ],
     "artifact": "showcase/assets/pdfforge.png",
     "artifactType": "screenshot",
-    "outcome": "A clear, outcome-focused experience for pdf forge.",
-    "buildSummary": "Built as a focused terminal experience around document tooling and batch workflow.",
+    "outcome": "A browser-based PDF toolbox that keeps document processing local and predictable.",
+    "buildSummary": "Built as a static Astro/React workspace with modular WebAssembly tools, worker isolation, and zero-upload processing.",
     "screenshots": [
       "showcase/assets/pdfforge-02.png",
       "showcase/assets/pdfforge-03.png"
@@ -537,17 +537,17 @@
     "slug": "pitchkit",
     "title": "PitchKit",
     "category": "Applications",
-    "summary": "A presentation-planning workspace for shaping an idea into a persuasive story.",
-    "problem": "People needed help moving from raw material to a coherent pitch.",
+    "summary": "An AI proposal workspace for digital agencies that turns briefs into signable, payable proposals.",
+    "problem": "Agencies needed a faster way to turn client briefs into proposals while tracking engagement and pipeline outcomes.",
     "capabilities": [
-      "Story structure",
-      "Content workflow",
-      "Presentation UX"
+      "AI proposal generation",
+      "Public proposal signing",
+      "Pipeline analytics"
     ],
     "artifact": "showcase/assets/pitchkit.png",
     "artifactType": "screenshot",
-    "outcome": "A clear, outcome-focused experience for pitchkit.",
-    "buildSummary": "Built as a focused workflow experience around story structure and content workflow.",
+    "outcome": "A proposal workflow that helps agencies move from client brief to signed and payable outcome.",
+    "buildSummary": "Built around AI proposal generation, public proposal pages, signing, payments, engagement tracking, and pipeline analytics.",
     "screenshots": [
       "showcase/assets/pitchkit-02.png",
       "showcase/assets/pitchkit-03.png",
@@ -610,17 +610,17 @@
     "slug": "recoverly",
     "title": "Recoverly",
     "category": "Applications",
-    "summary": "A recovery-oriented experience for guiding people through stressful technical problems.",
-    "problem": "Users needed clear next steps when data or devices felt at risk.",
+    "summary": "A Stripe payment-recovery tool for small SaaS businesses.",
+    "problem": "Failed recurring payments needed automated, measurable recovery.",
     "capabilities": [
-      "Guided support",
-      "Recovery workflow",
-      "Trust-centered UX"
+      "Stripe Connect",
+      "Dunning sequences",
+      "Recovery attribution"
     ],
     "artifact": "showcase/assets/recoverly.png",
     "artifactType": "screenshot",
-    "outcome": "A clear, outcome-focused experience for recoverly.",
-    "buildSummary": "Built as a focused workflow experience around guided support and recovery workflow."
+    "outcome": "Automated recovery sequences and attribution for failed recurring SaaS payments.",
+    "buildSummary": "Built around Stripe Connect, payment-failure webhooks, branded day 0/3/7 email sequences, and recovery reporting."
   },
   {
     "slug": "regexscope",
@@ -710,17 +710,17 @@
     "slug": "slabdesk",
     "title": "SlabDesk",
     "category": "Applications",
-    "summary": "A calm desk for coordinating work, notes, and operational follow-through.",
-    "problem": "People needed a practical control surface without the noise of a giant suite.",
+    "summary": "A multi-tenant CRM for stone fabricators, covering jobs, estimates, invoices, inventory, and field photos.",
+    "problem": "Fabrication shops needed one job-centered operating system without relearning their incumbent workflow.",
     "capabilities": [
-      "Workspace design",
-      "Task coordination",
-      "Dashboard UX"
+      "Stone-fabricator CRM",
+      "Estimate and invoice workflows",
+      "Inventory and field operations"
     ],
     "artifact": "showcase/assets/slabdesk.png",
     "artifactType": "screenshot",
-    "outcome": "A clear, outcome-focused experience for slabdesk.",
-    "buildSummary": "Built as a focused interface experience around workspace design and task coordination.",
+    "outcome": "A job-centered operating surface for stone shops across pipeline, money, inventory, and field work.",
+    "buildSummary": "Built as a multi-tenant CRM where customers are jobs and estimates, invoices, inventory, and photos share one record.",
     "screenshots": [
       "showcase/assets/slabdesk-02.png"
     ]
@@ -729,17 +729,17 @@
     "slug": "staffy",
     "title": "Staffy",
     "category": "Applications",
-    "summary": "A staffing workflow that makes people, roles, and coverage easier to coordinate.",
-    "problem": "Scheduling and staffing decisions needed shared visibility.",
+    "summary": "A flat-priced recruiting CRM for small staffing agencies with AI-assisted parsing, matching, and outreach.",
+    "problem": "Small recruiting teams needed shared candidate workflows without per-seat pricing or data lock-in.",
     "capabilities": [
-      "Staffing operations",
-      "Planning UX",
-      "Status workflows"
+      "Recruiting CRM",
+      "AI candidate workflows",
+      "Flat team pricing"
     ],
     "artifact": "showcase/assets/staffy.png",
     "artifactType": "screenshot",
-    "outcome": "A clear, outcome-focused experience for staffy.",
-    "buildSummary": "Built as a focused workflow experience around staffing operations and planning ux."
+    "outcome": "A recruiting CRM positioned around flat team pricing, AI-native workflows, and exportable data.",
+    "buildSummary": "Built for small staffing agencies with candidate parsing, matching, outreach, organizations, and tiered team billing."
   },
   {
     "slug": "static-fpv",
@@ -759,19 +759,19 @@
   },
   {
     "slug": "sunrisesite",
-    "title": "Sunrise Site",
+    "title": "Sunrise Breakfast, Lunch & Thai",
     "category": "Websites",
-    "summary": "A bright, approachable web presence designed to make a service feel easy to start.",
-    "problem": "The experience needed to move visitors from interest to confidence quickly.",
+    "summary": "A restaurant website that makes Sunrise’s breakfast, lunch, Thai menu, location, and ordering options easy to explore.",
+    "problem": "Restaurant visitors needed fast access to the menu, location, and ordering options.",
     "capabilities": [
-      "Brand web",
-      "Conversion design",
-      "Responsive layout"
+      "Dynamic menu",
+      "Restaurant ordering UX",
+      "Local discovery"
     ],
     "artifact": "showcase/assets/sunrise-site.png",
     "artifactType": "screenshot",
-    "outcome": "A clear, outcome-focused experience for sunrise site.",
-    "buildSummary": "Built as a focused interface experience around brand web and conversion design.",
+    "outcome": "A restaurant front door that makes menu, location, and ordering decisions easy.",
+    "buildSummary": "Built as a responsive restaurant site with dynamic menu presentation, local discovery, and ordering paths.",
     "screenshots": [
       "showcase/assets/sunrisesite-02.png",
       "showcase/assets/sunrisesite-03.png"
@@ -799,19 +799,19 @@
   },
   {
     "slug": "tilmar-ops",
-    "title": "TilMar Operations",
-    "category": "Applications",
-    "summary": "An operations surface for turning business activity into visible, manageable work.",
-    "problem": "The team needed a shared view of movement, ownership, and follow-up.",
+    "title": "Til Mar Design Website Concepts",
+    "category": "Websites",
+    "summary": "A design workspace for the Til Mar Design website, covering brand direction, audits, and responsive mockups.",
+    "problem": "The business needed a considered web direction and practical responsive concepts before implementation.",
     "capabilities": [
-      "Operations systems",
-      "Business workflow",
-      "Dashboard UX"
+      "Brand direction",
+      "Website audits",
+      "Responsive mockups"
     ],
     "artifact": "showcase/assets/tilmar-ops.png",
     "artifactType": "screenshot",
-    "outcome": "A clear, outcome-focused experience for tilmar operations.",
-    "buildSummary": "Built as a focused workflow experience around operations systems and business workflow."
+    "outcome": "A clearer design direction for the Til Mar Design website across brand and responsive layouts.",
+    "buildSummary": "Built as a design workspace for brand direction, audits, and responsive website concepts."
   },
   {
     "slug": "tinyflags",
@@ -832,18 +832,18 @@
   {
     "slug": "toolbelt",
     "title": "Toolbelt",
-    "category": "Tools",
-    "summary": "A practical collection of focused utilities for getting technical work over the line.",
-    "problem": "Frequently repeated tasks needed a single, understandable home.",
+    "category": "Applications",
+    "summary": "An offline-first field-service management PWA for small plumbing, electrical, and HVAC crews.",
+    "problem": "Field crews needed to complete jobs, capture notes and photos, and sync invoices even without connectivity.",
     "capabilities": [
-      "Utility collection",
-      "Workflow acceleration",
-      "Developer UX"
+      "Offline job completion",
+      "Dispatch and invoicing",
+      "Mobile field workflows"
     ],
     "artifact": "showcase/assets/toolbelt.png",
     "artifactType": "screenshot",
-    "outcome": "A clear, outcome-focused experience for toolbelt.",
-    "buildSummary": "Built as a focused terminal experience around utility collection and workflow acceleration.",
+    "outcome": "An offline-first field-service workflow designed around completing and syncing real crew jobs.",
+    "buildSummary": "Built as a mobile PWA for customers, jobs, quotes, invoices, Stripe payments, and offline job completion.",
     "screenshots": [
       "showcase/assets/toolbelt-02.png"
     ]
@@ -852,17 +852,17 @@
     "slug": "wiklite",
     "title": "WikLite",
     "category": "Applications",
-    "summary": "A lightweight knowledge space for capturing useful information without ceremony.",
-    "problem": "Teams needed searchable context that stayed quick to maintain.",
+    "summary": "A local-first Markdown wiki with backlinks, fuzzy search, editing, and graph view.",
+    "problem": "People needed lightweight linked notes without an account, cloud storage, or database lock-in.",
     "capabilities": [
-      "Knowledge UX",
-      "Searchable notes",
-      "Content structure"
+      "Markdown editing",
+      "Backlinks and fuzzy search",
+      "Graph visualization"
     ],
     "artifact": "showcase/assets/wiklite.png",
     "artifactType": "screenshot",
-    "outcome": "A clear, outcome-focused experience for wiklite.",
-    "buildSummary": "Built as a focused interface experience around knowledge ux and searchable notes.",
+    "outcome": "A lightweight local-first knowledge system for linked Markdown notes and visual context.",
+    "buildSummary": "Built around Markdown files, backlinks, fuzzy search, command-palette editing, and a graph view without cloud storage.",
     "screenshots": [
       "showcase/assets/wiklite-02.png",
       "showcase/assets/wiklite-03.png",
