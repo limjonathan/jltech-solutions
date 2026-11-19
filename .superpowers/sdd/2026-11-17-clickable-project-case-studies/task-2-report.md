@@ -96,3 +96,11 @@ Browser verification against the existing local server at
   index when the project was excluded (`13 projects` in Websites).
 - A project without additional screenshots rendered the primary artifact as its sole
   gallery thumbnail.
+
+## Follow-up fix
+
+- Restored the privacy regression test's scan across both `showcase.html` and
+  `showcase.js`, so repository, local path, and private endpoint strings in either
+  surface are rejected. The local-host check targets endpoint URL forms so the
+  `showcase.js` public-URL guard's bare hostname allowlist is not treated as a
+  published endpoint.

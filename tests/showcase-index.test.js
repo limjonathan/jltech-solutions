@@ -17,8 +17,12 @@ test('showcase index exposes the project grid, filters, and home entry point', (
 });
 
 test('showcase page contains no repository or private endpoint links', () => {
-    const page = fs.readFileSync(path.join(root, 'showcase.html'), 'utf8');
-    assert.doesNotMatch(page, /github\.com|\/home\/|\/Users\/|localhost|127\.0\.0\.1/i);
+    const source = [
+        fs.readFileSync(path.join(root, 'showcase.html'), 'utf8'),
+        fs.readFileSync(path.join(root, 'showcase.js'), 'utf8')
+    ].join('\n');
+    assert.doesNotMatch(source, /github\.com|\/home\/|\/Users\/|127\.0\.0\.1/i);
+    assert.doesNotMatch(source, /(?:https?:)?\/\/localhost(?::\d+)?(?:\/|$)/i);
 });
 
 test('showcase page has accessible structure and reduced-motion support', () => {
