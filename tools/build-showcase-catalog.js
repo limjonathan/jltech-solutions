@@ -77,6 +77,26 @@ const additionalScreenshots = {
     'john-portfolio': [
         'showcase/assets/john-portfolio-02.png',
         'showcase/assets/john-portfolio-03.png'
+    ],
+    'street-eats-food-truck': [
+        'showcase/assets/street-eats-food-truck-02.png',
+        'showcase/assets/street-eats-food-truck-03.png'
+    ],
+    'pmc-website': [
+        'showcase/assets/pmc-website-02.png',
+        'showcase/assets/pmc-website-03.png'
+    ],
+    'sunrisesite': [
+        'showcase/assets/sunrisesite-02.png',
+        'showcase/assets/sunrisesite-03.png'
+    ],
+    'superasianwok': [
+        'showcase/assets/superasianwok-02.png',
+        'showcase/assets/superasianwok-03.png'
+    ],
+    'nomu': [
+        'showcase/assets/nomu-02.png',
+        'showcase/assets/nomu-03.png'
     ]
 };
 const demoUrls = {};

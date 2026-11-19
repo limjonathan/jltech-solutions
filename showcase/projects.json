@@ -422,7 +422,11 @@
     "artifact": "showcase/assets/nomu.png",
     "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for nomu studio.",
-    "buildSummary": "Built as a focused interface experience around brand experience and landing page."
+    "buildSummary": "Built as a focused interface experience around brand experience and landing page.",
+    "screenshots": [
+      "showcase/assets/nomu-02.png",
+      "showcase/assets/nomu-03.png"
+    ]
   },
   {
     "slug": "nursey",
@@ -470,7 +474,11 @@
     "artifact": "showcase/assets/street-eats.png",
     "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for street eats.",
-    "buildSummary": "Built as a focused interface experience around local business web and menu ux."
+    "buildSummary": "Built as a focused interface experience around local business web and menu ux.",
+    "screenshots": [
+      "showcase/assets/street-eats-food-truck-02.png",
+      "showcase/assets/street-eats-food-truck-03.png"
+    ]
   },
   {
     "slug": "pdfforge",
@@ -518,7 +526,11 @@
     "artifact": "showcase/assets/pmc-website.png",
     "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for pmc web presence.",
-    "buildSummary": "Built as a focused interface experience around service website and information architecture."
+    "buildSummary": "Built as a focused interface experience around service website and information architecture.",
+    "screenshots": [
+      "showcase/assets/pmc-website-02.png",
+      "showcase/assets/pmc-website-03.png"
+    ]
   },
   {
     "slug": "polyglot",
@@ -710,7 +722,11 @@
     "artifact": "showcase/assets/sunrise-site.png",
     "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for sunrise site.",
-    "buildSummary": "Built as a focused interface experience around brand web and conversion design."
+    "buildSummary": "Built as a focused interface experience around brand web and conversion design.",
+    "screenshots": [
+      "showcase/assets/sunrisesite-02.png",
+      "showcase/assets/sunrisesite-03.png"
+    ]
   },
   {
     "slug": "superasianwok",
@@ -726,7 +742,11 @@
     "artifact": "showcase/assets/superasianwok.png",
     "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for super asian wok.",
-    "buildSummary": "Built as a focused interface experience around restaurant web and menu presentation."
+    "buildSummary": "Built as a focused interface experience around restaurant web and menu presentation.",
+    "screenshots": [
+      "showcase/assets/superasianwok-02.png",
+      "showcase/assets/superasianwok-03.png"
+    ]
   },
   {
     "slug": "tilmar-ops",
