@@ -13,7 +13,11 @@
     "artifact": "showcase/assets/aleph-bet-express.png",
     "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for aleph bet express.",
-    "buildSummary": "Built as a focused interface experience around learning ux and responsive interface."
+    "buildSummary": "Built as a focused interface experience around learning ux and responsive interface.",
+    "screenshots": [
+      "showcase/assets/aleph-bet-express-02.png",
+      "showcase/assets/aleph-bet-express-03.png"
+    ]
   },
   {
     "slug": "alphafleet-landing",
@@ -141,7 +145,11 @@
     "artifact": "showcase/assets/courseware-as-code.png",
     "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for courseware studio.",
-    "buildSummary": "Built as a focused architecture experience around content systems and learning design."
+    "buildSummary": "Built as a focused architecture experience around content systems and learning design.",
+    "screenshots": [
+      "showcase/assets/courseware-as-code-02.png",
+      "showcase/assets/courseware-as-code-03.png"
+    ]
   },
   {
     "slug": "deshportfolio",
@@ -494,7 +502,11 @@
     "artifact": "showcase/assets/pdfforge.png",
     "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for pdf forge.",
-    "buildSummary": "Built as a focused terminal experience around document tooling and batch workflow."
+    "buildSummary": "Built as a focused terminal experience around document tooling and batch workflow.",
+    "screenshots": [
+      "showcase/assets/pdfforge-02.png",
+      "showcase/assets/pdfforge-03.png"
+    ]
   },
   {
     "slug": "pitchkit",
@@ -594,7 +606,11 @@
     "artifact": "showcase/assets/regexscope.png",
     "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for regexscope.",
-    "buildSummary": "Built as a focused interface experience around developer utility and visual parsing."
+    "buildSummary": "Built as a focused interface experience around developer utility and visual parsing.",
+    "screenshots": [
+      "showcase/assets/regexscope-02.png",
+      "showcase/assets/regexscope-03.png"
+    ]
   },
   {
     "slug": "runtime-mcp",

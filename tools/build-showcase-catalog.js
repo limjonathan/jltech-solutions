@@ -97,6 +97,22 @@ const additionalScreenshots = {
     'nomu': [
         'showcase/assets/nomu-02.png',
         'showcase/assets/nomu-03.png'
+    ],
+    'aleph-bet-express': [
+        'showcase/assets/aleph-bet-express-02.png',
+        'showcase/assets/aleph-bet-express-03.png'
+    ],
+    'courseware-as-code': [
+        'showcase/assets/courseware-as-code-02.png',
+        'showcase/assets/courseware-as-code-03.png'
+    ],
+    'pdfforge': [
+        'showcase/assets/pdfforge-02.png',
+        'showcase/assets/pdfforge-03.png'
+    ],
+    'regexscope': [
+        'showcase/assets/regexscope-02.png',
+        'showcase/assets/regexscope-03.png'
     ]
 };
 const demoUrls = {};

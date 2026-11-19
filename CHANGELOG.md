@@ -604,6 +604,8 @@ highlighted while the real value was Standard. Reset now re-syncs the severity c
 
 - Added verified 1440×900 Chromium hero and menu/services/section captures for Street Eats,
   PMC, Sunrise, Super Asian Wok, and NoMu to the public showcase catalog.
+- Added verified 1440×900 Chromium captures for Aleph Bet Express, Courseware as Code,
+  pdfforge, and RegexScope, including their documented route and interaction states.
 
 ## 2026-11-13
 
