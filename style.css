@@ -2524,6 +2524,13 @@ body::after {
     }
 }
 
+@media (max-width: 480px) {
+    .answer-section .section-container {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+}
+
 .seo-faq {
     display: grid;
     gap: 14px;

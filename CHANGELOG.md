@@ -6,8 +6,12 @@ All notable changes to the JL Tech Solutions site are documented here.
 
 - Added a crawlable homepage answer section clarifying audience, services, coverage,
   boundaries, and next steps for AI-search and local-intent queries.
+- Placed the four landing-page answer sections immediately after their heroes so the
+  concise source answer is available before the long-form content.
 - Labeled the homepage operations dashboard as illustrative so simulated figures are
   not presented as customer telemetry, uptime commitments, or performance guarantees.
+- Renamed the simulated availability metric and tightened answer-section spacing on
+  small screens.
 
 ## 2026-11-19 - Correct verified showcase domain copy
 
