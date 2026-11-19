@@ -2,6 +2,13 @@
 
 All notable changes to the JL Tech Solutions site are documented here.
 
+## 2026-11-19 - Add AI-search answer sections
+
+- Added a crawlable homepage answer section clarifying audience, services, coverage,
+  boundaries, and next steps for AI-search and local-intent queries.
+- Labeled the homepage operations dashboard as illustrative so simulated figures are
+  not presented as customer telemetry, uptime commitments, or performance guarantees.
+
 ## 2026-11-19 - Correct verified showcase domain copy
 
 - Audited catalog claims against available project documentation before changing copy.
@@ -661,3 +668,6 @@ highlighted while the real value was Standard. Reset now re-syncs the severity c
 - Added client-side allowlist validation, bounded location input, and accessible timeline group labeling.
 - Bounded inquiry text fields and associated validation messages with `aria-invalid` and `aria-describedby` at runtime.
 - Added submitted city/ZIP context to the inquiry receipt and corrected an HTML entity in the README.
+## 2026-11-19
+
+- Added `AI-SEO-RESEARCH.md`, a first-party-source research report on AI-search citations, Google AI Overviews, local SEO, GBP, structured data, and prioritized actions for JL Tech Solutions.

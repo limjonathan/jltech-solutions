@@ -2347,6 +2347,61 @@ body::after {
     margin-top: 34px;
 }
 
+.answer-section {
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-bg-surface);
+}
+
+.answer-section .section-container {
+    padding-top: clamp(56px, 7vw, 88px);
+    padding-bottom: clamp(56px, 7vw, 88px);
+}
+
+.answer-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(240px, 0.8fr);
+    gap: clamp(32px, 6vw, 88px);
+    align-items: start;
+}
+
+.answer-grid h2 {
+    max-width: 760px;
+    font-size: clamp(1.8rem, 4vw, 3.2rem);
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+}
+
+.answer-grid p:not(.seo-eyebrow) {
+    max-width: 720px;
+    color: var(--color-text-muted);
+    line-height: 1.72;
+    margin-top: 18px;
+}
+
+.answer-facts {
+    display: grid;
+    gap: 14px;
+    padding: 22px 24px;
+    border-left: 2px solid var(--color-primary);
+    background: var(--color-bg-alt);
+}
+
+.answer-facts li {
+    color: var(--color-text-muted);
+    line-height: 1.55;
+}
+
+.answer-facts strong {
+    color: var(--color-text);
+}
+
+.dashboard-note {
+    max-width: 720px;
+    margin-top: 12px;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+}
+
 .seo-breadcrumb {
     max-width: var(--max-width);
     margin: 0 auto;
@@ -2461,6 +2516,12 @@ body::after {
     max-width: 640px;
     margin-top: 16px;
     color: #cbd5e1;
+}
+
+@media (max-width: 760px) {
+    .answer-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .seo-faq {
