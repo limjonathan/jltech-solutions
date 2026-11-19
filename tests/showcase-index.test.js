@@ -2,6 +2,7 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
+const vm = require('node:vm');
 
 const root = path.resolve(__dirname, '..');
 
@@ -16,11 +17,8 @@ test('showcase index exposes the project grid, filters, and home entry point', (
 });
 
 test('showcase page contains no repository or private endpoint links', () => {
-    const source = [
-        fs.readFileSync(path.join(root, 'showcase.html'), 'utf8'),
-        fs.readFileSync(path.join(root, 'showcase.js'), 'utf8')
-    ].join('\n');
-    assert.doesNotMatch(source, /github\.com|\/home\/|localhost|127\.0\.0\.1/i);
+    const page = fs.readFileSync(path.join(root, 'showcase.html'), 'utf8');
+    assert.doesNotMatch(page, /github\.com|\/home\/|\/Users\/|localhost|127\.0\.0\.1/i);
 });
 
 test('showcase page has accessible structure and reduced-motion support', () => {
@@ -74,7 +72,71 @@ test('case-study gallery uses the primary artifact plus optional screenshots', (
 test('optional demo CTA only permits safe HTTPS public URLs', () => {
     const script = fs.readFileSync(path.join(root, 'showcase.js'), 'utf8');
     assert.match(script, /demoUrl/);
-    assert.match(script, /url\.protocol\s*===\s*['"]https:/);
+    assert.match(script, /url\.protocol\s*!==\s*['"]https:/);
+    assert.match(script, /isBlockedIpv4/);
+    assert.match(script, /isBlockedIpv6/);
     assert.match(script, /noopener noreferrer/);
     assert.match(script, /case-study-demo/);
+});
+
+test('runtime demo URL guard rejects local, reserved, and malformed HTTPS targets', async () => {
+    const showcase = fs.readFileSync(path.join(root, 'showcase.js'), 'utf8');
+    const stub = () => ({
+        hidden: true,
+        children: [],
+        querySelectorAll: () => [],
+        addEventListener: () => {},
+        replaceChildren: () => {},
+        setAttribute: () => {},
+        classList: { toggle: () => {} }
+    });
+    const elements = {
+        '#showcase-grid': stub(),
+        '#project-index': stub(),
+        '#case-study-view': stub(),
+        '#project-count': stub(),
+        '#showcase-error': stub()
+    };
+    const context = {
+        URL,
+        URLSearchParams,
+        window: {
+            __SHOWCASE_TEST__: true,
+            location: { search: '', hash: '', pathname: '/showcase.html' },
+            history: { replaceState: () => {}, pushState: () => {} },
+            addEventListener: () => {}
+        },
+        document: {
+            body: { children: [] },
+            querySelector: (selector) => elements[selector],
+            querySelectorAll: () => [],
+            addEventListener: () => {},
+            createElement: () => stub()
+        },
+        fetch: () => Promise.reject(new Error('test catalog unavailable'))
+    };
+    vm.runInNewContext(showcase, context);
+    const { safeDemoUrl } = context.window.__showcaseTestHooks;
+    const blocked = [
+        'https://0.0.0.0/demo',
+        'https://169.254.10.20/demo',
+        'https://192.168.1.2/demo',
+        'https://[::1]/demo',
+        'https://[fd00::1]/demo',
+        'https://[fe80::1]/demo',
+        'https://[::ffff:192.168.1.2]/demo',
+        'https://service.internal/demo',
+        'not a URL'
+    ];
+    blocked.forEach((url) => assert.equal(safeDemoUrl(url), null, url));
+    assert.equal(safeDemoUrl('https://example.com/demo'), 'https://example.com/demo');
+});
+
+test('case-study runtime modal behavior traps focus and re-renders after filter changes', () => {
+    const script = fs.readFileSync(path.join(root, 'showcase.js'), 'utf8');
+    assert.match(script, /element\.inert\s*=\s*true/);
+    assert.match(script, /aria-hidden/);
+    assert.match(script, /event\.key !== 'Tab'/);
+    assert.match(script, /renderIndex\(\);\s*\n\s*syncView\(\);/);
+    assert.match(script, /const nextHash = visibleProjects\(\)\.some/);
 });

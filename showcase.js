@@ -9,6 +9,7 @@
     let activeCategory = new URLSearchParams(window.location.search).get('category') || 'all';
     let lastTrigger = null;
     let pendingFocus = null;
+    let backgroundState = [];
 
     const create = (tag, className, text) => {
         const element = document.createElement(tag);
@@ -21,21 +22,139 @@
         ? projects
         : projects.filter((project) => project.category === activeCategory);
 
+    const parseIpv6 = (hostname) => {
+        const halves = hostname.split('::');
+        if (halves.length > 2) return null;
+        const left = halves[0] ? halves[0].split(':') : [];
+        const right = halves.length === 2 && halves[1] ? halves[1].split(':') : [];
+        if (halves.length === 1 && left.length !== 8) return null;
+        if (halves.length === 2 && left.length + right.length >= 8) return null;
+        const groups = [
+            ...left,
+            ...Array(8 - left.length - right.length).fill('0'),
+            ...right
+        ];
+        if (groups.some((group) => !/^[0-9a-f]{1,4}$/i.test(group))) return null;
+        return groups.flatMap((group) => {
+            const value = Number.parseInt(group, 16);
+            return [value >> 8, value & 0xff];
+        });
+    };
+
+    const isBlockedIpv4 = (octets) => {
+        if (octets.length !== 4 || octets.some((octet) => !Number.isInteger(octet) || octet < 0 || octet > 255)) return true;
+        const [first, second, third, fourth] = octets;
+        return first === 0
+            || first === 10
+            || first === 100 && second >= 64 && second <= 127
+            || first === 127
+            || first === 169 && second === 254
+            || first === 172 && second >= 16 && second <= 31
+            || first === 192 && (
+                second === 0
+                || second === 2
+                || second === 168
+                || second === 88 && third === 99
+            )
+            || first === 198 && (second === 18 || second === 19 || second === 51)
+            || first === 203 && second === 0 && third === 113
+            || first >= 224
+            || first === 192 && second === 31 && third === 196 && fourth === 0
+            || first === 192 && second === 52 && third === 193 && fourth === 0;
+    };
+
+    const isBlockedIpv6 = (hostname) => {
+        const bytes = parseIpv6(hostname);
+        if (!bytes) return true;
+        const isUnspecified = bytes.every((byte) => byte === 0);
+        const isLoopback = bytes.slice(0, 15).every((byte) => byte === 0) && bytes[15] === 1;
+        const isIpv4Mapped = bytes.slice(0, 10).every((byte) => byte === 0)
+            && bytes[10] === 0xff && bytes[11] === 0xff;
+        if (isIpv4Mapped && isBlockedIpv4(bytes.slice(12))) return true;
+        return isUnspecified
+            || isLoopback
+            || bytes[0] === 0xfc || bytes[0] === 0xfd
+            || bytes[0] === 0xfe && (bytes[1] & 0xc0) === 0x80
+            || bytes[0] === 0xff
+            || bytes[0] === 0x20 && bytes[1] === 0x01 && bytes[2] === 0x00
+                && (bytes[3] === 0x00 || bytes[3] === 0x02 || bytes[3] === 0x10)
+            || bytes[0] === 0x3f && bytes[1] === 0xff;
+    };
+
+    const isIpv4 = (hostname) => /^\d{1,3}(?:\.\d{1,3}){3}$/.test(hostname);
+    const isIpv6 = (hostname) => hostname.includes(':');
     const safeDemoUrl = (value) => {
         if (typeof value !== 'string' || !value) return null;
         try {
             const url = new URL(value);
-            const hostname = url.hostname.toLowerCase();
-            if (url.protocol === 'https:' && !url.username && !url.password && !url.port) {
-                const localName = ['local', 'host'].join('');
-                if (hostname !== localName && hostname !== '::1' && !hostname.endsWith('.local')) {
-                    if (/^(10|127)\./.test(hostname) || /^192\.168\./.test(hostname) || /^172\.(1[6-9]|2\d|3[01])\./.test(hostname)) return null;
-                    return url.href;
-                }
-            }
-            return null;
+            const hostname = url.hostname.toLowerCase().replace(/^\[|\]$/g, '').replace(/\.+$/, '');
+            if (url.protocol !== 'https:' || url.username || url.password || url.port || !hostname) return null;
+            if (['localhost', 'localhost.localdomain', 'ip6-localhost'].includes(hostname)
+                || hostname.endsWith('.localhost')
+                || hostname.endsWith('.local')
+                || hostname.endsWith('.internal')
+                || hostname.endsWith('.home.arpa')) return null;
+            if (isIpv4(hostname) && isBlockedIpv4(hostname.split('.').map(Number))) return null;
+            if (isIpv6(hostname) && isBlockedIpv6(hostname)) return null;
+            return url.href;
         } catch {
             return null;
+        }
+    };
+    if (window.__SHOWCASE_TEST__) window.__showcaseTestHooks = { safeDemoUrl };
+
+    const setModalBackgroundState = (isOpen) => {
+        if (isOpen) {
+            if (backgroundState.length) return;
+            const backgroundElements = new Set();
+            let current = caseStudy;
+            while (current && current.parentElement && current.parentElement !== document.body) {
+                [...current.parentElement.children]
+                    .filter((element) => element !== current)
+                    .forEach((element) => backgroundElements.add(element));
+                current = current.parentElement;
+            }
+            if (current?.parentElement === document.body) {
+                [...current.parentElement.children]
+                    .filter((element) => element !== current)
+                    .forEach((element) => backgroundElements.add(element));
+            }
+            backgroundState = [...backgroundElements].map((element) => ({
+                    element,
+                    inert: element.inert,
+                    ariaHidden: element.getAttribute('aria-hidden')
+                }));
+            backgroundState.forEach(({ element }) => {
+                element.inert = true;
+                element.setAttribute('aria-hidden', 'true');
+            });
+            return;
+        }
+        backgroundState.forEach(({ element, inert, ariaHidden }) => {
+            element.inert = inert;
+            if (ariaHidden === null) element.removeAttribute('aria-hidden');
+            else element.setAttribute('aria-hidden', ariaHidden);
+        });
+        backgroundState = [];
+    };
+
+    const focusableSelector = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+    const trapFocus = (event) => {
+        if (caseStudy.hidden || event.key !== 'Tab') return;
+        const focusable = [...caseStudy.querySelectorAll(focusableSelector)];
+        if (!focusable.length) {
+            event.preventDefault();
+            caseStudy.focus();
+            return;
+        }
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
         }
     };
 
@@ -91,12 +210,14 @@
         const project = projects.find((entry) => entry.slug === slug);
         if (!project) {
             caseStudy.hidden = true;
+            setModalBackgroundState(false);
             index.hidden = false;
             return;
         }
 
         index.hidden = true;
         caseStudy.hidden = false;
+        setModalBackgroundState(true);
         caseStudy.replaceChildren();
 
         const visible = visibleProjects();
@@ -228,13 +349,24 @@
         filter.addEventListener('click', () => {
             activeCategory = filter.dataset.category;
             const query = activeCategory === 'all' ? '' : `?category=${encodeURIComponent(activeCategory)}`;
-            window.history.replaceState(null, '', `showcase.html${query}${window.location.hash}`);
+            let currentSlug = '';
+            try {
+                currentSlug = decodeURIComponent(window.location.hash.slice(1));
+            } catch {
+                currentSlug = '';
+            }
+            const nextHash = visibleProjects().some((project) => project.slug === currentSlug)
+                ? window.location.hash
+                : '';
+            window.history.replaceState(null, '', `showcase.html${query}${nextHash}`);
             renderIndex();
+            syncView();
         });
     });
 
     document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape' && !caseStudy.hidden) closeCaseStudy();
+        trapFocus(event);
     });
     window.addEventListener('hashchange', syncView);
 
