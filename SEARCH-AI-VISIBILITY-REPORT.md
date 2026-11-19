@@ -5,6 +5,20 @@
 **Scope:** Google Search, Google AI Mode, Bing, public index signals, snippets, and
 whether the official site is cited or linked.
 
+## Search Console follow-up — 2026-11-19
+
+Ownership of the URL-prefix property was verified with Google's generated HTML file:
+`google12b0bfbea3eb0ef0.html`. The sitemap was submitted in Search Console as
+`/sitemap.xml`, and Google accepted the submission, although its first status showed
+“Couldn't fetch” while the newly deployed GitHub Pages file was propagating.
+
+URL Inspection was then run for all six sitemap URLs. At the time of inspection,
+Google reported each URL as **“URL is not on Google”** and **“URL is unknown to
+Google”**, with no crawl or canonical data yet. The homepage was submitted for
+indexing and Google confirmed that it was added to a priority crawl queue. This is
+an indexing baseline, not evidence of a content or technical rejection; recheck
+after Google processes the sitemap and crawl requests.
+
 ## Executive summary
 
 The site is publicly crawlable and has a sitemap, but this live spot check did **not**

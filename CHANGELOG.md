@@ -19,6 +19,14 @@ All notable changes to the JL Tech Solutions site are documented here.
 - Added Google's generated HTML verification file at the site root so ownership can
   be verified using the recommended method.
 
+## 2026-11-19 - Verify Search Console property and submit indexing requests
+
+- Verified the GitHub Pages URL-prefix property using the HTML file method.
+- Submitted `sitemap.xml`, inspected all six sitemap URLs, and requested priority
+  indexing for the homepage.
+- Recorded the initial “URL unknown to Google” baseline in
+  `SEARCH-AI-VISIBILITY-REPORT.md`.
+
 ## 2026-11-19 - Add AI-search answer sections
 
 - Added a crawlable homepage answer section clarifying audience, services, coverage,
