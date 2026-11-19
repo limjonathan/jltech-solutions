@@ -2,6 +2,14 @@
 
 All notable changes to the JL Tech Solutions site are documented here.
 
+## 2026-11-18 - Add synthetic app capture batch
+
+- Added verified 1440x900 Chromium captures for GigTax, ComplyBase, PitchKit, and
+  WikLite using documented routes and synthetic/demo data only.
+- Registered the additional screenshots, regenerated the showcase catalog and
+  JavaScript-disabled fallback, and documented capture commands, privacy decisions,
+  and skipped states.
+
 ## 2026-11-18 - Add five-project portfolio capture batch
 
 - Added two verified 1440x900 Chromium captures for each of Desh, Dylan Hardy,

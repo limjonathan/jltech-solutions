@@ -113,6 +113,27 @@ const additionalScreenshots = {
     'regexscope': [
         'showcase/assets/regexscope-02.png',
         'showcase/assets/regexscope-03.png'
+    ],
+    'gig-tax': [
+        'showcase/assets/gig-tax-02.png',
+        'showcase/assets/gig-tax-03.png'
+    ],
+    'complybase': [
+        'showcase/assets/complybase-02.png',
+        'showcase/assets/complybase-03.png',
+        'showcase/assets/complybase-04.png',
+        'showcase/assets/complybase-05.png'
+    ],
+    'pitchkit': [
+        'showcase/assets/pitchkit-02.png',
+        'showcase/assets/pitchkit-03.png',
+        'showcase/assets/pitchkit-04.png'
+    ],
+    'wiklite': [
+        'showcase/assets/wiklite-02.png',
+        'showcase/assets/wiklite-03.png',
+        'showcase/assets/wiklite-04.png',
+        'showcase/assets/wiklite-05.png'
     ]
 };
 const demoUrls = {};

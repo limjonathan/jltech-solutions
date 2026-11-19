@@ -129,7 +129,13 @@
     "artifact": "showcase/assets/complybase.png",
     "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for complybase.",
-    "buildSummary": "Built as a focused workflow experience around compliance ux and evidence tracking."
+    "buildSummary": "Built as a focused workflow experience around compliance ux and evidence tracking.",
+    "screenshots": [
+      "showcase/assets/complybase-02.png",
+      "showcase/assets/complybase-03.png",
+      "showcase/assets/complybase-04.png",
+      "showcase/assets/complybase-05.png"
+    ]
   },
   {
     "slug": "courseware-as-code",
@@ -273,7 +279,11 @@
     "artifact": "showcase/assets/gigtax.png",
     "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for gigtax.",
-    "buildSummary": "Built as a focused workflow experience around financial planning and guided forms."
+    "buildSummary": "Built as a focused workflow experience around financial planning and guided forms.",
+    "screenshots": [
+      "showcase/assets/gig-tax-02.png",
+      "showcase/assets/gig-tax-03.png"
+    ]
   },
   {
     "slug": "homeloop",
@@ -522,7 +532,12 @@
     "artifact": "showcase/assets/pitchkit.png",
     "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for pitchkit.",
-    "buildSummary": "Built as a focused workflow experience around story structure and content workflow."
+    "buildSummary": "Built as a focused workflow experience around story structure and content workflow.",
+    "screenshots": [
+      "showcase/assets/pitchkit-02.png",
+      "showcase/assets/pitchkit-03.png",
+      "showcase/assets/pitchkit-04.png"
+    ]
   },
   {
     "slug": "pmc-website",
@@ -826,6 +841,12 @@
     "artifact": "showcase/assets/wiklite.png",
     "artifactType": "screenshot",
     "outcome": "A clear, outcome-focused experience for wiklite.",
-    "buildSummary": "Built as a focused interface experience around knowledge ux and searchable notes."
+    "buildSummary": "Built as a focused interface experience around knowledge ux and searchable notes.",
+    "screenshots": [
+      "showcase/assets/wiklite-02.png",
+      "showcase/assets/wiklite-03.png",
+      "showcase/assets/wiklite-04.png",
+      "showcase/assets/wiklite-05.png"
+    ]
   }
 ]
