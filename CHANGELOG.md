@@ -33,6 +33,11 @@ All notable changes to the JL Tech Solutions site are documented here.
   with a direct link to the on-site support landing page.
 - Requested priority indexing for that landing page in Search Console.
 
+## 2026-11-19 - Refresh sitemap modification dates
+
+- Updated all sitemap `lastmod` values to match the crawlable pages' current
+  deployment date before Google processes the submitted sitemap.
+
 ## 2026-11-19 - Add AI-search answer sections
 
 - Added a crawlable homepage answer section clarifying audience, services, coverage,
