@@ -27,6 +27,12 @@ All notable changes to the JL Tech Solutions site are documented here.
 - Recorded the initial “URL unknown to Google” baseline in
   `SEARCH-AI-VISIBILITY-REPORT.md`.
 
+## 2026-11-19 - Publish local GBP update
+
+- Published a factual Google Business Profile update about Philadelphia IT support
+  with a direct link to the on-site support landing page.
+- Requested priority indexing for that landing page in Search Console.
+
 ## 2026-11-19 - Add AI-search answer sections
 
 - Added a crawlable homepage answer section clarifying audience, services, coverage,

@@ -19,6 +19,9 @@ indexing and Google confirmed that it was added to a priority crawl queue. This 
 an indexing baseline, not evidence of a content or technical rejection; recheck
 after Google processes the sitemap and crawl requests.
 
+The homepage and Philadelphia on-site support page were also submitted for priority
+crawling. The latter was still reported as unknown to Google at submission time.
+
 ## Executive summary
 
 The site is publicly crawlable and has a sitemap, but this live spot check did **not**
