@@ -14,6 +14,11 @@ All notable changes to the JL Tech Solutions site are documented here.
 - Added the Google Search Console HTML-tag verification token to the homepage so the
   owner can verify the GitHub Pages property and inspect indexing and query data.
 
+## 2026-11-19 - Add Search Console HTML verification file
+
+- Added Google's generated HTML verification file at the site root so ownership can
+  be verified using the recommended method.
+
 ## 2026-11-19 - Add AI-search answer sections
 
 - Added a crawlable homepage answer section clarifying audience, services, coverage,
